@@ -1,0 +1,8 @@
+{
+  "name": "deep-debugging",
+  "version": "1.1.0",
+  "description": "Systematic, evidence-based debugging — no guessing, no blind fixes. Prove the root cause first.",
+  "keywords": ["openclaw", "debugging", "systematic", "evidence-based", "nestjs", "typescript", "bug-fixing"],
+  "author": "brasco05",
+  "license": "MIT"
+}

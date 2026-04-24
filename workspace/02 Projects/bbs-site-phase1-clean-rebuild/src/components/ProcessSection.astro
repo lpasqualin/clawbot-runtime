@@ -1,0 +1,53 @@
+---
+import Section from './Section.astro';
+import Card from './Card.astro';
+import Grid from './Grid.astro';
+
+export interface Props {
+  eyebrow: string;
+  title: string;
+  steps: { title: string; body: string }[];
+}
+
+const { eyebrow, title, steps } = Astro.props;
+---
+
+<Section id="process">
+  <div class="section-wrap">
+    <div class="section-header">
+      <p class="eyebrow">{eyebrow}</p>
+      <h2>{title}</h2>
+    </div>
+
+    <Grid columns={3}>
+      {steps.map((step, index) => (
+        <Card>
+          <div class="content-stack">
+            <p class="step-index">0{index + 1}</p>
+            <h3>{step.title}</h3>
+            <p class="text-muted">{step.body}</p>
+          </div>
+        </Card>
+      ))}
+    </Grid>
+  </div>
+</Section>
+
+<style>
+  .section-wrap,
+  .content-stack {
+    display: grid;
+    gap: var(--space-5);
+  }
+
+  .content-stack {
+    gap: var(--space-3);
+  }
+
+  .step-index {
+    color: var(--accent);
+    font-size: var(--text-sm);
+    font-weight: 600;
+    letter-spacing: 0.08em;
+  }
+</style>

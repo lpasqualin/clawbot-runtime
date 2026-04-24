@@ -1,0 +1,471 @@
+{
+  "meta": {
+    "lastTouchedVersion": "2026.4.9",
+    "lastTouchedAt": "2026-04-13T15:51:36.578Z"
+  },
+  "wizard": {
+    "lastRunAt": "2026-04-11T02:26:56.896Z",
+    "lastRunVersion": "2026.4.9",
+    "lastRunCommand": "onboard",
+    "lastRunMode": "local"
+  },
+  "ui": {
+    "assistant": {
+      "name": "\ud83e\udd9e ClawBot",
+      "avatar": "\ud83e\udd9e"
+    }
+  },
+  "secrets": {
+    "providers": {
+      "default": {
+        "source": "env"
+      }
+    }
+  },
+  "auth": {
+    "profiles": {
+      "openrouter:default": {
+        "provider": "openrouter",
+        "mode": "api_key"
+      },
+      "openai-codex:default": {
+        "provider": "openai-codex",
+        "mode": "oauth"
+      },
+      "openai-codex:leo.pasqua88@gmail.com": {
+        "provider": "openai-codex",
+        "mode": "oauth",
+        "email": "leo.pasqua88@gmail.com"
+      },
+      "anthropic:claude-cli": {
+        "provider": "claude-cli",
+        "mode": "oauth"
+      }
+    }
+  },
+  "models": {
+    "mode": "merge",
+    "providers": {
+      "ollama": {
+        "baseUrl": "http://127.0.0.1:11434",
+        "apiKey": "ollama-local",
+        "api": "ollama",
+        "models": [
+          {
+            "id": "gemma4:e4b",
+            "name": "Gemma 4 E4B",
+            "reasoning": false,
+            "input": [
+              "text"
+            ],
+            "cost": {
+              "input": 0,
+              "output": 0,
+              "cacheRead": 0,
+              "cacheWrite": 0
+            },
+            "contextWindow": 131072,
+            "maxTokens": 8192,
+            "compat": {
+              "supportsDeveloperRole": false
+            }
+          },
+          {
+            "id": "qwen3:14b",
+            "name": "Qwen 3 14B",
+            "reasoning": false,
+            "input": [
+              "text"
+            ],
+            "cost": {
+              "input": 0,
+              "output": 0,
+              "cacheRead": 0,
+              "cacheWrite": 0
+            },
+            "contextWindow": 131072,
+            "maxTokens": 8192,
+            "compat": {
+              "supportsDeveloperRole": false
+            }
+          },
+          {
+            "id": "qwen2.5-coder:14b",
+            "name": "Qwen 2.5 Coder 14B",
+            "reasoning": false,
+            "input": [
+              "text"
+            ],
+            "cost": {
+              "input": 0,
+              "output": 0,
+              "cacheRead": 0,
+              "cacheWrite": 0
+            },
+            "contextWindow": 131072,
+            "maxTokens": 8192,
+            "compat": {
+              "supportsDeveloperRole": false
+            }
+          },
+          {
+            "id": "nomic-embed-text",
+            "name": "Nomic Embed Text",
+            "reasoning": false,
+            "input": [
+              "text"
+            ],
+            "cost": {
+              "input": 0,
+              "output": 0,
+              "cacheRead": 0,
+              "cacheWrite": 0
+            },
+            "contextWindow": 8192,
+            "maxTokens": 8192,
+            "compat": {
+              "supportsDeveloperRole": false
+            }
+          }
+        ]
+      }
+    }
+  },
+  "agents": {
+    "defaults": {
+      "model": {
+        "primary": "openai-codex/gpt-5.4-mini",
+        "fallbacks": [
+          "claude-cli/claude-haiku-4-5",
+          "ollama/qwen3:14b",
+          "ollama/gemma4:e4b"
+        ]
+      },
+      "models": {
+        "openai-codex/gpt-5.4-mini": {
+          "alias": "standard"
+        },
+        "openai-codex/gpt-5.4": {
+          "alias": "heavy"
+        },
+        "ollama/qwen3:14b": {
+          "alias": "local-reasoning"
+        },
+        "ollama/gemma4:e4b": {
+          "alias": "local-fast"
+        },
+        "ollama/qwen2.5-coder:14b": {
+          "alias": "local-coding"
+        },
+        "ollama/nomic-embed-text": {
+          "alias": "embed"
+        },
+        "claude-cli/claude-haiku-4-5": {
+          "alias": "anthropic-standard"
+        },
+        "claude-cli/claude-sonnet-4-6": {
+          "alias": "anthropic-medium"
+        },
+        "claude-cli/claude-opus-4-7": {
+          "alias": "anthropic-high"
+        }
+      },
+      "workspace": "/home/clawbot/.openclaw/workspace",
+      "memorySearch": {
+        "provider": "ollama",
+        "model": "nomic-embed-text"
+      },
+      "compaction": {
+        "mode": "safeguard"
+      },
+      "thinkingDefault": "low",
+      "maxConcurrent": 1,
+      "subagents": {
+        "maxConcurrent": 1
+      },
+      "timeoutSeconds": 120,
+      "llm": {
+        "idleTimeoutSeconds": 120
+      }
+    },
+    "list": [
+      {
+        "id": "main",
+        "identity": {
+          "name": "ClawBot",
+          "theme": "Leo Paz\u2019s local AI operator running locally",
+          "emoji": "\ud83e\udd9e",
+          "avatar": "avatars/telegram-bot-avatar.jpg"
+        }
+      },
+      {
+        "id": "vito",
+        "name": "vito",
+        "workspace": "/home/clawbot/.openclaw/workspace-vito",
+        "agentDir": "/home/clawbot/.openclaw/agents/vito/agent"
+      },
+      {
+        "id": "oracle",
+        "name": "oracle",
+        "workspace": "/home/clawbot/.openclaw/workspace-oracle",
+        "agentDir": "/home/clawbot/.openclaw/agents/oracle/agent"
+      },
+      {
+        "id": "tron",
+        "name": "tron",
+        "workspace": "/home/clawbot/.openclaw/workspace-tron",
+        "agentDir": "/home/clawbot/.openclaw/agents/tron/agent"
+      },
+      {
+        "id": "belfort",
+        "name": "Belfort",
+        "workspace": "/home/clawbot/.openclaw/workspace-belfort",
+        "agentDir": "/home/clawbot/.openclaw/agents/belfort/agent"
+      },
+      {
+        "id": "harley",
+        "name": "Harley",
+        "workspace": "/home/clawbot/.openclaw/workspace-harley",
+        "agentDir": "/home/clawbot/.openclaw/agents/harley/agent"
+      }
+    ]
+  },
+  "tools": {
+    "profile": "coding",
+    "web": {
+      "search": {
+        "enabled": true
+      },
+      "fetch": {
+        "enabled": true
+      }
+    }
+  },
+  "messages": {
+    "ackReactionScope": "group-mentions"
+  },
+  "commands": {
+    "native": "auto",
+    "nativeSkills": "auto",
+    "restart": true,
+    "ownerAllowFrom": [
+      "discord:1204238178584887310"
+    ],
+    "ownerDisplay": "raw"
+  },
+  "session": {
+    "dmScope": "per-channel-peer"
+  },
+  "cron": {
+    "enabled": true
+  },
+  "channels": {
+    "telegram": {
+      "enabled": true,
+      "dmPolicy": "pairing",
+      "botToken": {
+        "source": "env",
+        "provider": "default",
+        "id": "TELEGRAM_BOT_TOKEN"
+      },
+      "groupAllowFrom": [
+        "8376304007"
+      ],
+      "groupPolicy": "allowlist",
+      "streaming": {
+        "mode": "off"
+      }
+    },
+    "discord": {
+      "enabled": true,
+      "token": {
+        "source": "env",
+        "provider": "default",
+        "id": "DISCORD_BOT_TOKEN"
+      },
+      "groupPolicy": "open",
+      "streaming": {
+        "mode": "off"
+      },
+      "dmPolicy": "open",
+      "allowFrom": [
+        "*"
+      ],
+      "execApprovals": {
+        "enabled": true,
+        "approvers": [
+          "1204238178584887310"
+        ],
+        "target": "both"
+      },
+      "guilds": {
+        "1492208537873420443": {
+          "requireMention": false
+        }
+      }
+    }
+  },
+  "gateway": {
+    "port": 18789,
+    "mode": "local",
+    "bind": "loopback",
+    "controlUi": {
+      "allowInsecureAuth": true
+    },
+    "auth": {
+      "mode": "token",
+      "token": "2ba0fa2f4024a801ffc2066303f9162d074e674bac856969"
+    },
+    "tailscale": {
+      "mode": "off",
+      "resetOnExit": false
+    },
+    "remote": {
+      "token": ""
+    },
+    "nodes": {
+      "denyCommands": [
+        "camera.snap",
+        "camera.clip",
+        "screen.record",
+        "calendar.add",
+        "contacts.add",
+        "reminders.add"
+      ]
+    }
+  },
+  "mcp": {
+    "servers": {
+      "playwright-mcp": {
+        "command": "/home/clawbot/.npm-global/bin/playwright-mcp",
+        "args": [
+          "--headless",
+          "--browser",
+          "chromium"
+        ],
+        "description": "Browser automation via Playwright MCP server. Exposes browser_navigate, browser_click, browser_type, browser_snapshot, browser_evaluate, browser_get_text, and other Playwright tools."
+      }
+    }
+  },
+  "skills": {
+    "load": {
+      "extraDirs": [
+        "/home/clawbot/.openclaw/workspace-vito/skills",
+        "/home/clawbot/.openclaw/workspace-oracle/skills",
+        "/home/clawbot/.openclaw/workspace-tron/skills",
+        "/home/clawbot/.openclaw/workspace-belfort/skills",
+        "/home/clawbot/.openclaw/workspace-harley/skills"
+      ],
+      "watch": true
+    },
+    "install": {
+      "nodeManager": "npm"
+    },
+    "entries": {
+      "tavily": {
+        "enabled": true,
+        "apiKey": {
+          "source": "env",
+          "provider": "default",
+          "id": "TAVILY_API_KEY"
+        }
+      },
+      "todoist": {
+        "enabled": true,
+        "apiKey": {
+          "source": "env",
+          "provider": "default",
+          "id": "TODOIST_API_KEY"
+        }
+      },
+      "obsidian": {
+        "enabled": true,
+        "apiKey": {
+          "source": "env",
+          "provider": "default",
+          "id": "OBSIDIAN_API_KEY"
+        }
+      },
+      "gog": {
+        "enabled": true,
+        "env": {
+          "GOG_KEYRING_PASSWORD": "ClawBot00",
+          "GOG_BIN": "/home/clawbot/gogcli/bin/gog"
+        },
+        "config": {
+          "accounts": [
+            "leo.clawbot.1@gmail.com",
+            "leo.pasqua88@gmail.com"
+          ]
+        }
+      },
+      "cmc-api-crypto": {
+        "enabled": true,
+        "apiKey": {
+          "source": "env",
+          "provider": "default",
+          "id": "CMC_API_KEY"
+        }
+      },
+      "cmc-api-market": {
+        "enabled": true,
+        "apiKey": {
+          "source": "env",
+          "provider": "default",
+          "id": "CMC_API_KEY"
+        }
+      },
+      "cmc-api-onchain-data": {
+        "enabled": true,
+        "apiKey": {
+          "source": "env",
+          "provider": "default",
+          "id": "CMC_API_KEY"
+        }
+      },
+      "playwright-mcp": {
+        "enabled": true
+      },
+      "attio": {
+        "enabled": true,
+        "apiKey": {
+          "source": "env",
+          "provider": "default",
+          "id": "ATTIO_API_KEY"
+        }
+      }
+    }
+  },
+  "plugins": {
+    "entries": {
+      "telegram": {
+        "enabled": true,
+        "config": {}
+      },
+      "brave": {
+        "enabled": true,
+        "config": {
+          "webSearch": {
+            "apiKey": {
+              "source": "env",
+              "provider": "default",
+              "id": "TAVILY_WEB_SEARCH_KEY"
+            }
+          }
+        }
+      },
+      "openrouter": {
+        "enabled": true
+      },
+      "openai": {
+        "enabled": true
+      },
+      "ollama": {
+        "enabled": true
+      },
+      "anthropic": {
+        "enabled": true
+      }
+    }
+  }
+}

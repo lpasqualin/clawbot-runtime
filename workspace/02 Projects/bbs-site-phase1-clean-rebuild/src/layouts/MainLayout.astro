@@ -1,0 +1,103 @@
+---
+import '../styles/global.css';
+import Container from '../components/Container.astro';
+import Button from '../components/Button.astro';
+import { navLinks, footerNavLinks, siteMeta } from '../data/site';
+
+export interface Props {
+  title: string;
+  description: string;
+}
+
+const { title, description } = Astro.props;
+const canonical = new URL(Astro.url.pathname, `https://${siteMeta.domain}`).toString();
+---
+
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&display=swap"
+      rel="stylesheet"
+    />
+    <title>{title}</title>
+    <meta name="description" content={description} />
+    <link rel="canonical" href={canonical} />
+    <meta property="og:title" content={title} />
+    <meta property="og:description" content={description} />
+    <meta property="og:type" content="website" />
+    <meta property="og:url" content={canonical} />
+    <meta name="twitter:card" content="summary_large_image" />
+  </head>
+  <body>
+    <header class="site-header">
+      <Container>
+        <div class="site-header__inner">
+          <a href="/" class="site-brand" aria-label={siteMeta.name}>
+            <strong>{siteMeta.name}</strong>
+            <span>{siteMeta.headerTagline}</span>
+          </a>
+
+          <nav class="site-nav" aria-label="Primary">
+            {navLinks.map((link) => <a href={link.href}>{link.label}</a>)}
+          </nav>
+
+          <Button href={siteMeta.bookingHref}>{siteMeta.primaryCtaLabel}</Button>
+        </div>
+      </Container>
+    </header>
+
+    <main>
+      <slot />
+    </main>
+
+    <footer class="site-footer">
+      <Container>
+        <div class="footer-grid">
+          <div class="footer-brand-block">
+            <a href="/" class="footer-brand-link">
+              <strong class="footer-brand-name">{siteMeta.name}</strong>
+            </a>
+            <p class="footer-descriptor">Operational systems, automation, and reporting</p>
+            <p class="footer-email" style="margin-top: var(--space-4);">
+              <a href="mailto:leo@beaconbridgestrategies.com">leo@beaconbridgestrategies.com</a><br/>
+              South Florida
+            </p>
+          </div>
+
+          <div>
+            <p class="footer-col-label">Company</p>
+            <ul class="footer-link-list">
+              {footerNavLinks.map((link) => (
+                <li><a href={link.href}>{link.label}</a></li>
+              ))}
+            </ul>
+          </div>
+
+          <div>
+            <p class="footer-col-label">Connect</p>
+            <div class="footer-social">
+              <a href={siteMeta.linkedInHref} rel="noopener noreferrer" class="footer-social-link">
+                LinkedIn
+              </a>
+            </div>
+          </div>
+        </div>
+
+        <div class="footer-base">
+          <p class="site-footer__copy">
+            © {new Date().getFullYear()} {siteMeta.name}. All rights reserved.
+          </p>
+          <div class="footer-legal">
+            <a href="/privacy">Privacy Policy</a>
+            <a href="/terms">Terms</a>
+          </div>
+        </div>
+      </Container>
+    </footer>
+  </body>
+</html>

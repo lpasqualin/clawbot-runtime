@@ -1,0 +1,141 @@
+---
+import MainLayout from '../../layouts/MainLayout.astro';
+import Section from '../../components/Section.astro';
+import Hero from '../../components/Hero.astro';
+import ServicesSection from '../../components/ServicesSection.astro';
+import ProcessSection from '../../components/ProcessSection.astro';
+import CaseStudySection from '../../components/CaseStudySection.astro';
+import CTASection from '../../components/CTASection.astro';
+import Card from '../../components/Card.astro';
+import Grid from '../../components/Grid.astro';
+import { medSpaLanding } from '../../data/verticals';
+import { siteMeta } from '../../data/site';
+---
+
+<MainLayout title={medSpaLanding.seoTitle} description={medSpaLanding.metaDescription}>
+  <Section>
+    <Hero
+      eyebrow={medSpaLanding.hero.eyebrow}
+      headline={medSpaLanding.hero.headline}
+      subheadline={medSpaLanding.hero.subheadline}
+      intro={medSpaLanding.solution.paragraphs[0]}
+      primaryLabel={medSpaLanding.cta.buttonLabel}
+      primaryHref={siteMeta.bookingHref}
+      secondaryLabel={siteMeta.secondaryCtaLabel}
+      secondaryHref="#process"
+      highlights={medSpaLanding.hero.bullets}
+      statsHeading="At a glance"
+      stats={medSpaLanding.hero.sideCard}
+    />
+  </Section>
+
+  <CaseStudySection
+    eyebrow={medSpaLanding.signals.eyebrow}
+    title={medSpaLanding.signals.title}
+    items={medSpaLanding.signals.items}
+  />
+
+  <Section>
+    <div class="two-col">
+      <div class="section-header">
+        <p class="eyebrow">{medSpaLanding.solution.eyebrow}</p>
+        <h2>{medSpaLanding.solution.title}</h2>
+      </div>
+      <div class="section-layout">
+        <div class="prose">
+          {medSpaLanding.solution.paragraphs.map((paragraph) => <p class="text-muted">{paragraph}</p>)}
+        </div>
+        <Card>
+          <ul class="bullet-list list-clean">
+            {medSpaLanding.solution.principles.map((item) => <li>{item}</li>)}
+          </ul>
+        </Card>
+      </div>
+    </div>
+  </Section>
+
+  <ProcessSection
+    eyebrow={medSpaLanding.process.eyebrow}
+    title={medSpaLanding.process.title}
+    steps={medSpaLanding.process.steps}
+  />
+
+  <ServicesSection
+    eyebrow={medSpaLanding.included.eyebrow}
+    title={medSpaLanding.included.title}
+    items={medSpaLanding.included.items}
+  />
+
+  <Section>
+    <div class="section-layout">
+      <div class="section-header">
+        <p class="eyebrow">{medSpaLanding.outcomes.eyebrow}</p>
+        <h2>{medSpaLanding.outcomes.title}</h2>
+      </div>
+      <div class="two-col">
+        <Card>
+          <ul class="bullet-list list-clean">
+            {medSpaLanding.outcomes.items.map((item) => <li>{item}</li>)}
+          </ul>
+        </Card>
+        <Card>
+          <div class="prose">
+            <p class="text-muted">{medSpaLanding.outcomes.closing}</p>
+            <p class="eyebrow">{medSpaLanding.roi.eyebrow}</p>
+            <h3>{medSpaLanding.roi.title}</h3>
+            <div class="roi-stack">
+              <div>
+                <p class="eyebrow">Inputs</p>
+                <ul class="bullet-list list-clean">
+                  {medSpaLanding.roi.inputs.map((item) => <li>{item}</li>)}
+                </ul>
+              </div>
+              <div>
+                <p class="eyebrow">Current</p>
+                <ul class="bullet-list list-clean">
+                  {medSpaLanding.roi.current.map((item) => <li>{item}</li>)}
+                </ul>
+              </div>
+              <div>
+                <p class="eyebrow">Improved</p>
+                <ul class="bullet-list list-clean">
+                  {medSpaLanding.roi.improved.map((item) => <li>{item}</li>)}
+                </ul>
+              </div>
+            </div>
+            <p class="text-muted">{medSpaLanding.roi.closing}</p>
+          </div>
+        </Card>
+      </div>
+    </div>
+  </Section>
+
+  <CTASection
+    eyebrow={medSpaLanding.cta.eyebrow}
+    title={medSpaLanding.cta.title}
+    body={medSpaLanding.cta.body}
+    buttonLabel={medSpaLanding.cta.buttonLabel}
+    buttonHref={siteMeta.bookingHref}
+  />
+</MainLayout>
+
+<style>
+  .section-layout,
+  .roi-stack {
+    display: grid;
+    gap: var(--space-5);
+  }
+
+  .two-col {
+    display: grid;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: var(--space-6);
+    align-items: start;
+  }
+
+  @media (max-width: 900px) {
+    .two-col {
+      grid-template-columns: 1fr;
+    }
+  }
+</style>

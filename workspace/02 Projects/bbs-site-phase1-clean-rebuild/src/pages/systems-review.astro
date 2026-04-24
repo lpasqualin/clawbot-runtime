@@ -1,0 +1,106 @@
+---
+import MainLayout from '../layouts/MainLayout.astro';
+import Section from '../components/Section.astro';
+import CTASection from '../components/CTASection.astro';
+import Card from '../components/Card.astro';
+import Grid from '../components/Grid.astro';
+import { systemsReviewPage } from '../data/systems-review';
+import { siteMeta } from '../data/site';
+---
+
+<MainLayout title={systemsReviewPage.seo.title} description={systemsReviewPage.seo.description}>
+  <Section size="wide">
+    <div class="section-header">
+      <p class="eyebrow">{systemsReviewPage.hero.eyebrow}</p>
+      <h1>{systemsReviewPage.hero.headline}</h1>
+      <p class="lead">{systemsReviewPage.hero.intro}</p>
+    </div>
+  </Section>
+
+  <Section>
+    <div class="section-layout">
+      <div class="section-header">
+        <p class="eyebrow">{systemsReviewPage.whatWeLookAt.eyebrow}</p>
+        <h2>{systemsReviewPage.whatWeLookAt.title}</h2>
+      </div>
+      <Grid columns={3}>
+        {systemsReviewPage.whatWeLookAt.items.map((item) => (
+          <Card>
+            <div class="content-stack">
+              <h3>{item.title}</h3>
+              <p class="text-muted">{item.body}</p>
+            </div>
+          </Card>
+        ))}
+      </Grid>
+    </div>
+  </Section>
+
+  <Section>
+    <div class="section-layout">
+      <div class="section-header">
+        <p class="eyebrow">{systemsReviewPage.whatYouGet.eyebrow}</p>
+        <h2>{systemsReviewPage.whatYouGet.title}</h2>
+      </div>
+      <Grid columns={3}>
+        {systemsReviewPage.whatYouGet.items.map((item) => (
+          <Card>
+            <div class="content-stack">
+              <h3>{item.title}</h3>
+              <p class="text-muted">{item.body}</p>
+            </div>
+          </Card>
+        ))}
+      </Grid>
+    </div>
+  </Section>
+
+  <Section>
+    <div class="two-col">
+      <div class="section-header">
+        <p class="eyebrow">{systemsReviewPage.whoFor.eyebrow}</p>
+        <h2>{systemsReviewPage.whoFor.title}</h2>
+      </div>
+      <Card>
+        <ul class="bullet-list list-clean">
+          {systemsReviewPage.whoFor.items.map((item: string) => <li>{item}</li>)}
+        </ul>
+      </Card>
+    </div>
+  </Section>
+
+  <CTASection
+    eyebrow="Next Step"
+    title="Ready to fix your operations?"
+    body="Book a Systems Review to map out a clear path forward."
+    buttonLabel={siteMeta.primaryCtaLabel}
+    buttonHref="/contact?intent=systems-review"
+  />
+</MainLayout>
+
+<style>
+  .section-layout,
+  .content-stack {
+    display: grid;
+    gap: var(--space-5);
+  }
+
+  .content-stack {
+    gap: var(--space-3);
+  }
+
+  .two-col {
+    display: grid;
+    grid-template-columns: minmax(0, 0.95fr) minmax(0, 1.05fr);
+    gap: var(--space-6);
+    align-items: start;
+  }
+  
+  .lead { font-size: 1.125rem; color: var(--muted); line-height: 1.6; max-width: 800px; }
+  
+  @media (max-width: 900px) {
+    .two-col {
+      grid-template-columns: 1fr;
+    }
+  }
+</style>

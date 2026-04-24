@@ -1,0 +1,114 @@
+---
+import MainLayout from '../layouts/MainLayout.astro';
+import Section from '../components/Section.astro';
+import Card from '../components/Card.astro';
+import { contactPage } from '../data/contact';
+---
+
+<MainLayout title={contactPage.seo.title} description={contactPage.seo.description}>
+  <Section size="wide">
+    <div class="two-col">
+      <div class="section-header">
+        <p class="eyebrow">{contactPage.hero.eyebrow}</p>
+        <h1>{contactPage.hero.headline}</h1>
+        <p class="text-muted" style="font-size: 1.125rem;">{contactPage.hero.intro}</p>
+        
+        <div class="info-block">
+          <p><strong>Email:</strong> <br/><a href={`mailto:${contactPage.companyInfo.email}`}>{contactPage.companyInfo.email}</a></p>
+          <p><strong>Location:</strong> <br/>{contactPage.companyInfo.location}</p>
+          <p class="text-muted text-small" style="max-width: 400px; margin-top: 1rem;">{contactPage.companyInfo.note}</p>
+        </div>
+      </div>
+      
+      <div class="form-shell surface-panel">
+        <div class="section-header" style="margin-bottom: var(--space-4);">
+          <h2>{contactPage.form.title}</h2>
+        </div>
+        
+        <form class="form-grid" action="#" method="POST">
+          <input type="hidden" name="intent" value="" id="intent-field" />
+          
+          <div class="form-field">
+            <label for="name">Name</label>
+            <input id="name" name="name" type="text" required />
+          </div>
+          <div class="form-field">
+            <label for="email">Email</label>
+            <input id="email" name="email" type="email" required />
+          </div>
+          <div class="form-field">
+            <label for="company">Company</label>
+            <input id="company" name="company" type="text" required />
+          </div>
+          <div class="form-field">
+            <label for="website">Website (optional)</label>
+            <input id="website" name="website" type="url" />
+          </div>
+          <div class="form-field">
+            <label for="breaking">What is breaking down operationally?</label>
+            <textarea id="breaking" name="breaking" required></textarea>
+          </div>
+          <div class="form-field">
+            <label for="goal">What are you trying to fix or improve?</label>
+            <textarea id="goal" name="goal" required></textarea>
+          </div>
+          
+          <button type="submit" class="submit-btn">Send request</button>
+        </form>
+      </div>
+    </div>
+  </Section>
+</MainLayout>
+
+<script>
+  if (typeof window !== 'undefined') {
+    const params = new URLSearchParams(window.location.search);
+    const intent = params.get('intent');
+    if (intent) {
+      const intentInput = document.getElementById('intent-field') as HTMLInputElement;
+      if (intentInput) intentInput.value = intent;
+    }
+  }
+</script>
+
+<style>
+  .two-col {
+    display: grid;
+    grid-template-columns: minmax(0, 0.9fr) minmax(0, 1.1fr);
+    gap: var(--space-6);
+    align-items: start;
+  }
+  
+  .info-block {
+    margin-top: var(--space-4);
+    display: flex;
+    flex-direction: column;
+    gap: var(--space-3);
+  }
+  
+  .info-block a {
+    color: var(--text);
+  }
+
+  .submit-btn {
+    background: var(--accent);
+    color: white;
+    border: none;
+    padding: var(--space-3);
+    border-radius: var(--radius-sm);
+    font-weight: 600;
+    cursor: pointer;
+    font-size: var(--text-base);
+    transition: opacity 0.2s;
+  }
+  
+  .submit-btn:hover {
+    opacity: 0.9;
+  }
+
+  @media (max-width: 900px) {
+    .two-col {
+      grid-template-columns: 1fr;
+    }
+  }
+</style>

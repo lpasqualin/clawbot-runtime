@@ -1,0 +1,77 @@
+{
+  "version": 1,
+  "skills": {
+    "gog": {
+      "version": "1.0.0",
+      "installedAt": 1772060712086
+    },
+    "brw-cold-outreach-sequence": {
+      "version": "1.0.0",
+      "installedAt": 1774983545183
+    },
+    "closing-deals": {
+      "version": "0.1.0",
+      "installedAt": 1774983547695
+    },
+    "compliance-review": {
+      "version": "1.0.0",
+      "installedAt": 1774983561144
+    },
+    "email-marketing": {
+      "version": "1.0.0",
+      "installedAt": 1774983563407
+    },
+    "competitor-analysis": {
+      "version": "6.0.0",
+      "installedAt": 1774983795091
+    },
+    "market-research": {
+      "version": "1.0.1",
+      "installedAt": 1774983797473
+    },
+    "landing-page-roast": {
+      "version": "1.0.1",
+      "installedAt": 1774983803488
+    },
+    "lead-scorer": {
+      "version": "1.0.0",
+      "installedAt": 1774988646672
+    },
+    "mkts-market-data": {
+      "version": "1.0.11",
+      "installedAt": 1774997524102
+    },
+    "yahoo-finance": {
+      "version": "1.0.0",
+      "installedAt": 1774997529678
+    },
+    "coingecko": {
+      "version": "1.0.0",
+      "installedAt": 1774997533935
+    },
+    "crypto-market-data": {
+      "version": "1.0.2",
+      "installedAt": 1774997539268
+    },
+    "cmc-api-crypto": {
+      "version": "1.0.3",
+      "installedAt": 1774997543027
+    },
+    "cmc-api-market": {
+      "version": "1.0.1",
+      "installedAt": 1774997545763
+    },
+    "attio": {
+      "version": "1.0.0",
+      "installedAt": 1775096375144
+    },
+    "finance-radar": {
+      "version": "1.1.0",
+      "installedAt": 1775098984606
+    },
+    "finance": {
+      "version": "1.1.2",
+      "installedAt": 1775099404079
+    }
+  }
+}

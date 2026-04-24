@@ -1,0 +1,346 @@
+{
+  "version": 1,
+  "jobs": [
+    {
+      "id": "b6608876-29c4-4eee-810d-34640621a0a7",
+      "agentId": "main",
+      "sessionKey": "agent:main:discord:channel:1493413546023714897",
+      "name": "daily-morning-brief-discord",
+      "description": "Generate and post Leo's morning brief to Discord channel channel:1492262253255200838 every day at 7:00 AM ET.",
+      "enabled": true,
+      "createdAtMs": 1776128614762,
+      "updatedAtMs": 1777028462354,
+      "schedule": {
+        "kind": "cron",
+        "expr": "0 7 * * *",
+        "tz": "America/New_York"
+      },
+      "sessionTarget": "isolated",
+      "wakeMode": "now",
+      "payload": {
+        "kind": "agentTurn",
+        "message": "You are running the daily morning brief.\n\nThis is a bounded summary task.\nDo NOT perform deep analysis, research, or planning beyond what is explicitly requested.\n\n## Tools — Required\nYou MUST use registered skills. Never use bash, IMAP, raw API, or shell if a registered skill exists.\n- Weather: use gog-v2 skill → search web or use available weather tool for Coral Springs FL\n- Calendar: use gog-v2 skill → GOG_ACCOUNT=leo.pasqua88@gmail.com gog calendar events primary --from today --to today --json\n- Gmail: use gog-v2 skill → GOG_ACCOUNT=leo.pasqua88@gmail.com gog gmail search newer_than:18h --max 20 --json\n- Tasks: use todoist skill\n- Delivery: output your response normally — OpenClaw delivers to Discord automatically via the announce configuration on this job. Do NOT call any skill for delivery.\n\n## Objective\nProduce a high-signal morning brief covering weather, calendar, inbox, signals, and tasks.\n\n## Inputs\nCollect only:\n- weather: today's conditions for Coral Springs FL — temp range, condition, delta vs yesterday\n- calendar_today: today's events\n- gmail_recent: emails from last 12–18h — split into action-required vs updates\n- tasks_today: Todoist due today and overdue\n- signals: 1–3 meaningful external signals if available (AI releases, market shifts, relevant news)\n\nRules:\n- Do NOT load full MEMORY.md\n- Do NOT pull historical data beyond what is necessary\n- Do NOT include irrelevant project context\n\n## Output\nProduce EXACTLY this format:\n\n---\n🌅 MORNING BRIEF — {{day, date}}\n\n🌤 Weather\n- Today: [temp range + condition]\n- Change: [vs yesterday: hotter/cooler + rain shift if meaningful]\n\n📅 Calendar\n- Key events: [0–3 important only]\n- Load: [light / moderate / heavy]\n- Constraint: [if relevant: meetings block, travel, etc.]\n\n📥 Inbox (Last 12–18h)\n- Primary: [3–5 action-relevant emails]\n- Updates: [2–4 high-signal items — AI, market, tools, opportunities]\n- Ignore: promos/newsletters unless unusually relevant\n\n📰 Signals\n- [1–3 meaningful external signals only tied to your work]\n\n📊 Task Pulse\nFocus:\n- [2–3 real tasks tied to outcomes]\nPressure:\n- Overdue: [count + 1–2 key items]\n- Due today: [count + key items]\nDrift:\n- [only if something important has not moved in 5–7+ days]\n\n🤖 Autonomous Actions\n- [only if something was actually done, else omit section entirely]\n\n🎯 Today's Edge\n- Main move: [clear outcome]\n- Protection rule: [what to avoid]\n\n❓ Quick Sync\n- [1–2 decisions max if needed, else omit]\n\n⚠️ Watchouts\n- [real risks only: deadlines, money, security, collisions]\n- if none, omit section entirely\n\n---\n\n## Hard Rules\n- Keep output concise and high-signal\n- Do NOT include explanations or reasoning in output\n- Do NOT expand scope beyond today's execution\n- Do NOT load additional context just in case\n- If a data source is unavailable, note it in one word and continue\n- Omit any section with nothing real to say",
+        "timeoutSeconds": 900
+      },
+      "delivery": {
+        "mode": "announce",
+        "channel": "discord",
+        "to": "channel:1492262253255200838"
+      },
+      "state": {
+        "nextRunAtMs": 1777114800000,
+        "lastRunAtMs": 1777028400025,
+        "lastRunStatus": "ok",
+        "lastStatus": "ok",
+        "lastDurationMs": 62329,
+        "lastDeliveryStatus": "delivered",
+        "consecutiveErrors": 0,
+        "lastDelivered": true
+      }
+    },
+    {
+      "id": "36b21d05-5c48-432c-b086-2635cfea95e1",
+      "agentId": "main",
+      "sessionKey": "agent:main:discord:channel:1493413546023714897",
+      "name": "daily-midday-checkin-discord",
+      "description": "Generate and post Leo's midday check-in to the configured Discord channel every day at 12:00 PM ET.",
+      "enabled": true,
+      "createdAtMs": 1776137290626,
+      "updatedAtMs": 1776960022456,
+      "schedule": {
+        "kind": "cron",
+        "expr": "0 12 * * *",
+        "tz": "America/New_York"
+      },
+      "sessionTarget": "isolated",
+      "wakeMode": "now",
+      "payload": {
+        "kind": "agentTurn",
+        "message": "You are running the daily midday check-in.\n\nThis is a constrained two-phase run.\nDo NOT perform deep analysis, long-form planning, or broad context loading.\n\n## Tools — Required\nYou MUST use registered skills. Never use bash, IMAP, raw API, or shell if a registered skill exists.\n- Calendar: use gog-v2 skill → GOG_ACCOUNT=leo.pasqua88@gmail.com gog calendar events primary --from today --to today --json\n- Gmail: use gog-v2 skill → GOG_ACCOUNT=leo.pasqua88@gmail.com gog gmail search newer_than:6h --max 15 --json\n- Tasks: use todoist skill\n- Delivery: output your response normally — OpenClaw delivers to Discord automatically via the announce configuration on this job. Do NOT call any skill for delivery.\n\n## Objective\nTight midday status update. Track delta from morning. Keep execution grounded.\n\n## Phase 1 — Gather Only\nCollect only:\n- calendar_remaining: remaining events today\n- gmail_new: action-required emails since morning — always include security, account, money alerts\n- todoist_status: current due today and overdue\n- signals: only if something new and relevant appeared since morning\n\nRules:\n- gather facts only, do NOT summarize yet\n- do NOT load MEMORY.md\n- do NOT load unrelated workspace files\n\n## Phase 2 — Synthesize Only From Gathered Inputs\n\n## Output\nProduce EXACTLY this format:\n\n---\n☀️ MIDDAY CHECK-IN — {{day, date}}\n\n⏱ Reality Check\n- Time left: [rough]\n- Constraint: [what is actually limiting execution]\n\n📊 Task Pulse Now\nFocus:\n- [current active work — not planned work]\nPressure:\n- [what still must get done today]\nDrift:\n- [only if meaningful]\n\n📥 New Inputs\n- [new action-required emails or signals since morning]\n- [security / account / money alerts always included]\n\n📰 Signals\n- [only if something new and relevant appeared since morning, else omit]\n\n🤖 Autonomous Actions\n- [only if something actually executed, else omit]\n\n🎯 Adjustment\n- [one clear correction for rest of day]\n\n❓ Quick Sync\n- [if needed, else omit]\n\n⚠️ Watchouts\n- [end-of-day risks only]\n- if none, omit\n\n---\n\n## Hard Rules\n- Output exactly one check-in\n- No weather, no planning creep\n- Do NOT explain reasoning\n- If one source is unavailable, note it briefly and continue\n- Omit any section with nothing real to say",
+        "timeoutSeconds": 900
+      },
+      "delivery": {
+        "mode": "announce",
+        "channel": "discord",
+        "to": "channel:1492262253255200838"
+      },
+      "state": {
+        "nextRunAtMs": 1777046400000,
+        "lastRunAtMs": 1776960000047,
+        "lastRunStatus": "ok",
+        "lastStatus": "ok",
+        "lastDurationMs": 22409,
+        "lastDeliveryStatus": "delivered",
+        "consecutiveErrors": 0,
+        "lastDelivered": true
+      }
+    },
+    {
+      "id": "97aba831-e957-45f6-ade0-e7c2a90a4dbd",
+      "agentId": "main",
+      "sessionKey": "agent:main:discord:channel:1493413546023714897",
+      "name": "daily-evening-review-discord",
+      "description": "Generate and post Leo's evening review to the configured Discord channel every day at 8:00 PM ET.",
+      "enabled": true,
+      "createdAtMs": 1776136855715,
+      "updatedAtMs": 1776988831670,
+      "schedule": {
+        "kind": "cron",
+        "expr": "0 20 * * *",
+        "tz": "America/New_York"
+      },
+      "sessionTarget": "isolated",
+      "wakeMode": "now",
+      "payload": {
+        "kind": "agentTurn",
+        "message": "You are running the daily evening review.\n\nThis is a constrained two-phase run.\nDo NOT perform deep analysis beyond what is required.\n\n## Tools — Required\nYou MUST use registered skills. Never use bash, IMAP, raw API, or shell if a registered skill exists.\n- Calendar: use gog-v2 skill → GOG_ACCOUNT=leo.pasqua88@gmail.com gog calendar events primary --from today --to today --json\n- Tasks: use todoist skill\n- Delivery: output your response normally — OpenClaw delivers to Discord automatically via the announce configuration on this job. Do NOT call any skill for delivery.\n\n## Objective\nClean end-of-day summary. What moved, what did not, what carries forward.\n\n## Phase 1 — Gather Only\nCollect only:\n- calendar_today: completed and remaining events\n- todoist_completed: tasks completed today\n- todoist_open: remaining and overdue tasks\n- notable_inputs: anything important discovered today that affects tomorrow\n\nRules:\n- gather facts only, do NOT summarize yet\n- do NOT load MEMORY.md\n- do NOT pull historical context beyond today\n\n## Phase 2 — Synthesize Only From Gathered Inputs\n\n## Output\nProduce EXACTLY this format:\n\n---\n🌙 EVENING REVIEW — {{day, date}}\n\n✅ What Moved\n- [2–5 meaningful completions]\n- [include partial wins if relevant]\n\n❌ Still Open\n- [important unfinished work only — not full dump]\n\n📥 Notable Inputs\n- [anything important discovered today that affects tomorrow]\n\n📊 Day Assessment\n- [1–2 lines max: what actually happened vs intent]\n\n🔁 Carry Forward\n- [1–3 priorities for tomorrow]\n\n🧠 Capture\n- [1–2 useful insights, decisions, or adjustments — only if meaningful, else omit]\n\n🤖 Autonomous Actions\n- [only if something was done, else omit]\n\n🎯 Tomorrow Setup\n- [first move + sequencing hint]\n\n⚠️ Watchouts\n- [spillover risks / deadlines]\n- if none, omit\n\n---\n\n## Hard Rules\n- Keep output concise\n- No deep analysis, no long explanations\n- Do NOT load additional context just in case\n- If data is incomplete, proceed with what is available\n- Omit any section with nothing real to say",
+        "timeoutSeconds": 600
+      },
+      "delivery": {
+        "mode": "announce",
+        "channel": "discord",
+        "to": "channel:1492262253255200838"
+      },
+      "state": {
+        "nextRunAtMs": 1777075200000,
+        "lastRunAtMs": 1776988800009,
+        "lastRunStatus": "ok",
+        "lastStatus": "ok",
+        "lastDurationMs": 31661,
+        "lastDeliveryStatus": "delivered",
+        "consecutiveErrors": 0,
+        "lastDelivered": true
+      }
+    },
+    {
+      "id": "b552f550-4863-4142-9054-7207afd765f8",
+      "agentId": "main",
+      "sessionKey": "agent:main:discord:channel:1493413546023714897",
+      "name": "nightly-memory-sync-proposal",
+      "description": "Nightly memory reconciliation proposal. Calls memory-update-sync skill after the evening review window, filters discard candidates, and posts a compact approval request to Leo. Silent if nothing is worth proposing.",
+      "enabled": false,
+      "createdAtMs": 1776139634487,
+      "updatedAtMs": 1777003701694,
+      "schedule": {
+        "kind": "cron",
+        "expr": "30 21 * * *",
+        "tz": "America/New_York"
+      },
+      "sessionTarget": "isolated",
+      "wakeMode": "now",
+      "payload": {
+        "kind": "agentTurn",
+        "message": "You are running the nightly memory sync proposal workflow.\n\nThis is a proposal-only run.\nDo NOT write to MEMORY.md, Obsidian, Todoist, or any system of record.\n\n## Tools — Required\nYou MUST use registered skills. Never use bash, raw API, or shell if a registered skill exists.\n- Tasks: use todoist skill\n- Memory read/write: use memory-update-sync skill\n- Delivery: output your response normally — OpenClaw delivers to Discord automatically via the announce configuration on this job. Do NOT call any skill for delivery.\n\n## Objective\nSurface only high-signal durable memory updates from today's activity.\n\n## Inputs\nCollect only:\n- evening_review: today's evening review content\n- task_changes: only meaningful Todoist changes from today\n- current_memory: only relevant sections of MEMORY.md needed to avoid duplication\n\nDo NOT load full MEMORY.md unless strictly required.\n\n## Skill Call\nInvoke memory-update-sync with the smallest valid input set.\nPass evening_review content, task_changes summary, and relevant current_memory as separate string fields.\nDo not use JSON literals in the message — pass values as plain text fields to the skill.\n\n## Filter Rules\nKeep only candidates where ALL are true:\n- destination is not discard\n- confidence is high or medium\n- statement is durable and non-trivial\n\nDiscard silently: duplicates, weak inferences, temporary state, routine task churn.\n\n## Output\nIf no candidates remain: output nothing. Stop.\n\nIf candidates remain produce EXACTLY this format:\n\n---\n🧠 Memory Sync Proposal — {{date}}\n\n1. [destination][confidence][action] statement\n   Reason: reason\n\n---\nReply with:\n- approve all\n- approve 1,3\n- reject all\n- edit 2\n\n## Hard Rules\n- Do NOT write to any system\n- Do NOT load full MEMORY.md by default\n- Do NOT produce more than one message\n- If blocked by missing context, fail quietly",
+        "timeoutSeconds": 600
+      },
+      "delivery": {
+        "mode": "announce",
+        "channel": "discord",
+        "to": "channel:1492265696850346086"
+      },
+      "state": {
+        "lastRunAtMs": 1776994200024,
+        "lastRunStatus": "error",
+        "lastStatus": "error",
+        "lastDurationMs": 63701,
+        "lastDeliveryStatus": "delivered",
+        "consecutiveErrors": 3,
+        "lastDelivered": true,
+        "lastError": "⚠️ Agent couldn't generate a response. Note: some tool actions may have already been executed — please verify before retrying."
+      }
+    },
+    {
+      "id": "e68baf8f-f3cf-428f-8b2e-b97c01bbc225",
+      "agentId": "main",
+      "sessionKey": "agent:main:discord:channel:1493413546023714897",
+      "name": "system-health-check",
+      "description": "System health check every 12 hours. Checks critical services, Ollama, Obsidian REST, cron job failures, and disk usage. Phase-based: runs all commands first, evaluates second. Silent if healthy. One alert if anything is broken.",
+      "enabled": true,
+      "createdAtMs": 1776138121623,
+      "updatedAtMs": 1777006691313,
+      "schedule": {
+        "kind": "cron",
+        "expr": "0 */12 * * *",
+        "tz": "America/New_York"
+      },
+      "sessionTarget": "isolated",
+      "wakeMode": "now",
+      "payload": {
+        "kind": "agentTurn",
+        "timeoutSeconds": 120,
+        "message": "You are running the system health check.\n\nYou MUST run every bash command below and capture the exact output.\nDo NOT infer, guess, or assume any result. Run the command. Read the output. Store it.\nIf a command fails to run, store: ERROR: command failed\n\n## Phase 1 -- Run all checks and store exact output\n\nCHECK-A: openclaw service\nRun: systemctl is-active openclaw.service\nStore as: RESULT-A\n\nCHECK-B: ollama service\nRun: systemctl is-active ollama.service\nStore as: RESULT-B\n\nCHECK-C: obsidian-api service\nRun: systemctl is-active obsidian-api.service\nStore as: RESULT-C\n\nCHECK-D: ollama serving models\nRun: curl -s --max-time 5 http://localhost:11434/api/tags 2>/dev/null | python3 -c \"import sys,json; d=json.load(sys.stdin); print('ok:'+str(len(d.get('models',[])))+'models')\" 2>/dev/null || echo fail\nStore as: RESULT-D\n\nCHECK-E: obsidian REST responding\nRun these two commands in sequence:\n1. OBSIDIAN_KEY=$(grep OBSIDIAN_API_KEY /etc/openclaw.env | cut -d= -f2)\n2. curl -sk --max-time 5 https://localhost:27124/vault/ -H \"Authorization: Bearer $OBSIDIAN_KEY\" -o /dev/null -w \"http:%{http_code}\" 2>/dev/null || echo fail\nStore the output of command 2 as: RESULT-E\n\nCHECK-F: cron job failures\nRun: python3 -c \"import json; jobs = json.load(open('/home/clawbot/.openclaw/cron/jobs.json')).get('jobs',[]); bad = [j.get('name','?')+':err='+str(j.get('state',{}).get('consecutiveErrors',0)) for j in jobs if j.get('enabled',True) and (j.get('state',{}).get('consecutiveErrors',0)>1 or j.get('state',{}).get('lastRunStatus','')=='error')]; print('failures:'+','.join(bad) if bad else 'ok')\"\nStore as: RESULT-F\n\nCHECK-G: disk usage\nRun: df -h / /home --output=target,pcent | tail -n +2\nStore as: RESULT-G\n\n## Phase 2 -- Evaluate stored results only\n\nUse ONLY results stored in Phase 1. Do not run new commands. Do not infer.\n\nCRITICAL if any of these:\n- RESULT-A != 'active'\n- RESULT-B != 'active'\n- RESULT-C != 'active'\n- RESULT-D starts with 'fail'\n- RESULT-E != 'http:200'\n\nWARNING if any of these:\n- RESULT-F does not start with 'ok'\n- RESULT-G contains a percentage >= 85%\n\n## Phase 3 -- Output\n\nIf ALL checks pass: output nothing. Stop. Send nothing to Discord.\n\nIf anything failed:\n\n🚨 SYSTEM ALERT\n\nCRITICAL:\n- [component]: [exact stored result]\n\nWARNING:\n- [component]: [exact stored result]\n\nIMPACT:\n- [one line per failure]\n\nACTION:\n- [one line per failure]\n\nOmit CRITICAL if none. Omit WARNING if none. One message only."
+      },
+      "delivery": {
+        "mode": "announce",
+        "channel": "discord",
+        "to": "channel:1492265696850346086"
+      },
+      "state": {
+        "nextRunAtMs": 1777046686433,
+        "lastRunAtMs": 1777006664640,
+        "lastRunStatus": "ok",
+        "lastStatus": "ok",
+        "lastDurationMs": 26673,
+        "lastDeliveryStatus": "delivered",
+        "consecutiveErrors": 0,
+        "lastDelivered": true
+      }
+    },
+    {
+      "id": "3c945d93-f092-4056-8d3d-56c07b6c4ea6",
+      "agentId": "tron",
+      "sessionKey": "agent:tron:discord:channel:1492265696850346086",
+      "name": "tron-systems-review",
+      "description": "Weekly system optimization audit run by Tron. Evaluates stack versions, memory architecture, agent orchestration, and infrastructure for high-signal improvements. Silent if nothing worth proposing.",
+      "enabled": true,
+      "createdAtMs": 1776140729346,
+      "updatedAtMs": 1776607369306,
+      "schedule": {
+        "kind": "cron",
+        "expr": "0 10 * * 0",
+        "tz": "America/New_York"
+      },
+      "sessionTarget": "isolated",
+      "wakeMode": "now",
+      "payload": {
+        "kind": "agentTurn",
+        "message": "You are Tron. Run a weekly system optimization audit for Leo's AI/agent stack.\n\nThis is a low-noise, high-signal review. Your job is to identify subtle, high-impact improvements — not to produce a report for its own sake.\n\n## STRICT FILTER\n\nOnly propose something if ALL are true:\n- clearly improves the current system\n- practical to implement with current infrastructure\n- aligned with Agent OS architecture direction\n- not hype or trend-driven\n- not marginal\n\nIf no high-confidence improvements exist: output nothing. Stop. Do not send any message.\n\n## ANTI-REPEAT\n\nBefore outputting any item, check prior session outputs.\n\nSuppress the item if:\n- it was already surfaced recently, and\n- nothing materially changed, and\n- no new evidence strengthens it\n\nAllow it only if:\n- the situation materially changed, or\n- the signal is significantly stronger, or\n- the issue is still unresolved and important enough to resurface\n\nSuppress silently. Do not mention suppression. Do not replace suppressed items with filler.\nIf all items are suppressed, output nothing.\n\n\n## SCOPE — evaluate these areas, in order, stopping early if time-constrained\n\n1. **OpenClaw version**\n   Read: /home/clawbot/.openclaw/openclaw.json (check current version field)\n   Compare against known version context. Flag only if a meaningful update exists.\n\n2. **Memory architecture**\n   Read: /home/clawbot/.openclaw/workspace/MEMORY.md\n   Evaluate current file-based approach. Propose improvements only if clearly superior and practical.\n\n3. **Agent orchestration**\n   Read: /home/clawbot/.openclaw/openclaw.json (agents.list)\n   Check routing, concurrency settings, agent workspace structure.\n   Flag structural inefficiencies only.\n\n4. **Model stack**\n   Read: /home/clawbot/.openclaw/openclaw.json (defaults.models)\n   For each model entry, check if an alias is defined.\n   Build a role map from aliases only — do NOT infer roles from model names.\n   Evaluate:\n   - Role coverage: are `general`, `fast`, `reasoning`, `coding`, `adv-coding`, `embed` roles all covered?\n   - Redundancy: do multiple aliases point to equivalent models?\n   - Unused models: are any models present with no alias and no apparent role?\n   - Missing roles: is any role absent that the system clearly needs?\n   If aliases are unclear or missing for a model, skip that model — do not infer.\n   Only flag if a clear improvement exists.\n\n5. **Cron job health**\n   Read: /home/clawbot/.openclaw/cron/jobs.json\n   Check for scheduling conflicts, redundant work, or missing coverage.\n   Flag only real issues.\n\n6. **External check (max 1)**\n   Only if a specific known problem requires it. Skip if uncertain or slow.\n\n## OUTPUT\n\nIf improvements exist (max 5 items total):\n\n🔧 Systems Review — {{date}}\n\nFor each item:\n**Category:** <area>\n**Issue / Opportunity:** <what you found>\n**Recommendation:** <what to change>\n**Impact:** <why it matters>\n**Effort:** low / medium / high\n**Risk:** low / medium / high\n**Action:** <what would need to change>\n**Approval:** required\n\n---\n\nIf no meaningful improvements exist: output nothing.\n\n## FAILURE HANDLING\n\nIf this job fails or times out, send the following alert to channel:1492265696850346086:\n\n⚠️ Cron job `tron-systems-review` failed\nReason: <failure reason or \"timed out\">\nAction: Check OpenClaw logs — `journalctl -u openclaw.service -n 50 --no-pager`\n\n## HARD RULES\n\n- Do NOT execute any changes\n- Do NOT install anything\n- Do NOT modify configs\n- Do NOT restart services\n- Do NOT run long research chains\n- Maximum 1 external check — skip if slow or uncertain\n- Prefer local file reads over external calls\n- If a step is slow or uncertain, skip it and move on\n- Prioritize completion over completeness\n- Do NOT guess model roles from model names — use alias definitions only\n- If model aliases are absent or unclear, skip model evaluation entirely",
+        "timeoutSeconds": 180
+      },
+      "delivery": {
+        "mode": "announce",
+        "channel": "discord",
+        "to": "channel:1492265696850346086"
+      },
+      "state": {
+        "nextRunAtMs": 1777212000000,
+        "lastRunAtMs": 1776607200014,
+        "lastRunStatus": "ok",
+        "lastStatus": "ok",
+        "lastDurationMs": 169292,
+        "lastDelivered": true,
+        "lastDeliveryStatus": "delivered",
+        "consecutiveErrors": 0
+      }
+    },
+    {
+      "id": "552e0b4a-91a2-4155-9cf2-ebd3906ddda7",
+      "agentId": "oracle",
+      "sessionKey": "agent:oracle:discord:channel:1493469131733860412",
+      "name": "oracle-weekly-brief",
+      "description": "Weekly intelligence brief produced by Oracle. Surfaces high-signal opportunities, risks, and strategic insights relevant to Leo's business. Silent if nothing high-value is found.",
+      "enabled": true,
+      "createdAtMs": 1776141306749,
+      "updatedAtMs": 1776603760842,
+      "schedule": {
+        "kind": "cron",
+        "expr": "0 9 * * 0",
+        "tz": "America/New_York"
+      },
+      "sessionTarget": "isolated",
+      "wakeMode": "now",
+      "payload": {
+        "kind": "agentTurn",
+        "message": "You are Oracle. Run a weekly intelligence brief for Leo.\n\nYour job is to surface only high-value, decision-relevant information. This is not a research dump. This is not AI news. This is not content generation.\n\n## STRICT FILTER\n\nOnly include an item if ALL are true:\n- directly relevant to Leo's business (BBS services, automation, revenue)\n- actionable — Leo can do something with it\n- not already covered in a recent brief\n- not low-signal filler\n\nIf nothing high-value is found: output nothing. Do not send any message.\n\n## SCOPE\n\nEvaluate these areas using maximum 1–3 targeted searches:\n\n1. **Opportunities**\n   - Markets or niches showing demand for systems/automation\n   - Potential BBS service angles\n   - Ways to generate revenue\n\n2. **Risks**\n   - Competition shifts or commoditization\n   - Tools replacing services\n   - Positioning threats\n\n3. **Strategic Insights**\n   - Patterns in how businesses are operating\n   - Changes in buyer behavior\n   - Shifts in how AI is used operationally\n\n4. **Lead Angles**\n   - Specific segments or companies worth targeting\n   - Direction only — not a full lead list\n\n## RESEARCH RULES\n\n- Maximum 1–3 targeted searches total\n- Prefer focused queries over broad exploration\n- If a search is slow or unclear: skip it and move on\n- Prefer synthesis over raw research output\n\n## ANTI-REPEAT\n\nBefore outputting any item, check prior session outputs.\n\nSuppress the item if:\n- it was already surfaced recently, and\n- nothing materially changed, and\n- no new evidence strengthens it\n\nAllow it only if:\n- the situation materially changed, or\n- the signal is significantly stronger, or\n- the issue is still unresolved and important enough to resurface\n\nSuppress silently. Do not mention suppression. Do not replace suppressed items with filler.\nIf all items are suppressed, output nothing.\n\n\n## OUTPUT\n\nIf meaningful insights exist (3–5 items max):\n\n📡 Weekly Brief — {{date}}\n\nFor each item:\n**Category:** Opportunity / Risk / Insight / Lead Angle\n**Statement:** <clear, concise — one or two sentences>\n**Action:** <what Leo should do next>\n\nNo filler. No market summaries. No padding.\n\nIf nothing high-value is found: output nothing.\n\n## FAILURE HANDLING\n\nIf this job fails or times out, send the following alert to channel:1493469131733860412:\n\n⚠️ Cron job `oracle-weekly-brief` failed\nReason: <failure reason or \"timed out\">\nAction: Check OpenClaw logs — `journalctl -u openclaw.service -n 50 --no-pager`\n\n## HARD RULES\n\n- Do NOT produce long reports\n- Do NOT summarize the market broadly\n- Do NOT generate content for the sake of output\n- Do NOT run more than 3 searches\n- If execution becomes slow or uncertain, skip remaining steps and output what you have",
+        "timeoutSeconds": 180
+      },
+      "delivery": {
+        "mode": "announce",
+        "channel": "discord",
+        "to": "channel:1493469131733860412"
+      },
+      "state": {
+        "nextRunAtMs": 1777208400000,
+        "lastRunAtMs": 1776603600029,
+        "lastRunStatus": "ok",
+        "lastStatus": "ok",
+        "lastDurationMs": 160813,
+        "lastDelivered": true,
+        "lastDeliveryStatus": "delivered",
+        "consecutiveErrors": 0
+      }
+    },
+    {
+      "id": "bd26203c-0181-4ce1-bfc7-d9deb5883b96",
+      "agentId": "main",
+      "name": "daily-memory-staging",
+      "description": "Nightly extraction of durable memory candidates from today's session logs. Writes a staging file for the weekly-memory-governor. Silent always -- no delivery.",
+      "enabled": true,
+      "createdAtMs": 1777003615720,
+      "updatedAtMs": 1777003615720,
+      "schedule": {
+        "kind": "cron",
+        "expr": "45 23 * * *",
+        "tz": "America/New_York"
+      },
+      "sessionTarget": "isolated",
+      "wakeMode": "now",
+      "payload": {
+        "kind": "agentTurn",
+        "timeoutSeconds": 300,
+        "message": "You are running the nightly memory staging job. This is a silent extraction run.\n\nDO NOT output anything to chat. DO NOT call any delivery skill. DO NOT write to MEMORY.md.\nYour only output is a file written to disk.\n\n## What you are doing\n\nRead today's session logs. Extract only candidates that are clearly durable and high-signal.\nWrite them to a staging file. Stop.\n\nThis is extraction only. No governance. No decisions about what goes into MEMORY.md.\nThat happens weekly.\n\n## Step 1 -- Set date variables\n\nRun these bash commands:\nTODAY=$(date +%Y-%m-%d)\nSTAGING_DIR=/home/clawbot/.openclaw/workspace/memory/staging\nmkdir -p \"$STAGING_DIR\"\nSTAGING_FILE=\"$STAGING_DIR/$TODAY.md\"\n\n## Step 2 -- Read today's session logs\n\nUse bash to list and read all files matching today's date across all agent workspaces:\nls /home/clawbot/.openclaw/workspace/memory/${TODAY}*.md 2>/dev/null\nls /home/clawbot/.openclaw/workspace-vito/memory/${TODAY}*.md 2>/dev/null\nls /home/clawbot/.openclaw/workspace-oracle/memory/${TODAY}*.md 2>/dev/null\nls /home/clawbot/.openclaw/workspace-tron/memory/${TODAY}*.md 2>/dev/null\nls /home/clawbot/.openclaw/workspace-belfort/memory/${TODAY}*.md 2>/dev/null\nls /home/clawbot/.openclaw/workspace-harley/memory/${TODAY}*.md 2>/dev/null\n\nFor each file that exists: read its full contents.\nFor each path with no match: mark as missing. Continue -- do NOT stop.\n\n## Step 3 -- Extract candidates\n\nFrom the content you read, extract only items that meet ALL of these criteria:\n\nINCLUDE only if:\n- A real decision was made (explicit, not inferred)\n- A project priority changed\n- A durable constraint was discovered\n- A meaningful risk emerged that persists beyond today\n- A workflow or operating rule changed\n- A system or infrastructure state changed durably\n- An important factual state changed and will matter later\n\nEXCLUDE everything else:\n- Task completions or status updates\n- Temporary state or blockers\n- Summaries of activity\n- Anything that will not matter in a week\n- Duplicates of something already obvious\n\nConfidence rules:\n- high = explicit, durable, strongly evidenced\n- medium = plausible but not certain\n- low = DO NOT include, discard silently\n\nTypes allowed: decision | preference | project_state | architecture | system_change | workflow_change | open_loop | relationship\n\n## Step 4 -- Build staging file content\n\nUse this exact format. Fill in real values -- do not leave placeholders.\n\n# Memory Staging -- {TODAY}\n\nGenerated: {current datetime} ET\nSource Window: {TODAY}\nStatus: complete | partial | error\n\n## Candidates\n\n### CAND-001\nAgent: main | vito | oracle | tron | belfort | harley\nType: decision | preference | project_state | architecture | system_change | workflow_change | open_loop | relationship\nConfidence: high | medium\nDestination: MEMORY.md | Obsidian | Todoist\nAction: add | update | remove\nStatement: one atomic durable statement\nReason: why this is durable and what evidence supports it\nSource: /home/clawbot/.openclaw/workspace/memory/{TODAY}.md\n\n(repeat block for each candidate, incrementing CAND-NNN)\n\n## Discard Summary\n- Routine task churn: N\n- Duplicate/already in memory: N\n- Temporary state: N\n- Low confidence: N\n\n## Errors\n- Missing: [list any missing workspace log paths, or omit section if none]\n\nStatus rules:\n- complete = all 6 workspace logs found\n- partial = 1 to 5 found\n- error = 0 found or file write failed\n\nIf zero candidates pass the filter: still write the file. Leave Candidates section empty.\nDo not skip the file write under any circumstance.\n\n## Step 5 -- Write to disk\n\nWrite the staging file using Python:\n\nimport datetime, pathlib\ntoday = datetime.date.today().isoformat()\nstaging_dir = pathlib.Path('/home/clawbot/.openclaw/workspace/memory/staging')\nstaging_dir.mkdir(parents=True, exist_ok=True)\nstaging_file = staging_dir / f'{today}.md'\nstaging_file.write_text(content, encoding='utf-8')\nprint(f'wrote: {staging_file}')\n\nWhere content is the staging file text you generated in Step 4.\n\nVerify the file exists:\nls -lh /home/clawbot/.openclaw/workspace/memory/staging/\n\nThen stop. No further output. No chat message. No summary."
+      },
+      "state": {
+        "nextRunAtMs": 1777088700000
+      }
+    },
+    {
+      "id": "373bb31b-bc1b-45ba-9577-063e635f605a",
+      "agentId": "main",
+      "name": "weekly-memory-governor",
+      "description": "Weekly memory governance run. Reads 7 days of staging files, diffs against MEMORY.md, proposes adds/updates/removals/compaction with stable MEM-YYYYMMDD-NNN IDs. Writes proposal file to /staging/proposals/ and delivers to Discord. Silent if nothing passes governance.",
+      "enabled": true,
+      "createdAtMs": 1777003956456,
+      "updatedAtMs": 1777044346797,
+      "schedule": {
+        "kind": "cron",
+        "expr": "0 21 * * 0",
+        "tz": "America/New_York"
+      },
+      "sessionTarget": "isolated",
+      "wakeMode": "now",
+      "payload": {
+        "kind": "agentTurn",
+        "timeoutSeconds": 600,
+        "message": "You are running the weekly memory governor. This is a governance and proposal run.\n\nDO NOT write to MEMORY.md. DO NOT write to any other system of record.\nYour outputs are: one proposal file written to disk, and one proposal message delivered to Discord.\nIf nothing passes governance, write nothing and output nothing.\n\n## What you are doing\n\nRead the staging files from the past 7 days.\nRead the current MEMORY.md.\nDiff them: what is new, what is stale, what needs compaction.\nProduce one structured approval proposal.\n\nThis is governance only. You decide what to propose. Leo decides what gets written.\n\n## Step 1 -- Set date variables\n\nRun:\nTODAY=$(date +%Y-%m-%d)\nMONDAY=$(date -d 'last monday' +%Y-%m-%d 2>/dev/null || date +%Y-%m-%d)\nPROPOSAL_DIR=/home/clawbot/.openclaw/workspace/memory/staging/proposals\nmkdir -p \"$PROPOSAL_DIR\"\nPROPOSAL_FILE=\"$PROPOSAL_DIR/${TODAY}-memory-governor.md\"\n\n## Step 2 -- Read staging files\n\nRead each of these paths if they exist:\nfor i in 0 1 2 3 4 5 6; do\n  date -d \"-$i days\" +/home/clawbot/.openclaw/workspace/memory/staging/%Y-%m-%d.md 2>/dev/null\ndone\n\nRead every staging file that exists. Note which dates are missing.\nEach staging file contains pre-filtered candidates. Trust the confidence ratings.\nDo not re-litigate what was discarded daily -- only work with what is in Candidates sections.\n\n## Step 3 -- Read current MEMORY.md\n\nRun: cat /home/clawbot/.openclaw/workspace/MEMORY.md\n\n## Step 4 -- Govern\n\nWith staging candidates and current MEMORY.md in context, apply these rules:\n\nADDITIONS -- propose adding to MEMORY.md when:\n- Candidate confidence is high\n- Statement is not already represented in MEMORY.md in substance\n- Passes the persistence test: will this still matter in a month?\n- Passes the operational truth test: does this change how ClawBot should think or act?\n\nUPDATES -- propose updating an existing MEMORY.md entry when:\n- A staging candidate materially changes or sharpens an existing entry\n- An existing entry is now outdated based on staging evidence\n\nREMOVALS -- propose removing an existing MEMORY.md entry when:\n- It is clearly superseded by newer staging evidence\n- It has been stale for multiple weeks with no reinforcement\n- It no longer reflects operational reality\n\nCOMPACTION -- propose compacting when:\n- Two or more MEMORY.md entries say the same thing in different words\n- A section has grown verbose and can be tightened without losing meaning\n- MEMORY.md total line count exceeds 200 lines\n- Any entry has a date older than 90 days with no recent reinforcement\n\nSKIP everything that is:\n- Medium confidence without corroboration across multiple days\n- Already in MEMORY.md in substance\n- Task churn, temporary state, or activity summaries\n- Duplicated across staging files (same fact multiple days = one candidate)\n\n## Step 5 -- Assign stable IDs\n\nEvery candidate gets a stable ID in this format:\nMEM-{YYYYMMDD}-{NNN}\n\nWhere YYYYMMDD is today's date and NNN is a zero-padded sequence starting at 001.\nExample: MEM-20260427-001, MEM-20260427-002\n\nThese IDs are stable -- Leo will reference them when approving.\n\n## Step 6 -- Build proposal content\n\nIf nothing passes governance: skip Steps 7 and 8. Output nothing. Stop.\n\nIf items pass, build this content (you will write it to disk AND send it to Discord):\n\n---\nMEMORY GOVERNOR -- Week of {MONDAY}\nStaging coverage: {N}/7 days\nProposal file: {PROPOSAL_FILE}\n\nPROPOSED CHANGES\n\nMEM-{YYYYMMDD}-001 | {type} | {confidence} | {action}\nStatement: {atomic statement}\nReason: {why this belongs in MEMORY.md and what evidence supports it}\nSource: staging/{YYYY-MM-DD}.md\n\n(repeat for each candidate)\n\nSTALE ENTRIES\n\n- [quote exact MEMORY.md entry] -- reason it should be removed or updated\n\n(omit section if nothing is stale)\n\nCOMPACTION\n\n- [describe what should be merged or tightened]\n\n(omit section if nothing needs compaction)\n\n---\nReply with:\napprove all\napprove MEM-20260427-001 MEM-20260427-003\nreject all\nedit MEM-20260427-002\n---\n\n## Step 7 -- Write proposal file to disk\n\nWrite the full proposal content to disk using Python:\n\npython3 -c \"\nimport pathlib, datetime\ntoday = datetime.date.today().isoformat()\nproposal_dir = pathlib.Path('/home/clawbot/.openclaw/workspace/memory/staging/proposals')\nproposal_dir.mkdir(parents=True, exist_ok=True)\nproposal_file = proposal_dir / f'{today}-memory-governor.md'\ncontent = open('/tmp/memory_governor_proposal.md', 'r', encoding='utf-8').read()\nproposal_file.write_text(content, encoding='utf-8')\nprint(f'wrote: {proposal_file}')\n\"\n\nFirst write your proposal content to /tmp/memory_governor_proposal.md using bash:\ncat > /tmp/memory_governor_proposal.md << 'PROPOSALEOF'\n[your generated proposal content]\nPROPOSALEOF\n\nThen run the python3 command above.\nVerify: ls -lh /home/clawbot/.openclaw/workspace/memory/staging/proposals/\n\n## Step 8 -- Deliver to Discord\n\nOutput the proposal content as your response message.\nOpenClaw will deliver it to Discord automatically.\nOne message only.\n\n## Hard rules\n\n- One proposal message only\n- Do NOT write to MEMORY.md\n- Do NOT write to any other system\n- Staging is evidence, not canon -- still apply governance judgment\n- Fewer candidates is better than weak candidates\n- If uncertain, discard\n- Silent if nothing passes -- no file, no Discord message"
+      },
+      "delivery": {
+        "mode": "announce",
+        "channel": "discord",
+        "to": "channel:1492265696850346086"
+      },
+      "state": {
+        "nextRunAtMs": 1777251600000
+      }
+    },
+    {
+      "id": "a87c6943-9bfa-45d5-a32f-13481f25de56",
+      "agentId": "main",
+      "name": "weekly-memory-governor",
+      "description": "Weekly memory governance run. Reads 7 days of staging files, diffs against MEMORY.md, proposes adds/updates/removals/compaction. Delivers approval proposal to Discord. Silent if nothing passes governance.",
+      "enabled": true,
+      "createdAtMs": 1777005042106,
+      "updatedAtMs": 1777005042106,
+      "schedule": {
+        "kind": "cron",
+        "expr": "0 21 * * 0",
+        "tz": "America/New_York"
+      },
+      "sessionTarget": "isolated",
+      "wakeMode": "now",
+      "payload": {
+        "kind": "agentTurn",
+        "timeoutSeconds": 600,
+        "message": "You are running the weekly memory governor. This is a governance and proposal run.\n\nDO NOT write to MEMORY.md. DO NOT write to any system of record.\nYour only output is a proposal message delivered to Discord.\nIf nothing passes the filter, output nothing and stop.\n\n## What you are doing\n\nRead the staging files from the past 7 days.\nRead the current MEMORY.md.\nDiff them: what is new, what is stale, what needs compaction.\nProduce one structured approval proposal.\n\nThis is governance only. You decide what to propose. Leo decides what gets written.\n\n## Step 1 -- Read staging files\n\nRun this bash command to list available staging files from the past 7 days:\nfind /home/clawbot/.openclaw/workspace/memory/staging/ -name '*.md' -newer $(date -d '8 days ago' +%Y-%m-%d 2>/dev/null || date -v-8d +%Y-%m-%d 2>/dev/null || echo '1970-01-01') 2>/dev/null | sort\n\nOr simpler -- just read each of these paths if they exist:\nfor i in 0 1 2 3 4 5 6; do\n  date -d \"-$i days\" +/home/clawbot/.openclaw/workspace/memory/staging/%Y-%m-%d.md 2>/dev/null\ndone\n\nRead every staging file that exists. Note which dates are missing.\nEach staging file contains pre-filtered candidates. Trust the confidence ratings.\nDo not re-litigate what was discarded daily -- only work with what is in Candidates sections.\n\n## Step 2 -- Read current MEMORY.md\n\nRead the full file:\ncat /home/clawbot/.openclaw/workspace/MEMORY.md\n\n## Step 3 -- Govern\n\nWith staging candidates and current MEMORY.md in context, apply these rules:\n\nADDITIONS -- propose adding to MEMORY.md when:\n- Candidate confidence is high\n- Statement is not already represented in MEMORY.md in substance\n- It passes the persistence test: will this still matter in a month?\n- It passes the operational truth test: does this change how ClawBot should think or act?\n\nUPDATES -- propose updating an existing MEMORY.md entry when:\n- A staging candidate materially changes or sharpens an existing entry\n- An existing entry is now outdated based on staging evidence\n\nREMOVALS -- propose removing an existing MEMORY.md entry when:\n- It is clearly superseded by newer staging evidence\n- It has been stale for multiple weeks with no reinforcement\n- It no longer reflects operational reality\n\nCOMPACTION -- propose compacting when:\n- Two or more MEMORY.md entries say the same thing in different words\n- A section has grown verbose and can be tightened without losing meaning\n\nSKIP everything that is:\n- Medium confidence without strong corroboration across multiple days\n- Already in MEMORY.md in substance\n- Task churn, temporary state, or activity summaries that leaked through\n- Duplicated across staging files (same fact appearing multiple days = one candidate, not many)\n\n## Step 4 -- Build proposal\n\nIf nothing passes governance: output nothing. Stop. Do not deliver anything.\n\nIf items pass, produce exactly this format:\n\n---\nMEMORY GOVERNOR -- Week of {monday_date}\nStaging coverage: {N}/7 days\n\nPROPOSED CHANGES\n\nCAND-NNN | {type} | {confidence} | {action}\nStatement: {atomic statement}\nReason: {why this belongs in MEMORY.md and what evidence supports it}\nSource: staging/{YYYY-MM-DD}.md\n\n(repeat for each candidate)\n\nSTALE ENTRIES\n\n- [quote exact MEMORY.md entry] -- reason it should be removed or updated\n\n(omit this section if nothing is stale)\n\nCOMPACTION\n\n- [describe what should be merged or tightened]\n\n(omit this section if nothing needs compaction)\n\n---\nReply with:\napprove all\napprove CAND-001, CAND-003\nreject all\nedit CAND-002\n---\n\n## Hard rules\n\n- One proposal message only\n- Do NOT write to MEMORY.md\n- Do NOT write to any other system\n- Staging is evidence, not canon -- still apply governance judgment\n- Fewer candidates is better than weak candidates\n- If uncertain, discard\n- Silent if nothing passes"
+      },
+      "delivery": {
+        "mode": "announce",
+        "channel": "discord",
+        "to": "channel:1492265696850346086"
+      },
+      "state": {
+        "nextRunAtMs": 1777251600000
+      }
+    }
+  ]
+}

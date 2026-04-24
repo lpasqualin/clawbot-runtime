@@ -1,0 +1,8 @@
+{
+  "slug": "jsearch-jobs",
+  "version": "0.1.0",
+  "description": "Search jobs via JSearch (RapidAPI) and return normalized structured results for downstream workflows.",
+  "author": "lpasqualin",
+  "tags": ["jobs", "search", "jsearch", "rapidapi", "recruiting", "career", "digest"],
+  "visibility": "public"
+}

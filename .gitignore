@@ -1,0 +1,83 @@
+migration-restore/
+.claude/settings.local.json
+*.sqlite
+node_modules/
+.venv/
+.cache/
+openclaw/agents/*/sessions/
+openclaw/delivery-queue/
+openclaw/logs/
+openclaw/memory/main.sqlite
+workspace/tmp-*.json
+workspace/tmp/
+workspace/**/dist/
+# Session files
+*/sessions/*.jsonl
+*/sessions/*.jsonl.*
+*/sessions/sessions.json
+*/sessions/sessions.json.bak*
+
+# Auth state
+*/auth-state.json
+*/auth-profiles.json
+
+# Cron runs
+openclaw/cron/runs/
+
+# Temp/scratch files
+openclaw/workspace/tmp*
+openclaw/workspace/state/
+openclaw/workspace/.dreams/
+# Session files
+*/sessions/*.jsonl
+*/sessions/*.jsonl.*
+*/sessions/sessions.json
+*/sessions/sessions.json.bak*
+
+# Auth state
+*/auth-state.json
+*/auth-profiles.json
+
+# Cron runs
+openclaw/cron/runs/
+
+# Temp/scratch files
+openclaw/workspace/tmp*
+openclaw/workspace/state/
+openclaw/workspace/.dreams/
+# Backups and temp
+*.bak*
+*.bak
+# Credentials and secrets
+credentials.json
+credentials/
+# Live runtime artifacts
+exec-approvals.json*
+update-check.json
+canvas/
+completions/
+delivery-queue/
+media/
+qqbot/
+subagents/
+tasks/
+flows/
+agents/
+cache/
+devices/
+identity/
+memory/
+logs/
+# Farah scripts
+run_farah_jobs.sh
+send_farah_digest.sh
+failover-notify.sh
+# Workspace agent dirs not in repo
+workspace-oracle-jobs/
+# Python cache
+__pycache__/
+*.pyc
+# Farah job state (runtime data, not code)
+workspace/02 Projects/farah-job-digest/seen_jobs*.json
+workspace/02 Projects/farah-job-digest/farah_jobs_*.json
+workspace/02 Projects/farah-job-digest/farah_jobs_*.md

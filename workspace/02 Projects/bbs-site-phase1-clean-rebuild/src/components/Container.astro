@@ -1,0 +1,33 @@
+---
+export interface Props {
+  as?: keyof HTMLElementTagNameMap;
+  class?: string;
+  size?: 'reading' | 'standard' | 'wide';
+}
+
+const { as: Tag = 'div', class: className = '', size = 'standard' } = Astro.props;
+---
+
+<Tag class={`container container--${size} ${className}`.trim()}>
+  <slot />
+</Tag>
+
+<style>
+  .container {
+    margin: 0 auto;
+    padding: 0 var(--space-4);
+    width: 100%;
+  }
+
+  .container--reading {
+    max-width: var(--container-reading);
+  }
+
+  .container--standard {
+    max-width: var(--container-standard);
+  }
+
+  .container--wide {
+    max-width: var(--container-wide);
+  }
+</style>

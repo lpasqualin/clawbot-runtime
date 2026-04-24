@@ -1,0 +1,131 @@
+---
+import Button from './Button.astro';
+import Card from './Card.astro';
+
+export interface Props {
+  eyebrow: string;
+  headline: string;
+  subheadline?: string;
+  intro?: string;
+  primaryLabel: string;
+  primaryHref: string;
+  secondaryLabel: string;
+  secondaryHref: string;
+  highlights?: string[];
+  statsHeading?: string;
+  stats?: { label: string; value: string }[];
+}
+
+const {
+  eyebrow,
+  headline,
+  subheadline,
+  primaryLabel,
+  primaryHref,
+  secondaryLabel,
+  secondaryHref,
+  highlights = [],
+} = Astro.props;
+
+const visibleHighlights = highlights.slice(0, 2);
+---
+
+<div class="hero-grid">
+  <div class="hero-copy">
+    <div class="section-header">
+      <p class="eyebrow">{eyebrow}</p>
+      <h1>{headline}</h1>
+      {subheadline && <p class="lead">{subheadline}</p>}
+    </div>
+
+    {visibleHighlights.length > 0 && (
+      <ul class="bullet-list list-clean">
+        {visibleHighlights.map((item) => <li>{item}</li>)}
+      </ul>
+    )}
+
+    <div class="hero-actions">
+      <Button href={primaryHref}>{primaryLabel}</Button>
+      <Button href={secondaryHref} variant="secondary">{secondaryLabel}</Button>
+    </div>
+  </div>
+
+  <Card class="hero-visual">
+    <p class="eyebrow">Operating flow</p>
+    <div class="flow-steps">
+      <div class="flow-step">
+        <div class="flow-marker">
+          <div class="step-dot"></div>
+          <div class="step-line"></div>
+        </div>
+        <div class="flow-content">
+          <strong>Capture</strong>
+          <span>Intake requests and signals from any source.</span>
+        </div>
+      </div>
+      <div class="flow-step">
+        <div class="flow-marker">
+          <div class="step-dot"></div>
+          <div class="step-line"></div>
+        </div>
+        <div class="flow-content">
+          <strong>Route</strong>
+          <span>Assign ownership by type and priority.</span>
+        </div>
+      </div>
+      <div class="flow-step">
+        <div class="flow-marker">
+          <div class="step-dot"></div>
+          <div class="step-line"></div>
+        </div>
+        <div class="flow-content">
+          <strong>Approve</strong>
+          <span>Gate decisions with structured approval logic.</span>
+        </div>
+      </div>
+      <div class="flow-step">
+        <div class="flow-marker">
+          <div class="step-dot"></div>
+          <div class="step-line"></div>
+        </div>
+        <div class="flow-content">
+          <strong>Execute</strong>
+          <span>Confirmed actions, tracked and documented.</span>
+        </div>
+      </div>
+    </div>
+    <p class="flow-note text-muted">Visibility, approvals, and reporting built into the workflow.</p>
+  </Card>
+</div>
+
+<style>
+  .hero-grid {
+    display: grid;
+    grid-template-columns: minmax(0, 1.1fr) minmax(0, 0.9fr);
+    gap: var(--space-6);
+    align-items: center;
+  }
+
+  .hero-copy {
+    display: grid;
+    gap: var(--space-5);
+  }
+
+  .lead {
+    font-size: 1.0625rem;
+    color: var(--muted);
+    line-height: 1.65;
+  }
+
+  .hero-actions {
+    display: flex;
+    flex-wrap: wrap;
+    gap: var(--space-3);
+  }
+
+  @media (max-width: 900px) {
+    .hero-grid {
+      grid-template-columns: 1fr;
+    }
+  }
+</style>

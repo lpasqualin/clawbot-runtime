@@ -1,0 +1,28 @@
+---
+import Container from './Container.astro';
+
+export interface Props {
+  id?: string;
+  class?: string;
+  contained?: boolean;
+  size?: 'reading' | 'standard' | 'wide';
+}
+
+const { id, class: className = '', contained = true, size = 'standard' } = Astro.props;
+---
+
+<section id={id} class={`section ${className}`.trim()}>
+  {contained ? (
+    <Container size={size}>
+      <slot />
+    </Container>
+  ) : (
+    <slot />
+  )}
+</section>
+
+<style>
+  .section {
+    padding: var(--space-section-vertical) 0;
+  }
+</style>

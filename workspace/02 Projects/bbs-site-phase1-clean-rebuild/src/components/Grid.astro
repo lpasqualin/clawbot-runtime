@@ -1,0 +1,38 @@
+---
+export interface Props {
+  columns?: 1 | 2 | 3;
+  class?: string;
+}
+
+const { columns = 3, class: className = '' } = Astro.props;
+---
+
+<div class={`grid grid--${columns} ${className}`.trim()}>
+  <slot />
+</div>
+
+<style>
+  .grid {
+    display: grid;
+    gap: var(--space-4);
+  }
+
+  .grid--1 {
+    grid-template-columns: 1fr;
+  }
+
+  .grid--2 {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+
+  .grid--3 {
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+  }
+
+  @media (max-width: 900px) {
+    .grid--2,
+    .grid--3 {
+      grid-template-columns: 1fr;
+    }
+  }
+</style>

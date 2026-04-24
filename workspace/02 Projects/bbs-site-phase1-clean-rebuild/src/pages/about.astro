@@ -1,0 +1,127 @@
+---
+import MainLayout from '../layouts/MainLayout.astro';
+import Section from '../components/Section.astro';
+import CTASection from '../components/CTASection.astro';
+import ProcessSection from '../components/ProcessSection.astro';
+import Card from '../components/Card.astro';
+import Grid from '../components/Grid.astro';
+import { aboutPage } from '../data/about';
+import { homePage } from '../data/home';
+import { siteMeta } from '../data/site';
+---
+
+<MainLayout title={aboutPage.seo.title} description={aboutPage.seo.description}>
+  <Section size="wide">
+    <div class="hero-shell">
+      <div class="section-header">
+        <p class="eyebrow">{aboutPage.hero.eyebrow}</p>
+        <h1>{aboutPage.hero.headline}</h1>
+        <p class="text-muted" style="font-size: 1.125rem;">{aboutPage.hero.intro}</p>
+      </div>
+    </div>
+  </Section>
+
+  <Section>
+    <div class="section-layout">
+      <div class="section-header">
+        <p class="eyebrow">{aboutPage.principles.eyebrow}</p>
+        <h2>{aboutPage.principles.title}</h2>
+      </div>
+      <Grid columns={3}>
+        {aboutPage.principles.items.map((item) => (
+          <Card>
+            <div class="content-stack">
+              <h3>{item.title}</h3>
+              <p class="text-muted">{item.body}</p>
+            </div>
+          </Card>
+        ))}
+      </Grid>
+    </div>
+  </Section>
+
+  <Section>
+    <div class="two-col">
+      <div class="section-header">
+        <p class="eyebrow">{aboutPage.identity.eyebrow}</p>
+        <h2>{aboutPage.identity.title}</h2>
+      </div>
+      <div class="prose">
+        {aboutPage.identity.paragraphs.map((paragraph) => <p class="text-muted">{paragraph}</p>)}
+      </div>
+    </div>
+  </Section>
+
+  <ProcessSection
+    eyebrow={homePage.process.eyebrow}
+    title={homePage.process.title}
+    steps={homePage.process.steps}
+  />
+
+  <Section>
+    <div class="section-layout split-block">
+      <div class="section-header">
+        <p class="eyebrow">{homePage.fitClarity.eyebrow}</p>
+        <h2>{homePage.fitClarity.title}</h2>
+      </div>
+      <div class="split-list">
+        <Card>
+          <div class="content-stack">
+            <h3>{homePage.fitClarity.forHeading}</h3>
+            <ul class="bullet-list list-clean">
+              {homePage.fitClarity.forItems.map((item) => <li>{item}</li>)}
+            </ul>
+          </div>
+        </Card>
+        <Card>
+          <div class="content-stack">
+            <h3>{homePage.fitClarity.notHeading}</h3>
+            <ul class="bullet-list list-clean">
+              {homePage.fitClarity.notItems.map((item) => <li>{item}</li>)}
+            </ul>
+          </div>
+        </Card>
+      </div>
+    </div>
+  </Section>
+
+  <CTASection
+    eyebrow={aboutPage.cta.eyebrow}
+    title={aboutPage.cta.title}
+    body="Book a Systems Review to start fixing the business."
+    buttonLabel={siteMeta.primaryCtaLabel}
+    buttonHref="/contact?intent=systems-review"
+  />
+</MainLayout>
+
+<style>
+  .hero-shell,
+  .section-layout,
+  .content-stack {
+    display: grid;
+    gap: var(--space-5);
+  }
+
+  .content-stack {
+    gap: var(--space-3);
+  }
+
+  .two-col {
+    display: grid;
+    grid-template-columns: minmax(0, 0.95fr) minmax(0, 1.05fr);
+    gap: var(--space-6);
+    align-items: start;
+  }
+  
+  .split-list {
+    display: grid;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: var(--space-5);
+  }
+
+  @media (max-width: 900px) {
+    .two-col, .split-list {
+      grid-template-columns: 1fr;
+    }
+  }
+</style>

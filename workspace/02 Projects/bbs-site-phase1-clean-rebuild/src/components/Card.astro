@@ -1,0 +1,22 @@
+---
+export interface Props {
+  class?: string;
+}
+
+const { class: className = '' } = Astro.props;
+---
+
+<article class={`card ${className}`.trim()}>
+  <slot />
+</article>
+
+<style>
+  .card {
+    background: var(--surface);
+    border: 1px solid var(--border);
+    border-radius: var(--radius-md);
+    padding: var(--space-4);
+    box-shadow: var(--shadow-soft);
+    height: 100%;
+  }
+</style>

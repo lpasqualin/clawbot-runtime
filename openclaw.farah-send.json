@@ -1,0 +1,174 @@
+{
+  "meta": {
+    "lastTouchedVersion": "2026.4.15",
+    "lastTouchedAt": "2026-04-23T00:00:00.000Z",
+  },
+  "secrets": {
+    "providers": {
+      "default": {
+        "source": "env"
+      }
+    }
+  },
+  "auth": {
+    "profiles": {
+      "openrouter:default": {
+        "provider": "openrouter",
+        "mode": "api_key"
+      },
+      "openai-codex:default": {
+        "provider": "openai-codex",
+        "mode": "oauth"
+      },
+      "openai-codex:leo.pasqua88@gmail.com": {
+        "provider": "openai-codex",
+        "mode": "oauth",
+        "email": "leo.pasqua88@gmail.com"
+      }
+    }
+  },
+  "models": {
+    "mode": "merge",
+    "providers": {
+      "ollama": {
+        "baseUrl": "http://127.0.0.1:11434",
+        "apiKey": "ollama-local",
+        "api": "ollama",
+        "models": [
+          {
+            "id": "nomic-embed-text",
+            "name": "Nomic Embed Text",
+            "reasoning": false,
+            "input": ["text"],
+            "cost": { "input": 0, "output": 0, "cacheRead": 0, "cacheWrite": 0 },
+            "contextWindow": 8192,
+            "maxTokens": 8192,
+            "compat": { "supportsDeveloperRole": false }
+          },
+          {
+            "id": "qwen3:8b",
+            "name": "Qwen 3 8B",
+            "reasoning": false,
+            "input": ["text"],
+            "cost": { "input": 0, "output": 0, "cacheRead": 0, "cacheWrite": 0 },
+            "contextWindow": 131072,
+            "maxTokens": 8192,
+            "compat": { "supportsDeveloperRole": false }
+          }
+        ]
+      }
+    }
+  },
+  "agents": {
+    "defaults": {
+      "model": {
+        "primary": "openai-codex/gpt-5.4-mini",
+        "fallbacks": [
+          "openrouter/anthropic/claude-sonnet-4-6",
+          "ollama/qwen3:8b"
+        ]
+      },
+      "models": {
+        "openai-codex/gpt-5.4-mini": { "alias": "fast" },
+        "openrouter/anthropic/claude-sonnet-4-6": { "alias": "fallback" },
+        "ollama/qwen3:8b": { "alias": "local" },
+        "ollama/nomic-embed-text": { "alias": "embed" }
+      },
+      "workspace": "/home/clawbot/.openclaw/workspace",
+      "memorySearch": {
+        "provider": "ollama",
+        "model": "nomic-embed-text"
+      },
+      "compaction": {
+        "mode": "safeguard"
+      },
+      "thinkingDefault": "low",
+      "maxConcurrent": 1,
+      "subagents": {
+        "maxConcurrent": 1
+      },
+      "timeoutSeconds": 180,
+      "llm": {
+        "idleTimeoutSeconds": 120
+      }
+    },
+    "list": [
+      {
+        "id": "main",
+        "identity": {
+          "name": "ClawBot",
+          "theme": "Leo Paz's local AI operator running locally",
+          "emoji": "🦞"
+        }
+      }
+    ]
+  },
+  "tools": {
+    "web": {
+      "search": { "enabled": false },
+      "fetch": { "enabled": false }
+    }
+  },
+  "cron": {
+    "enabled": false
+  },
+  "gateway": {
+    "port": 18789,
+    "mode": "local",
+    "bind": "loopback",
+    "controlUi": {
+      "allowInsecureAuth": true
+    },
+    "auth": {
+      "mode": "token",
+      "token": "2ba0fa2f4024a801ffc2066303f9162d074e674bac856969"
+    },
+    "tailscale": {
+      "mode": "off",
+      "resetOnExit": false
+    },
+    "remote": {
+      "token": ""
+    }
+  },
+  "skills": {
+    "load": {
+      "watch": false
+    },
+    "install": {
+      "nodeManager": "npm"
+    },
+    "entries": {
+      "gog": {
+        "enabled": true,
+        "env": {
+          "GOG_KEYRING_PASSWORD": "ClawBot00",
+          "GOG_BIN": "/home/clawbot/gogcli/bin/gog",
+          "GOG_ACCOUNT": "leo.clawbot.1@gmail.com"
+        },
+        "config": {
+          "accounts": ["leo.clawbot.1@gmail.com"]
+        }
+      },
+      "tavily": { "enabled": false },
+      "todoist": { "enabled": false },
+      "obsidian": { "enabled": false },
+      "cmc-api-crypto": { "enabled": false },
+      "cmc-api-market": { "enabled": false },
+      "cmc-api-onchain-data": { "enabled": false },
+      "playwright-mcp": { "enabled": false },
+      "attio": { "enabled": false }
+    }
+  },
+  "plugins": {
+    "entries": {
+      "telegram": { "enabled": false },
+      "discord": { "enabled": false },
+      "brave": { "enabled": false },
+      "openrouter": { "enabled": true },
+      "openai": { "enabled": true },
+      "ollama": { "enabled": true },
+      "anthropic": { "enabled": true }
+    }
+  }
+}
