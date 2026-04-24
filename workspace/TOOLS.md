@@ -65,6 +65,10 @@ No doctrine, no routing rules, no strategy — just environment facts.
 | `rustdesk.service` | — | — | not monitored — known non-critical |
 | Docker: `hbbs` / `hbbr` | — | — | Down (non-blocking) |
 
+## Git
+
+| `clawbot-runtime` | git at `/home/clawbot/.openclaw` | push as clawbot user | live mirror of runtime |
+
 ## Ollama Models
 
 `qwen3:14b` (general) · `gemma4:e4b` (fast) · `qwen2.5-coder:14b` (coding) · `nomic-embed-text` (embed)
