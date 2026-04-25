@@ -1,1 +1,0 @@
-/home/clawbot/.npm-global/lib/node_modules/openclaw/dist/message-secret-scope-B1bkqhG_.js

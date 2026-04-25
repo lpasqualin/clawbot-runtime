@@ -1,1 +1,0 @@
-/home/clawbot/.npm-global/lib/node_modules/openclaw/dist/interactive-NZx8VQEK.js

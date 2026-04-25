@@ -1,1 +1,0 @@
-/home/clawbot/.npm-global/lib/node_modules/openclaw/dist/mime-Zn7U6BSf.js

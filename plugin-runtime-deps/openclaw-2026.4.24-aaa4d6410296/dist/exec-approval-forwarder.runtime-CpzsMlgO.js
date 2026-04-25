@@ -1,1 +1,0 @@
-/home/clawbot/.npm-global/lib/node_modules/openclaw/dist/exec-approval-forwarder.runtime-CpzsMlgO.js

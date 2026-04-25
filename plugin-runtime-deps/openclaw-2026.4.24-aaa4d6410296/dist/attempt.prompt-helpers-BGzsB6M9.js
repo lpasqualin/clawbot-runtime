@@ -1,1 +1,0 @@
-/home/clawbot/.npm-global/lib/node_modules/openclaw/dist/attempt.prompt-helpers-BGzsB6M9.js

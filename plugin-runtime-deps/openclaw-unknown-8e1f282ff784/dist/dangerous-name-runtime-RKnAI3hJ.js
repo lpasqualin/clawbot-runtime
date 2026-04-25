@@ -1,1 +1,0 @@
-/home/clawbot/.openclaw/plugin-runtime-deps/openclaw-2026.4.24-aaa4d6410296/dist/dangerous-name-runtime-RKnAI3hJ.js

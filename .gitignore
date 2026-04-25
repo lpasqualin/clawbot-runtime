@@ -81,3 +81,4 @@ __pycache__/
 workspace/02 Projects/farah-job-digest/seen_jobs*.json
 workspace/02 Projects/farah-job-digest/farah_jobs_*.json
 workspace/02 Projects/farah-job-digest/farah_jobs_*.md
+plugin-runtime-deps/

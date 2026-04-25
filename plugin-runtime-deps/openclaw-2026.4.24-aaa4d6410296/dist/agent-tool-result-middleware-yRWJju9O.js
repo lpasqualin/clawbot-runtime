@@ -1,1 +1,0 @@
-/home/clawbot/.npm-global/lib/node_modules/openclaw/dist/agent-tool-result-middleware-yRWJju9O.js

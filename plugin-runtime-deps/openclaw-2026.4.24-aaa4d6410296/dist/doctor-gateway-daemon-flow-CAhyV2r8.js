@@ -1,1 +1,0 @@
-/home/clawbot/.npm-global/lib/node_modules/openclaw/dist/doctor-gateway-daemon-flow-CAhyV2r8.js

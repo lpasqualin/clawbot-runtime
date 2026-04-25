@@ -1,1 +1,0 @@
-/home/clawbot/.openclaw/plugin-runtime-deps/openclaw-2026.4.24-aaa4d6410296/dist/task-registry-DabR0MkC.js

@@ -1,1 +1,0 @@
-/home/clawbot/.npm-global/lib/node_modules/openclaw/dist/copilot-dynamic-headers-Cjo05vxn.js

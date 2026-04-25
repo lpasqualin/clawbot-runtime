@@ -1,1 +1,0 @@
-/home/clawbot/.npm-global/lib/node_modules/openclaw/dist/plugin-install-path-warnings-D4XV4arg.js

@@ -1,1 +1,0 @@
-/home/clawbot/.openclaw/plugin-runtime-deps/openclaw-2026.4.24-aaa4d6410296/dist/alias-name-7SUHFuW_.js

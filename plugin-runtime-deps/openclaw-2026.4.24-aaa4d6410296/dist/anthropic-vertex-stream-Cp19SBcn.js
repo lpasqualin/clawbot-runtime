@@ -1,1 +1,0 @@
-/home/clawbot/.npm-global/lib/node_modules/openclaw/dist/anthropic-vertex-stream-Cp19SBcn.js

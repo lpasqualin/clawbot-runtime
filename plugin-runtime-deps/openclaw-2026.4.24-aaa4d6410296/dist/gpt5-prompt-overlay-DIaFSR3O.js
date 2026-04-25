@@ -1,1 +1,0 @@
-/home/clawbot/.npm-global/lib/node_modules/openclaw/dist/gpt5-prompt-overlay-DIaFSR3O.js

@@ -1,1 +1,0 @@
-/home/clawbot/.openclaw/plugin-runtime-deps/openclaw-2026.4.24-aaa4d6410296/dist/status.node-mode-D0l2byyj.js

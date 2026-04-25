@@ -1,1 +1,0 @@
-/home/clawbot/.npm-global/lib/node_modules/openclaw/dist/status.gateway-connection.runtime-B0mJpi2Y.js

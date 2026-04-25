@@ -1,1 +1,0 @@
-/home/clawbot/.npm-global/lib/node_modules/openclaw/dist/pi-tools-parameter-schema-FZP6m19P.js

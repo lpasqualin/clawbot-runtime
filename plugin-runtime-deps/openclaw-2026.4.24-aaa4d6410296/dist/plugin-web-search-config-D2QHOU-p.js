@@ -1,1 +1,0 @@
-/home/clawbot/.npm-global/lib/node_modules/openclaw/dist/plugin-web-search-config-D2QHOU-p.js

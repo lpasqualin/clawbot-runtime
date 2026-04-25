@@ -1,1 +1,0 @@
-/home/clawbot/.npm-global/lib/node_modules/openclaw/dist/memory-core-host-engine-embeddings-B2MLAYLv.js

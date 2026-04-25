@@ -1,1 +1,0 @@
-/home/clawbot/.npm-global/lib/node_modules/openclaw/dist/audit.deep.runtime-CB0Dv3aM.js

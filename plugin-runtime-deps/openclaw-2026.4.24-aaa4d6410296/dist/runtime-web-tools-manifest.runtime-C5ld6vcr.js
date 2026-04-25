@@ -1,1 +1,0 @@
-/home/clawbot/.npm-global/lib/node_modules/openclaw/dist/runtime-web-tools-manifest.runtime-C5ld6vcr.js

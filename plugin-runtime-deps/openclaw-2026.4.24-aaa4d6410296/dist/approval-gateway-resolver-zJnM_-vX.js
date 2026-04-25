@@ -1,1 +1,0 @@
-/home/clawbot/.npm-global/lib/node_modules/openclaw/dist/approval-gateway-resolver-zJnM_-vX.js

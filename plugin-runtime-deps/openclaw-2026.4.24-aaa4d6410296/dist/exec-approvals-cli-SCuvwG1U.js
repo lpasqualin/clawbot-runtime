@@ -1,1 +1,0 @@
-/home/clawbot/.npm-global/lib/node_modules/openclaw/dist/exec-approvals-cli-SCuvwG1U.js

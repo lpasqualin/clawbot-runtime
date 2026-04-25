@@ -1,1 +1,0 @@
-/home/clawbot/.npm-global/lib/node_modules/openclaw/dist/video-generation-task-status-Dzob1Tqm.js

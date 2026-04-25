@@ -1,1 +1,0 @@
-/home/clawbot/.npm-global/lib/node_modules/openclaw/dist/rpc.runtime-Ba0P4Qa2.js
