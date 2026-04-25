@@ -1,0 +1,1 @@
+/home/clawbot/.npm-global/lib/node_modules/openclaw/dist/tool-policy-DArLXMH2.js

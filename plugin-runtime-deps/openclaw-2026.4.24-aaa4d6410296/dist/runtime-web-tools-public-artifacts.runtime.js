@@ -1,0 +1,1 @@
+/home/clawbot/.npm-global/lib/node_modules/openclaw/dist/runtime-web-tools-public-artifacts.runtime.js

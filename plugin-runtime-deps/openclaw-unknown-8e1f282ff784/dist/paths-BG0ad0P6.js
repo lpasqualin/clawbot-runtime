@@ -1,0 +1,1 @@
+/home/clawbot/.openclaw/plugin-runtime-deps/openclaw-2026.4.24-aaa4d6410296/dist/paths-BG0ad0P6.js

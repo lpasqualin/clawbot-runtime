@@ -1,0 +1,1 @@
+/home/clawbot/.npm-global/lib/node_modules/openclaw/dist/task-registry.audit.shared-DO-tvgos.js

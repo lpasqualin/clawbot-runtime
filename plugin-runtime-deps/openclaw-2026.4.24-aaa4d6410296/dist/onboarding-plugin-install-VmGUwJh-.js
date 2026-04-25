@@ -1,0 +1,1 @@
+/home/clawbot/.npm-global/lib/node_modules/openclaw/dist/onboarding-plugin-install-VmGUwJh-.js

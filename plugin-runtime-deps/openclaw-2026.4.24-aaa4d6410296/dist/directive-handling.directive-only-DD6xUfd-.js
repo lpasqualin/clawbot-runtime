@@ -1,0 +1,1 @@
+/home/clawbot/.npm-global/lib/node_modules/openclaw/dist/directive-handling.directive-only-DD6xUfd-.js

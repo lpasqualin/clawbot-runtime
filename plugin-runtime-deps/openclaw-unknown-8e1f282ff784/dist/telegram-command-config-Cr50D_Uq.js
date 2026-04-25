@@ -1,0 +1,1 @@
+/home/clawbot/.openclaw/plugin-runtime-deps/openclaw-2026.4.24-aaa4d6410296/dist/telegram-command-config-Cr50D_Uq.js

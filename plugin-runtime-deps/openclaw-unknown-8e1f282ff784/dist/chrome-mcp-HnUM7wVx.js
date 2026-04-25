@@ -1,0 +1,1 @@
+/home/clawbot/.openclaw/plugin-runtime-deps/openclaw-2026.4.24-aaa4d6410296/dist/chrome-mcp-HnUM7wVx.js

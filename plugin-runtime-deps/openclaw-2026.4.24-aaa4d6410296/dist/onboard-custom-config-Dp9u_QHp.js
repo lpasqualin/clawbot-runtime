@@ -1,0 +1,1 @@
+/home/clawbot/.npm-global/lib/node_modules/openclaw/dist/onboard-custom-config-Dp9u_QHp.js

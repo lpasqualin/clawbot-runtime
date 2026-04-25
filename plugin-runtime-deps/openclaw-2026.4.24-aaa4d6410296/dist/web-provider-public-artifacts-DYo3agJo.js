@@ -1,0 +1,1 @@
+/home/clawbot/.npm-global/lib/node_modules/openclaw/dist/web-provider-public-artifacts-DYo3agJo.js

@@ -1,0 +1,1 @@
+/home/clawbot/.npm-global/lib/node_modules/openclaw/dist/task-registry.summary-Bv7sS-Eo.js

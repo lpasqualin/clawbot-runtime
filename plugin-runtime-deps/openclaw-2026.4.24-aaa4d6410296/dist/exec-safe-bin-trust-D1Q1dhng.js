@@ -1,0 +1,1 @@
+/home/clawbot/.npm-global/lib/node_modules/openclaw/dist/exec-safe-bin-trust-D1Q1dhng.js

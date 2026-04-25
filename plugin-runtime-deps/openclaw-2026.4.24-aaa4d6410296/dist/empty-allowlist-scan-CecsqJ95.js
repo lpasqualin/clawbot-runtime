@@ -1,0 +1,1 @@
+/home/clawbot/.npm-global/lib/node_modules/openclaw/dist/empty-allowlist-scan-CecsqJ95.js

@@ -87,6 +87,8 @@ Intel i9-13900H, 32GB DDR5, Ubuntu 24.04. ProDesk retained as fallback only.
 - `coding` → ollama/qwen2.5-coder:14b
 - `embed` → ollama/nomic-embed-text
 
+- **clawbot-runtime repo:** Git initialized directly at `/home/clawbot/.openclaw` (runs as clawbot user). Push pattern: `sudo -u clawbot bash -l -c 'cd /home/clawbot/.openclaw && git add -A && git commit -m "msg" && git push'`. Old `/home/leo-paz/repos/clawbot-runtime` is deprecated and deleted.
+
 ---
 
 ## Agent Org Structure
@@ -118,7 +120,26 @@ Intel i9-13900H, 32GB DDR5, Ubuntu 24.04. ProDesk retained as fallback only.
 - **Siftwise inheritance:** The ClawBot personal knowledge vault / ingestion layer may later feed Siftwise, but Siftwise remains non-primary unless directly tied to the shared ingestion work.
 
 ---
+## Proposal / Approval Pattern
 
+For governance workflows, ClawBot separates proposal from execution.
+
+Proposal jobs may inspect system state and generate suggested actions, but they must not perform destructive writes or deletions.
+
+Execution requires explicit Leo approval.
+
+Pattern:
+1. Generate proposal with stable IDs.
+2. Deliver proposal to Leo.
+3. Leo approves specific IDs.
+4. Executor applies only approved IDs.
+5. Executor logs what changed.
+
+Applies to:
+- weekly-memory-governor
+- weekly-system-hygiene-audit
+- future cleanup or governance jobs
+
+--- 
 ## SUPERSEDED / ARCHIVED
 
-- **TSA PreCheck** — expired 2026-04-08. Note closed.

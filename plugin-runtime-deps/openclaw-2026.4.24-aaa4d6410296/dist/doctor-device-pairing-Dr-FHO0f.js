@@ -1,0 +1,1 @@
+/home/clawbot/.npm-global/lib/node_modules/openclaw/dist/doctor-device-pairing-Dr-FHO0f.js

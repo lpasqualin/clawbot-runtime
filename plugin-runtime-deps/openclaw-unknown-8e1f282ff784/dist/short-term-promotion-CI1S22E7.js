@@ -1,0 +1,1 @@
+/home/clawbot/.openclaw/plugin-runtime-deps/openclaw-2026.4.24-aaa4d6410296/dist/short-term-promotion-CI1S22E7.js

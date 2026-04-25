@@ -1,0 +1,1 @@
+/home/clawbot/.npm-global/lib/node_modules/openclaw/dist/manifest-command-aliases.runtime-B2eBfvwf.js

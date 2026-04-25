@@ -1,0 +1,1 @@
+/home/clawbot/.npm-global/lib/node_modules/openclaw/dist/task-registry-delivery-runtime-Bbp0fTC_.js

@@ -1,0 +1,1 @@
+/home/clawbot/.npm-global/lib/node_modules/openclaw/dist/memory-embedding-adapter-B89PEU6k.js

@@ -1,0 +1,1 @@
+/home/clawbot/.npm-global/lib/node_modules/openclaw/dist/volc-model-catalog-shared-BCg4rKu8.js

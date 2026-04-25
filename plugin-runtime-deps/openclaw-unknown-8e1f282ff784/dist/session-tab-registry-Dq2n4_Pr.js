@@ -1,0 +1,1 @@
+/home/clawbot/.openclaw/plugin-runtime-deps/openclaw-2026.4.24-aaa4d6410296/dist/session-tab-registry-Dq2n4_Pr.js

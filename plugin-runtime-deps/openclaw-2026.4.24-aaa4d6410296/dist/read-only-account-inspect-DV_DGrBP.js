@@ -1,0 +1,1 @@
+/home/clawbot/.npm-global/lib/node_modules/openclaw/dist/read-only-account-inspect-DV_DGrBP.js

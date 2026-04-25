@@ -1,0 +1,164 @@
+0 verbose cli /usr/bin/node /usr/lib/node_modules/npm/bin/npm-cli.js
+1 info using npm@10.9.7
+2 info using node@v22.22.2
+3 silly config load:file:/usr/lib/node_modules/npm/npmrc
+4 silly config load:file:/home/clawbot/.openclaw/plugin-runtime-deps/openclaw-unknown-8e1f282ff784/.npmrc
+5 silly config load:file:/home/clawbot/.npmrc
+6 silly config load:file:/home/clawbot/.npm-global/etc/npmrc
+7 verbose title npm install @buape/carbon@0.16.0 @discordjs/voice@^0.19.2 @grammyjs/runner@^2.0.3 @grammyjs/transformer-throttler@^1.2.1 discord-api-types@^0.38.47 grammy@^1.42.0 https-proxy-agent@^9.0.0 opusscript@^0.1.1 typebox@1.1.31 undici@8.1.0 ws@^8.20.0
+8 verbose argv "install" "--ignore-scripts" "@buape/carbon@0.16.0" "@discordjs/voice@^0.19.2" "@grammyjs/runner@^2.0.3" "@grammyjs/transformer-throttler@^1.2.1" "discord-api-types@^0.38.47" "grammy@^1.42.0" "https-proxy-agent@^9.0.0" "opusscript@^0.1.1" "typebox@1.1.31" "undici@8.1.0" "ws@^8.20.0"
+9 verbose logfile logs-max:10 dir:/home/clawbot/.openclaw/plugin-runtime-deps/openclaw-unknown-8e1f282ff784/.openclaw-npm-cache/_logs/2026-04-25T19_48_28_566Z-
+10 verbose logfile /home/clawbot/.openclaw/plugin-runtime-deps/openclaw-unknown-8e1f282ff784/.openclaw-npm-cache/_logs/2026-04-25T19_48_28_566Z-debug-0.log
+11 silly logfile done cleaning log files
+12 silly packumentCache heap:4345298944 maxSize:1086324736 maxEntrySize:543162368
+13 silly idealTree buildDeps
+14 silly fetch manifest @buape/carbon@0.16.0
+15 silly packumentCache full:https://registry.npmjs.org/@buape%2fcarbon cache-miss
+16 http cache https://registry.npmjs.org/@buape%2fcarbon 8ms (cache hit)
+17 silly packumentCache full:https://registry.npmjs.org/@buape%2fcarbon set size:535257 disposed:false
+18 silly fetch manifest @discordjs/voice@^0.19.2
+19 silly packumentCache full:https://registry.npmjs.org/@discordjs%2fvoice cache-miss
+20 http cache https://registry.npmjs.org/@discordjs%2fvoice 13ms (cache hit)
+21 silly packumentCache full:https://registry.npmjs.org/@discordjs%2fvoice set size:6016356 disposed:false
+22 silly fetch manifest @grammyjs/runner@^2.0.3
+23 silly packumentCache full:https://registry.npmjs.org/@grammyjs%2frunner cache-miss
+24 http fetch GET 200 https://registry.npmjs.org/@grammyjs%2frunner 191ms (cache miss)
+25 silly packumentCache full:https://registry.npmjs.org/@grammyjs%2frunner set size:undefined disposed:false
+26 silly fetch manifest @grammyjs/transformer-throttler@^1.2.1
+27 silly packumentCache full:https://registry.npmjs.org/@grammyjs%2ftransformer-throttler cache-miss
+28 http fetch GET 200 https://registry.npmjs.org/@grammyjs%2ftransformer-throttler 75ms (cache miss)
+29 silly packumentCache full:https://registry.npmjs.org/@grammyjs%2ftransformer-throttler set size:undefined disposed:false
+30 silly fetch manifest discord-api-types@^0.38.47
+31 silly packumentCache full:https://registry.npmjs.org/discord-api-types cache-miss
+32 http cache https://registry.npmjs.org/discord-api-types 46ms (cache hit)
+33 silly packumentCache full:https://registry.npmjs.org/discord-api-types set size:8136472 disposed:false
+34 silly fetch manifest grammy@^1.42.0
+35 silly packumentCache full:https://registry.npmjs.org/grammy cache-miss
+36 http fetch GET 200 https://registry.npmjs.org/grammy 96ms (cache miss)
+37 silly packumentCache full:https://registry.npmjs.org/grammy set size:undefined disposed:false
+38 silly fetch manifest https-proxy-agent@^9.0.0
+39 silly packumentCache full:https://registry.npmjs.org/https-proxy-agent cache-miss
+40 http cache https://registry.npmjs.org/https-proxy-agent 4ms (cache hit)
+41 silly packumentCache full:https://registry.npmjs.org/https-proxy-agent set size:81258 disposed:false
+42 silly fetch manifest opusscript@^0.1.1
+43 silly packumentCache full:https://registry.npmjs.org/opusscript cache-miss
+44 http cache https://registry.npmjs.org/opusscript 2ms (cache hit)
+45 silly packumentCache full:https://registry.npmjs.org/opusscript set size:17409 disposed:false
+46 silly fetch manifest typebox@1.1.31
+47 silly packumentCache full:https://registry.npmjs.org/typebox cache-miss
+48 http cache https://registry.npmjs.org/typebox 6ms (cache hit)
+49 silly packumentCache full:https://registry.npmjs.org/typebox set size:360671 disposed:false
+50 silly fetch manifest undici@8.1.0
+51 silly packumentCache full:https://registry.npmjs.org/undici cache-miss
+52 http cache https://registry.npmjs.org/undici 4ms (cache hit)
+53 silly packumentCache full:https://registry.npmjs.org/undici set size:1370112 disposed:false
+54 silly fetch manifest ws@^8.20.0
+55 silly packumentCache full:https://registry.npmjs.org/ws cache-miss
+56 http cache https://registry.npmjs.org/ws 3ms (cache hit)
+57 silly packumentCache full:https://registry.npmjs.org/ws set size:415737 disposed:false
+58 silly placeDep ROOT @buape/carbon@0.16.0 REPLACE for:  want: 0.16.0
+59 silly placeDep ROOT @discordjs/voice@0.19.2 REPLACE for:  want: ^0.19.2
+60 silly placeDep ROOT @grammyjs/runner@2.0.3 OK for:  want: ^2.0.3
+61 silly placeDep ROOT @grammyjs/transformer-throttler@1.2.1 OK for:  want: ^1.2.1
+62 silly placeDep ROOT discord-api-types@0.38.47 REPLACE for:  want: ^0.38.47
+63 silly placeDep ROOT grammy@1.42.0 OK for:  want: ^1.42.0
+64 silly placeDep ROOT https-proxy-agent@9.0.0 REPLACE for:  want: ^9.0.0
+65 silly placeDep ROOT opusscript@0.1.1 REPLACE for:  want: ^0.1.1
+66 silly placeDep ROOT typebox@1.1.31 REPLACE for:  want: 1.1.31
+67 silly placeDep ROOT undici@8.1.0 REPLACE for:  want: 8.1.0
+68 silly placeDep ROOT ws@8.20.0 REPLACE for:  want: ^8.20.0
+69 silly fetch manifest abort-controller@^3.0.0
+70 silly packumentCache full:https://registry.npmjs.org/abort-controller cache-miss
+71 silly fetch manifest bottleneck@^2.0.0
+72 silly packumentCache full:https://registry.npmjs.org/bottleneck cache-miss
+73 silly fetch manifest @grammyjs/types@3.26.0
+74 silly packumentCache full:https://registry.npmjs.org/@grammyjs%2ftypes cache-miss
+75 silly fetch manifest abort-controller@^3.0.0
+76 silly packumentCache full:https://registry.npmjs.org/abort-controller cache-miss
+77 silly fetch manifest node-fetch@^2.7.0
+78 silly packumentCache full:https://registry.npmjs.org/node-fetch cache-miss
+79 http fetch GET 200 https://registry.npmjs.org/abort-controller 121ms (cache miss)
+80 silly packumentCache full:https://registry.npmjs.org/abort-controller set size:undefined disposed:false
+81 http fetch GET 200 https://registry.npmjs.org/abort-controller 189ms (cache miss)
+82 silly packumentCache full:https://registry.npmjs.org/abort-controller set size:undefined disposed:false
+83 http fetch GET 200 https://registry.npmjs.org/bottleneck 193ms (cache miss)
+84 silly packumentCache full:https://registry.npmjs.org/bottleneck set size:undefined disposed:false
+85 http fetch GET 200 https://registry.npmjs.org/@grammyjs%2ftypes 195ms (cache miss)
+86 silly packumentCache full:https://registry.npmjs.org/@grammyjs%2ftypes set size:undefined disposed:false
+87 http fetch GET 200 https://registry.npmjs.org/node-fetch 207ms (cache miss)
+88 silly packumentCache full:https://registry.npmjs.org/node-fetch set size:undefined disposed:false
+89 silly placeDep ROOT abort-controller@3.0.0 OK for: @grammyjs/runner@2.0.3 want: ^3.0.0
+90 silly fetch manifest event-target-shim@^5.0.0
+91 silly packumentCache full:https://registry.npmjs.org/event-target-shim cache-miss
+92 http fetch GET 200 https://registry.npmjs.org/event-target-shim 53ms (cache miss)
+93 silly packumentCache full:https://registry.npmjs.org/event-target-shim set size:undefined disposed:false
+94 silly placeDep ROOT bottleneck@2.19.5 OK for: @grammyjs/transformer-throttler@1.2.1 want: ^2.0.0
+95 silly placeDep ROOT event-target-shim@5.0.1 OK for: abort-controller@3.0.0 want: ^5.0.0
+96 silly placeDep ROOT @grammyjs/types@3.26.0 OK for: grammy@1.42.0 want: 3.26.0
+97 silly placeDep ROOT node-fetch@2.7.0 OK for: grammy@1.42.0 want: ^2.7.0
+98 silly fetch manifest whatwg-url@^5.0.0
+99 silly packumentCache full:https://registry.npmjs.org/whatwg-url cache-miss
+100 http fetch GET 200 https://registry.npmjs.org/whatwg-url 56ms (cache miss)
+101 silly packumentCache full:https://registry.npmjs.org/whatwg-url set size:undefined disposed:false
+102 silly placeDep ROOT whatwg-url@5.0.0 OK for: node-fetch@2.7.0 want: ^5.0.0
+103 silly fetch manifest tr46@~0.0.3
+104 silly packumentCache full:https://registry.npmjs.org/tr46 cache-miss
+105 silly fetch manifest webidl-conversions@^3.0.0
+106 silly packumentCache full:https://registry.npmjs.org/webidl-conversions cache-miss
+107 http fetch GET 200 https://registry.npmjs.org/tr46 68ms (cache miss)
+108 silly packumentCache full:https://registry.npmjs.org/tr46 set size:undefined disposed:false
+109 http fetch GET 200 https://registry.npmjs.org/webidl-conversions 70ms (cache miss)
+110 silly packumentCache full:https://registry.npmjs.org/webidl-conversions set size:undefined disposed:false
+111 silly placeDep ROOT tr46@0.0.3 OK for: whatwg-url@5.0.0 want: ~0.0.3
+112 silly placeDep ROOT webidl-conversions@3.0.1 OK for: whatwg-url@5.0.0 want: ^3.0.0
+113 silly reify moves {}
+114 http cache webidl-conversions@https://registry.npmjs.org/webidl-conversions/-/webidl-conversions-3.0.1.tgz 0ms (cache hit)
+115 http cache node-fetch@https://registry.npmjs.org/node-fetch/-/node-fetch-2.7.0.tgz 0ms (cache hit)
+116 http cache @grammyjs/types@https://registry.npmjs.org/@grammyjs/types/-/types-3.26.0.tgz 0ms (cache hit)
+117 http cache whatwg-url@https://registry.npmjs.org/whatwg-url/-/whatwg-url-5.0.0.tgz 0ms (cache hit)
+118 http cache event-target-shim@https://registry.npmjs.org/event-target-shim/-/event-target-shim-5.0.1.tgz 0ms (cache hit)
+119 http cache bottleneck@https://registry.npmjs.org/bottleneck/-/bottleneck-2.19.5.tgz 0ms (cache hit)
+120 http cache tr46@https://registry.npmjs.org/tr46/-/tr46-0.0.3.tgz 0ms (cache hit)
+121 http cache abort-controller@https://registry.npmjs.org/abort-controller/-/abort-controller-3.0.0.tgz 0ms (cache hit)
+122 http cache grammy@https://registry.npmjs.org/grammy/-/grammy-1.42.0.tgz 0ms (cache hit)
+123 http cache @grammyjs/transformer-throttler@https://registry.npmjs.org/@grammyjs/transformer-throttler/-/transformer-throttler-1.2.1.tgz 0ms (cache hit)
+124 http cache @grammyjs/runner@https://registry.npmjs.org/@grammyjs/runner/-/runner-2.0.3.tgz 0ms (cache hit)
+125 silly tarball no local data for webidl-conversions@https://registry.npmjs.org/webidl-conversions/-/webidl-conversions-3.0.1.tgz. Extracting by manifest.
+126 silly tarball no local data for node-fetch@https://registry.npmjs.org/node-fetch/-/node-fetch-2.7.0.tgz. Extracting by manifest.
+127 silly tarball no local data for @grammyjs/types@https://registry.npmjs.org/@grammyjs/types/-/types-3.26.0.tgz. Extracting by manifest.
+128 silly tarball no local data for whatwg-url@https://registry.npmjs.org/whatwg-url/-/whatwg-url-5.0.0.tgz. Extracting by manifest.
+129 silly tarball no local data for event-target-shim@https://registry.npmjs.org/event-target-shim/-/event-target-shim-5.0.1.tgz. Extracting by manifest.
+130 silly tarball no local data for bottleneck@https://registry.npmjs.org/bottleneck/-/bottleneck-2.19.5.tgz. Extracting by manifest.
+131 silly tarball no local data for tr46@https://registry.npmjs.org/tr46/-/tr46-0.0.3.tgz. Extracting by manifest.
+132 silly tarball no local data for abort-controller@https://registry.npmjs.org/abort-controller/-/abort-controller-3.0.0.tgz. Extracting by manifest.
+133 silly tarball no local data for grammy@https://registry.npmjs.org/grammy/-/grammy-1.42.0.tgz. Extracting by manifest.
+134 silly tarball no local data for @grammyjs/transformer-throttler@https://registry.npmjs.org/@grammyjs/transformer-throttler/-/transformer-throttler-1.2.1.tgz. Extracting by manifest.
+135 silly tarball no local data for @grammyjs/runner@https://registry.npmjs.org/@grammyjs/runner/-/runner-2.0.3.tgz. Extracting by manifest.
+136 http fetch GET 200 https://registry.npmjs.org/webidl-conversions/-/webidl-conversions-3.0.1.tgz 72ms (cache miss)
+137 http fetch GET 200 https://registry.npmjs.org/whatwg-url/-/whatwg-url-5.0.0.tgz 76ms (cache miss)
+138 http fetch GET 200 https://registry.npmjs.org/node-fetch/-/node-fetch-2.7.0.tgz 79ms (cache miss)
+139 http fetch GET 200 https://registry.npmjs.org/event-target-shim/-/event-target-shim-5.0.1.tgz 82ms (cache miss)
+140 http fetch GET 200 https://registry.npmjs.org/@grammyjs/types/-/types-3.26.0.tgz 111ms (cache miss)
+141 http fetch GET 200 https://registry.npmjs.org/@grammyjs/transformer-throttler/-/transformer-throttler-1.2.1.tgz 166ms (cache miss)
+142 http fetch GET 200 https://registry.npmjs.org/abort-controller/-/abort-controller-3.0.0.tgz 171ms (cache miss)
+143 http fetch GET 200 https://registry.npmjs.org/@grammyjs/runner/-/runner-2.0.3.tgz 176ms (cache miss)
+144 http fetch GET 200 https://registry.npmjs.org/tr46/-/tr46-0.0.3.tgz 183ms (cache miss)
+145 http fetch GET 200 https://registry.npmjs.org/bottleneck/-/bottleneck-2.19.5.tgz 200ms (cache miss)
+146 http fetch GET 200 https://registry.npmjs.org/grammy/-/grammy-1.42.0.tgz 203ms (cache miss)
+147 silly ADD node_modules/webidl-conversions
+148 silly ADD node_modules/tr46
+149 silly ADD node_modules/whatwg-url
+150 silly ADD node_modules/node-fetch
+151 silly ADD node_modules/@grammyjs/types
+152 silly ADD node_modules/event-target-shim
+153 silly ADD node_modules/bottleneck
+154 silly ADD node_modules/abort-controller
+155 silly ADD node_modules/grammy
+156 silly ADD node_modules/@grammyjs/transformer-throttler
+157 silly ADD node_modules/@grammyjs/runner
+158 verbose cwd /home/clawbot/.openclaw/plugin-runtime-deps/openclaw-unknown-8e1f282ff784
+159 verbose os Linux 6.17.0-20-generic
+160 verbose node v22.22.2
+161 verbose npm  v10.9.7
+162 verbose exit 0
+163 info ok

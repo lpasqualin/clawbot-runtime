@@ -1,0 +1,1 @@
+/home/clawbot/.npm-global/lib/node_modules/openclaw/dist/realtime-transcription-provider-C_smBXo2.js

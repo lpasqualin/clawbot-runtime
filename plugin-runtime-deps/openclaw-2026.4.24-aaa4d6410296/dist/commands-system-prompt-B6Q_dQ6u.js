@@ -1,0 +1,1 @@
+/home/clawbot/.npm-global/lib/node_modules/openclaw/dist/commands-system-prompt-B6Q_dQ6u.js

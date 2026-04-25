@@ -1,0 +1,1 @@
+/home/clawbot/.npm-global/lib/node_modules/openclaw/dist/doctor-config-preflight-0y1Op8Ld.js

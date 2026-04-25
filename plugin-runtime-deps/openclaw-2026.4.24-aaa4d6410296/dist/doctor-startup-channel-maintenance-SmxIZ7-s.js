@@ -1,0 +1,1 @@
+/home/clawbot/.npm-global/lib/node_modules/openclaw/dist/doctor-startup-channel-maintenance-SmxIZ7-s.js
