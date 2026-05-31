@@ -16,42 +16,51 @@ Use `exec` and run the Todoist CLI through `npx` so a global install is not requ
 
 Base command:
 
-```bash
-npx -y todoist-ts-cli@^0.2.0
-```
+    npx -y todoist-ts-cli@^0.2.0
 
 ## Read commands
 
-```bash
-npx -y todoist-ts-cli@^0.2.0 today
-npx -y todoist-ts-cli@^0.2.0 tasks
-npx -y todoist-ts-cli@^0.2.0 tasks --all
-npx -y todoist-ts-cli@^0.2.0 tasks --json
-npx -y todoist-ts-cli@^0.2.0 tasks -p "Work"
-npx -y todoist-ts-cli@^0.2.0 tasks -f "p1"
-npx -y todoist-ts-cli@^0.2.0 search "keyword"
-npx -y todoist-ts-cli@^0.2.0 projects
-npx -y todoist-ts-cli@^0.2.0 labels
-```
+    npx -y todoist-ts-cli@^0.2.0 today
+    npx -y todoist-ts-cli@^0.2.0 tasks
+    npx -y todoist-ts-cli@^0.2.0 tasks --all
+    npx -y todoist-ts-cli@^0.2.0 tasks --json
+    npx -y todoist-ts-cli@^0.2.0 tasks -p "Work"
+    npx -y todoist-ts-cli@^0.2.0 tasks -f "p1"
+    npx -y todoist-ts-cli@^0.2.0 search "keyword"
+    npx -y todoist-ts-cli@^0.2.0 projects
+    npx -y todoist-ts-cli@^0.2.0 labels
+
+## Completed tasks
+
+The CLI has no `completed` command. Use the Todoist Sync API directly — this is the only permitted exception to the no-raw-API rule.
+
+    # Completed today only (recommended for briefs)
+    curl -s "https://api.todoist.com/sync/v9/items/completed/get_all?limit=50" \
+      -H "Authorization: Bearer $TODOIST_API_KEY" \
+      | jq --arg d "$(date +%Y-%m-%d)" \
+        '.items[] | select(.completed_at | startswith($d)) | {content, completed_at}'
+
+    # Last 30 completed (any date)
+    curl -s "https://api.todoist.com/sync/v9/items/completed/get_all?limit=30" \
+      -H "Authorization: Bearer $TODOIST_API_KEY" \
+      | jq '.items[] | {content, completed_at, project_id}'
 
 ## Write commands
 
-```bash
-npx -y todoist-ts-cli@^0.2.0 add "Buy groceries"
-npx -y todoist-ts-cli@^0.2.0 add "Call dentist" --due "tomorrow"
-npx -y todoist-ts-cli@^0.2.0 add "Review PR" --due "today" --priority 1 --project "Work"
-npx -y todoist-ts-cli@^0.2.0 add "Triage inbox" --project "Work" --order top
-npx -y todoist-ts-cli@^0.2.0 done <id>
-npx -y todoist-ts-cli@^0.2.0 reopen <id>
-npx -y todoist-ts-cli@^0.2.0 update <id> --due "next week"
-npx -y todoist-ts-cli@^0.2.0 move <id> -p "Personal"
-npx -y todoist-ts-cli@^0.2.0 delete <id>
-npx -y todoist-ts-cli@^0.2.0 comment <task-id> "Note"
-```
+    npx -y todoist-ts-cli@^0.2.0 add "Buy groceries"
+    npx -y todoist-ts-cli@^0.2.0 add "Call dentist" --due "tomorrow"
+    npx -y todoist-ts-cli@^0.2.0 add "Review PR" --due "today" --priority 1 --project "Work"
+    npx -y todoist-ts-cli@^0.2.0 add "Triage inbox" --project "Work" --order top
+    npx -y todoist-ts-cli@^0.2.0 done <id>
+    npx -y todoist-ts-cli@^0.2.0 reopen <id>
+    npx -y todoist-ts-cli@^0.2.0 update <id> --due "next week"
+    npx -y todoist-ts-cli@^0.2.0 move <id> -p "Personal"
+    npx -y todoist-ts-cli@^0.2.0 delete <id>
+    npx -y todoist-ts-cli@^0.2.0 comment <task-id> "Note"
 
 ## Operating rules
 
-- **HARD RULE: Never write raw fetch/HTTP calls to the Todoist API directly. Always use the todoist-ts-cli via npx. The CLI handles API versioning automatically.**
+- **HARD RULE: Never write raw fetch/HTTP calls to the Todoist API directly. Always use the todoist-ts-cli via npx. Exception: completed tasks (see above) — the CLI has no completed command.**
 - If the user wants a planning or triage pass, start by reading the relevant tasks first.
 - For bulk reorganizing, propose the new structure briefly, then apply it.
 - Prefer collapsing finished or mostly-finished projects into one closeout task instead of keeping a whole project on Today.
