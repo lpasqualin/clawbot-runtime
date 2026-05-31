@@ -82,3 +82,23 @@ workspace/02 Projects/farah-job-digest/seen_jobs*.json
 workspace/02 Projects/farah-job-digest/farah_jobs_*.json
 workspace/02 Projects/farah-job-digest/farah_jobs_*.md
 plugin-runtime-deps/
+
+# Plugin and extension artifacts
+extensions/
+npm/
+plugins/
+plugin-skills/
+plugin-state/
+discord/
+
+# Cron runtime
+cron/runs/
+cron/jobs-state.json
+
+# Temp backups
+openclaw.json.pre-*
+openclaw.json.bak*
+gateway-supervisor-restart-handoff.json
+
+# VS Code / antigravity
+.antigravity/

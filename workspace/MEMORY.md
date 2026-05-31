@@ -23,7 +23,7 @@ Do not store tasks, drafts, research, or open loops here — those live in Todoi
 
 - Primary machine: MS-01 (leo-paz-MS-10-Venus, 100.86.220.59)
 - MS-01 migration is complete; Todoist, Obsidian REST, agent memory indexing, and exec approvals are now wired on Venus
-- Primary orchestrator: OpenClaw 2026.4.9
+- Primary orchestrator: OpenClaw
 - Revenue motion is the top priority — BBS client acquisition before more architecture
 - ClawBot is the only writer to this file
 - File-based memory is authoritative; pgvector parked

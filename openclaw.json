@@ -1,12 +1,12 @@
 {
   "meta": {
-    "lastTouchedVersion": "2026.4.24",
-    "lastTouchedAt": "2026-04-25T19:53:06.895Z"
+    "lastTouchedVersion": "2026.5.28",
+    "lastTouchedAt": "2026-05-31T17:15:18.000Z"
   },
   "wizard": {
-    "lastRunAt": "2026-04-24T17:10:24.770Z",
-    "lastRunVersion": "2026.4.15",
-    "lastRunCommand": "onboard",
+    "lastRunAt": "2026-05-31T16:45:56.446Z",
+    "lastRunVersion": "2026.5.28",
+    "lastRunCommand": "configure",
     "lastRunMode": "local"
   },
   "ui": {
@@ -28,16 +28,17 @@
         "provider": "openrouter",
         "mode": "api_key"
       },
-      "openai-codex:default": {
-        "provider": "openai-codex",
-        "mode": "oauth"
-      },
       "openai-codex:leo.pasqua88@gmail.com": {
         "provider": "openai-codex",
-        "mode": "oauth"
+        "mode": "oauth",
+        "email": "leo.pasqua88@gmail.com"
       },
       "anthropic:claude-cli": {
         "provider": "claude-cli",
+        "mode": "oauth"
+      },
+      "openai-codex:default": {
+        "provider": "openai-codex",
         "mode": "oauth"
       }
     }
@@ -127,15 +128,24 @@
             }
           }
         ]
+      },
+      "openai-codex": {
+        "models": [
+          {
+            "id": "chat-latest",
+            "name": "GPT-5.5 Instant"
+          }
+        ],
+        "baseUrl": "https://api.openai.com/v1"
       }
     }
   },
   "agents": {
     "defaults": {
       "model": {
-        "primary": "openai-codex/gpt-5.4-mini",
+        "primary": "openai-codex/gpt-5.5",
         "fallbacks": [
-          "anthropic/claude-haiku-4-5",
+          "openai-codex/gpt-5.4-mini",
           "ollama/qwen3:14b",
           "ollama/gemma4:e4b",
           "ollama/deepseek-r1:14b",
@@ -144,11 +154,14 @@
         ]
       },
       "models": {
-        "openai-codex/gpt-5.4-mini": {
+        "openai-codex/gpt-5.5": {
           "alias": "standard"
         },
-        "openai-codex/gpt-5.5": {
-          "alias": "heavy"
+        "openai-codex/gpt-5.4-mini": {
+          "alias": "mini"
+        },
+        "openai-codex/chat-latest": {
+          "alias": "instant"
         },
         "ollama/qwen3:14b": {
           "alias": "local-reasoning"
@@ -176,10 +189,7 @@
         },
         "anthropic/claude-opus-4-7": {
           "alias": "anthropic-high"
-        },
-        "anthropic/claude-opus-4-6": {},
-        "anthropic/claude-opus-4-5": {},
-        "anthropic/claude-sonnet-4-5": {}
+        }
       },
       "workspace": "/home/clawbot/.openclaw/workspace",
       "memorySearch": {
@@ -195,11 +205,10 @@
         "maxConcurrent": 1
       },
       "timeoutSeconds": 120,
-      "llm": {
-        "idleTimeoutSeconds": 120
-      },
-      "embeddedHarness": {
-        "runtime": "claude-cli"
+      "cliBackends": {
+        "claude-cli": {
+          "command": "/usr/bin/claude"
+        }
       }
     },
     "list": [
@@ -479,6 +488,20 @@
       },
       "anthropic": {
         "enabled": true
+      },
+      "bonjour": {
+        "enabled": false
+      },
+      "discord": {
+        "enabled": true
+      },
+      "codex": {
+        "enabled": true,
+        "config": {
+          "appServer": {
+            "command": "/home/clawbot/.openclaw/extensions/codex/node_modules/@openai/codex-linux-x64/vendor/x86_64-unknown-linux-musl/codex/codex"
+          }
+        }
       }
     }
   }
