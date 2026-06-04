@@ -1,0 +1,149 @@
+{
+  "date": "2026-06-03",
+  "fetched_at": "2026-06-03T17:18:26.359833-04:00",
+  "sources": [
+    {
+      "name": "The Rundown AI",
+      "lane": "daily_ai_radar",
+      "priority": "medium",
+      "reason": "Daily AI headline radar — good breadth, filter for signal",
+      "items": [
+        {
+          "source_name": "The Rundown AI",
+          "source_lane": "daily_ai_radar",
+          "priority": "medium",
+          "reason": "Daily AI headline radar — good breadth, filter for signal",
+          "subject": "🏗️ Microsoft paves its own AI way at Build",
+          "sender": "The Rundown AI <news@daily.therundown.ai>",
+          "date": "2026-06-03 06:06",
+          "snippet": "",
+          "thread_id": "19e8cf2985df6c57"
+        },
+        {
+          "source_name": "The Rundown AI",
+          "source_lane": "daily_ai_radar",
+          "priority": "medium",
+          "reason": "Daily AI headline radar — good breadth, filter for signal",
+          "subject": "🤖 Nvidia corners the AI agent stack",
+          "sender": "The Rundown AI <news@daily.therundown.ai>",
+          "date": "2026-06-02 06:04",
+          "snippet": "",
+          "thread_id": "19e87ca6f6d0262e"
+        }
+      ]
+    },
+    {
+      "name": "TLDR",
+      "lane": "tech_radar",
+      "priority": "medium",
+      "reason": "Tech/AI breadth, new models, tools — needs filtering",
+      "items": [
+        {
+          "source_name": "TLDR",
+          "source_lane": "tech_radar",
+          "priority": "medium",
+          "reason": "Tech/AI breadth, new models, tools — needs filtering",
+          "subject": "Microsoft Scout 🤖, AI-native roles 💼, Autoresearch bug fixes 👨‍💻",
+          "sender": "TLDR <dan@tldrnewsletter.com>",
+          "date": "2026-06-03 06:25",
+          "snippet": "",
+          "thread_id": "19e8d03f75b214fa"
+        },
+        {
+          "source_name": "TLDR",
+          "source_lane": "tech_radar",
+          "priority": "medium",
+          "reason": "Tech/AI breadth, new models, tools — needs filtering",
+          "subject": "Anthropic IPO 💰, Nvidia AI PCs 💻, search as code gen 👨‍💻",
+          "sender": "TLDR <dan@tldrnewsletter.com>",
+          "date": "2026-06-02 06:24",
+          "snippet": "",
+          "thread_id": "19e87dd2181c4576"
+        }
+      ]
+    },
+    {
+      "name": "AI for Work",
+      "lane": "workflow_templates",
+      "priority": "low",
+      "reason": "AI productivity workflows — keep only if producing usable patterns",
+      "items": [
+        {
+          "source_name": "AI for Work",
+          "source_lane": "workflow_templates",
+          "priority": "low",
+          "reason": "AI productivity workflows — keep only if producing usable patterns",
+          "subject": "OpenAI’s new Codex plug-ins go beyond coders",
+          "sender": "AI For Work <aiforwork@mail.beehiiv.com>",
+          "date": "2026-06-03 11:24",
+          "snippet": "",
+          "thread_id": "19e8e164cce3fa03"
+        },
+        {
+          "source_name": "AI for Work",
+          "source_lane": "workflow_templates",
+          "priority": "low",
+          "reason": "AI productivity workflows — keep only if producing usable patterns",
+          "subject": "How to use ChatGPT Images 2.0 for real work ",
+          "sender": "AI For Work <aiforwork@mail.beehiiv.com>",
+          "date": "2026-06-02 11:31",
+          "snippet": "",
+          "thread_id": "19e88f65b6a0085d"
+        }
+      ]
+    },
+    {
+      "name": "Half Baked",
+      "lane": "business_ideas",
+      "priority": "medium",
+      "reason": "Business/startup ideas — filter for BBS offer angles and automation opportunities",
+      "items": [
+        {
+          "source_name": "Half Baked",
+          "source_lane": "business_ideas",
+          "priority": "medium",
+          "reason": "Business/startup ideas — filter for BBS offer angles and automation opportunities",
+          "subject": "🍪 Instagram Outreach",
+          "sender": "Half Baked <ideas@mail.gethalfbaked.com>",
+          "date": "2026-06-02 18:50",
+          "snippet": "",
+          "thread_id": "19e8a881b5f06e54"
+        },
+        {
+          "source_name": "Half Baked",
+          "source_lane": "business_ideas",
+          "priority": "medium",
+          "reason": "Business/startup ideas — filter for BBS offer angles and automation opportunities",
+          "subject": "🍪 House Agents",
+          "sender": "Half Baked <ideas@mail.gethalfbaked.com>",
+          "date": "2026-06-01 18:45",
+          "snippet": "",
+          "thread_id": "19e855d3282a5d6a"
+        }
+      ]
+    },
+    {
+      "name": "OpenRouter Updates",
+      "lane": "tooling",
+      "priority": "high",
+      "reason": "New models, pricing changes — directly relevant to ClawBot model stack",
+      "items": [
+        {
+          "source_name": "OpenRouter Updates",
+          "source_lane": "tooling",
+          "priority": "high",
+          "reason": "New models, pricing changes — directly relevant to ClawBot model stack",
+          "subject": "Nine new models reached OpenRouter in the last week",
+          "sender": "OpenRouter Team <welcome@openrouter.ai>",
+          "date": "2026-06-03 04:21",
+          "snippet": "",
+          "thread_id": "19e8c92996c69cf6"
+        }
+      ]
+    }
+  ],
+  "total_items": 9,
+  "fetch_errors": [
+    "The Batch: no emails found"
+  ]
+}

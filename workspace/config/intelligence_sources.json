@@ -1,0 +1,179 @@
+{
+  "_comment": "Intelligence source registry. Add sources here — cron jobs read this file, no prompt rewrites needed.",
+  "_last_updated": "2026-06-03",
+
+  "oracle_tier1": [
+    {
+      "name": "The Batch",
+      "from": "thebatch@deeplearning.ai",
+      "lane": "ai_industry",
+      "priority": "high",
+      "reason": "Serious AI industry signal, less hype than consumer newsletters, agent/model/applied AI focus",
+      "frequency": "weekly",
+      "subscribed": true
+    },
+    {
+      "name": "Latent Space",
+      "from": "pod@latent.space",
+      "lane": "ai_agents_infra",
+      "priority": "high",
+      "reason": "Agent systems, model infra, AI engineering — direct ClawBot/Agent OS relevance",
+      "frequency": "weekly",
+      "subscribed": false,
+      "subscribe_url": "https://www.latent.space/"
+    },
+    {
+      "name": "Every",
+      "from": "every.to",
+      "lane": "ai_workflows",
+      "priority": "high",
+      "reason": "Practical AI-at-work patterns, workflow design, BBS offer angles",
+      "frequency": "weekly",
+      "subscribed": false,
+      "subscribe_url": "https://every.to/"
+    },
+    {
+      "name": "Benedict Evans",
+      "from": "ben@ben-evans.com",
+      "lane": "tech_strategy",
+      "priority": "high",
+      "reason": "Macro tech strategy, platform shifts, what actually matters vs hype",
+      "frequency": "weekly",
+      "subscribed": false,
+      "subscribe_url": "https://www.ben-evans.com/newsletter"
+    },
+    {
+      "name": "Stratechery",
+      "from": "newsletter@stratechery.com",
+      "lane": "business_strategy",
+      "priority": "high",
+      "reason": "Best-in-class AI/platform/business model analysis, positioning intelligence",
+      "frequency": "3x/week",
+      "subscribed": false,
+      "subscribe_url": "https://stratechery.com/",
+      "note": "Paid ~$15/month — worth it when BBS has traction"
+    },
+    {
+      "name": "First Round Review",
+      "from": "review@firstround.com",
+      "lane": "operator_playbook",
+      "priority": "medium",
+      "reason": "Tactical founder/operator execution, sales, service design — applicable to BBS",
+      "frequency": "weekly",
+      "subscribed": false,
+      "subscribe_url": "https://review.firstround.com/"
+    },
+    {
+      "name": "a16z AI",
+      "from": "no-reply@a16z.com",
+      "lane": "enterprise_ai",
+      "priority": "medium",
+      "reason": "Enterprise AI, SaaS, B2B automation, startup market signal",
+      "frequency": "weekly",
+      "subscribed": false,
+      "subscribe_url": "https://a16z.com/newsletters/"
+    }
+  ],
+
+  "oracle_radar": [
+    {
+      "name": "The Rundown AI",
+      "from": "news@daily.therundown.ai",
+      "lane": "daily_ai_radar",
+      "priority": "medium",
+      "reason": "Daily AI headline radar — good breadth, filter for signal",
+      "frequency": "daily",
+      "subscribed": true
+    },
+    {
+      "name": "TLDR",
+      "from": "dan@tldrnewsletter.com",
+      "lane": "tech_radar",
+      "priority": "medium",
+      "reason": "Tech/AI breadth, new models, tools — needs filtering",
+      "frequency": "daily",
+      "subscribed": true
+    },
+    {
+      "name": "AI for Work",
+      "from": "aiforwork@mail.beehiiv.com",
+      "lane": "workflow_templates",
+      "priority": "low",
+      "reason": "AI productivity workflows — keep only if producing usable patterns",
+      "frequency": "weekly",
+      "subscribed": true
+    },
+    {
+      "name": "Half Baked",
+      "from": "ideas@mail.gethalfbaked.com",
+      "lane": "business_ideas",
+      "priority": "medium",
+      "reason": "Business/startup ideas — filter for BBS offer angles and automation opportunities",
+      "frequency": "weekly",
+      "subscribed": true
+    },
+    {
+      "name": "OpenRouter Updates",
+      "from": "welcome@openrouter.ai",
+      "lane": "tooling",
+      "priority": "high",
+      "reason": "New models, pricing changes — directly relevant to ClawBot model stack",
+      "frequency": "irregular",
+      "subscribed": true
+    }
+  ],
+
+  "belfort": [
+    {
+      "name": "Milk Road",
+      "from": "newsletter@mail.milkroad.com",
+      "lane": "crypto",
+      "priority": "high",
+      "subscribed": true
+    },
+    {
+      "name": "Whale Tales",
+      "from": "whaletales@mail.beehiiv.com",
+      "lane": "crypto_macro",
+      "priority": "high",
+      "subscribed": true
+    },
+    {
+      "name": "CoinMarketCap",
+      "from": "spotlight@newsletters.coinmarketcap.com",
+      "lane": "crypto_prices",
+      "priority": "medium",
+      "subscribed": true
+    },
+    {
+      "name": "Short Squeez",
+      "from": "press@shortsqueez.co",
+      "lane": "markets_business",
+      "priority": "medium",
+      "reason": "Markets + business — send to Belfort unless AI/automation angle, then Oracle",
+      "subscribed": true
+    },
+    {
+      "name": "Jake Claver",
+      "from": "jakeclaver@substack.com",
+      "lane": "personal_finance",
+      "priority": "low",
+      "subscribed": true
+    },
+    {
+      "name": "Max Avery",
+      "from": "maxavery@substack.com",
+      "lane": "financial_security",
+      "priority": "low",
+      "subscribed": true
+    }
+  ],
+
+  "digest_weights": {
+    "ai_agents_infra": 0.30,
+    "ai_workflows": 0.25,
+    "business_ideas_bbs": 0.20,
+    "tech_business_strategy": 0.15,
+    "operator_founder": 0.10
+  }
+}

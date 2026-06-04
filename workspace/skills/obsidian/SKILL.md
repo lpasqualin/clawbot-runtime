@@ -17,13 +17,14 @@ TLS is self-signed — always set NODE_TLS_REJECT_UNAUTHORIZED=0 for node, or us
 
 ## Vault structure
 - 00 - Command/ — master index, priorities, decisions
-- 10 - Leo/ — personal context
-- 20 - Career & Positioning/ — portfolio, bio, positioning
-- 30 - BBS/ — client work, research, strategy
-- 40 - Agent OS/ — architecture, specs
-- 50 - ClawBot & Agents/ — agent config, memory, ops
-- 60 - Farah/ — Farah/Starlight work
-- 70 - Assets & Products/ — products, tools
+- 10 - Leo/ — personal context, profile, skills, career positioning
+- 20 - BBS/ — client work, offers, templates, website copy
+- 30 - ClawBot/ — agent config, cron map, skill index, ops
+- 40 - Agent OS/ — architecture, specs, roadmap
+- 50 - Farah/ — Farah social/UGC strategy and content
+- 60 - Projects/ — parked and incubator projects (Siftwise, BWB, etc.)
+- 70 - Assets/ — digital products and reference material
+- 09 - Archive/ — stale docs and old versions
 
 ## Endpoints
 
@@ -53,7 +54,7 @@ curl -sk -X DELETE https://localhost:27124/vault/path/to/file.md \
 - HARD RULE: Never use obsidian-cli binary — it does not exist on this machine. Always use curl against the REST API.
 - Always use NODE_TLS_REJECT_UNAUTHORIZED=0 for any node-based requests.
 - When writing files, write content to /tmp first, then PUT via curl.
-- File paths in the API are relative to the vault root. Example: "30 - BBS/Research/note.md"
+- File paths in the API are relative to the vault root. Example: "20 - BBS/Research/note.md"
 - Create parent directories by just writing the file — the API handles it.
 - For daily notes, use path: "00 - Command/Daily/YYYY-MM-DD.md"
 - Always confirm writes by reading the file back after writing.

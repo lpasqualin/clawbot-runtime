@@ -10,6 +10,10 @@ metadata:
 
 Use Todoist whenever the user wants to review, add, complete, move, reschedule, search, or reorganize tasks.
 
+## API version
+
+All direct API calls use **`/api/v1/`**. The old `/rest/v2/` and `/sync/v9/` endpoints return HTTP 410 Gone — never use them.
+
 ## Execution path
 
 Use `exec` and run the Todoist CLI through `npx` so a global install is not required.
@@ -32,18 +36,46 @@ Base command:
 
 ## Completed tasks
 
-The CLI has no `completed` command. Use the Todoist Sync API directly — this is the only permitted exception to the no-raw-API rule.
+The CLI has no `completed` command. Use the REST API v1 directly — this is the only permitted exception to the no-raw-API rule.
 
-    # Completed today only (recommended for briefs)
-    curl -s "https://api.todoist.com/sync/v9/items/completed/get_all?limit=50" \
+    # Completed tasks — up to 50, most recent first
+    curl -s "https://api.todoist.com/api/v1/tasks/completed?limit=50" \
+      -H "Authorization: Bearer $TODOIST_API_KEY"
+
+    # Completed today only
+    curl -s "https://api.todoist.com/api/v1/tasks/completed?limit=50" \
       -H "Authorization: Bearer $TODOIST_API_KEY" \
       | jq --arg d "$(date +%Y-%m-%d)" \
-        '.items[] | select(.completed_at | startswith($d)) | {content, completed_at}'
+        '.items[] | select(.completed_at | startswith($d)) | {content, completed_at, task_id}'
 
-    # Last 30 completed (any date)
-    curl -s "https://api.todoist.com/sync/v9/items/completed/get_all?limit=30" \
+    # Completed this week
+    curl -s "https://api.todoist.com/api/v1/tasks/completed?limit=50&since=$(date -d 'last monday' +%Y-%m-%d)T00:00:00Z" \
       -H "Authorization: Bearer $TODOIST_API_KEY" \
-      | jq '.items[] | {content, completed_at, project_id}'
+      | jq '.items[] | {content, completed_at, task_id}'
+
+Response schema:
+- `items[]` — array of completed tasks
+- `content` — task name
+- `task_id` — use for deep link: `https://app.todoist.com/app/task/{task_id}`
+- `completed_at` — ISO timestamp
+
+## Active tasks via API (when CLI is insufficient)
+
+    # All active tasks
+    curl -s "https://api.todoist.com/api/v1/tasks?limit=200" \
+      -H "Authorization: Bearer $TODOIST_API_KEY"
+
+    # Overdue tasks
+    curl -s "https://api.todoist.com/api/v1/tasks?filter=overdue&limit=100" \
+      -H "Authorization: Bearer $TODOIST_API_KEY"
+
+Response schema (active tasks):
+- `results[]` — array of tasks
+- `id` — task ID, use for deep link: `https://app.todoist.com/app/task/{id}`
+- `content` — task name
+- `due.date` — due date (YYYY-MM-DD or datetime)
+- `priority` — 4=p1, 3=p2, 2=p3, 1=p4
+- `checked` — true if completed (filter these out for active tasks)
 
 ## Write commands
 
@@ -60,14 +92,16 @@ The CLI has no `completed` command. Use the Todoist Sync API directly — this i
 
 ## Operating rules
 
-- **HARD RULE: Never write raw fetch/HTTP calls to the Todoist API directly. Always use the todoist-ts-cli via npx. Exception: completed tasks (see above) — the CLI has no completed command.**
+- **HARD RULE: Never use `/rest/v2/` or `/sync/v9/` endpoints — both return 410 Gone.**
+- **HARD RULE: Never write raw fetch/HTTP calls to the Todoist API directly. Always use the todoist-ts-cli via npx. Exception: completed tasks and bulk active task reads — the CLI cannot do these.**
 - If the user wants a planning or triage pass, start by reading the relevant tasks first.
 - For bulk reorganizing, propose the new structure briefly, then apply it.
 - Prefer collapsing finished or mostly-finished projects into one closeout task instead of keeping a whole project on Today.
 - Confirm before destructive bulk deletes.
 - Use natural language due dates exactly as the user says unless a clearer date is needed.
 - If auth fails, say the Todoist token path is still broken and note that this runtime has historically used `TODOIST_API_KEY` as the working path.
-- When invoking the CLI, map the key into the token env, for example `TODOIST_API_TOKEN="$TODOIST_API_KEY" npx ...`.
+- When invoking the CLI, map the key into the token env: `TODOIST_API_TOKEN="$TODOIST_API_KEY" npx ...`
+- Task deep links: `https://app.todoist.com/app/task/{task_id}`
 
 ## Today-list triage default
 

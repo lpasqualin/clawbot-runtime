@@ -1,10 +1,10 @@
 {
   "meta": {
     "lastTouchedVersion": "2026.5.28",
-    "lastTouchedAt": "2026-05-31T17:15:18.000Z"
+    "lastTouchedAt": "2026-06-04T04:07:59.185Z"
   },
   "wizard": {
-    "lastRunAt": "2026-05-31T16:45:56.446Z",
+    "lastRunAt": "2026-06-02T17:04:01.413Z",
     "lastRunVersion": "2026.5.28",
     "lastRunCommand": "configure",
     "lastRunMode": "local"
@@ -35,10 +35,6 @@
       },
       "anthropic:claude-cli": {
         "provider": "claude-cli",
-        "mode": "oauth"
-      },
-      "openai-codex:default": {
-        "provider": "openai-codex",
         "mode": "oauth"
       }
     }
@@ -136,7 +132,8 @@
             "name": "GPT-5.5 Instant"
           }
         ],
-        "baseUrl": "https://api.openai.com/v1"
+        "baseUrl": "https://api.openai.com/v1",
+        "auth": "oauth"
       }
     }
   },
@@ -146,11 +143,11 @@
         "primary": "openai-codex/gpt-5.5",
         "fallbacks": [
           "openai-codex/gpt-5.4-mini",
+          "openrouter/google/gemini-2.5-flash",
+          "openrouter/moonshotai/kimi-k2.6",
           "ollama/qwen3:14b",
           "ollama/gemma4:e4b",
-          "ollama/deepseek-r1:14b",
-          "ollama/qwen2.5-coder:14b",
-          "ollama/devstral:24b"
+          "openrouter/auto"
         ]
       },
       "models": {
@@ -189,7 +186,10 @@
         },
         "anthropic/claude-opus-4-7": {
           "alias": "anthropic-high"
-        }
+        },
+        "openrouter/google/gemini-2.5-flash": {},
+        "openrouter/moonshotai/kimi-k2.6": {},
+        "openrouter/auto": {}
       },
       "workspace": "/home/clawbot/.openclaw/workspace",
       "memorySearch": {
@@ -292,7 +292,7 @@
         "id": "TELEGRAM_BOT_TOKEN"
       },
       "groupAllowFrom": [
-        "8376304007"
+        8376304007
       ],
       "groupPolicy": "allowlist",
       "streaming": {
