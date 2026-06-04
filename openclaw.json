@@ -1,11 +1,11 @@
 {
   "meta": {
-    "lastTouchedVersion": "2026.5.28",
-    "lastTouchedAt": "2026-06-04T04:07:59.185Z"
+    "lastTouchedVersion": "2026.6.1",
+    "lastTouchedAt": "2026-06-04T15:48:08.288Z"
   },
   "wizard": {
-    "lastRunAt": "2026-06-02T17:04:01.413Z",
-    "lastRunVersion": "2026.5.28",
+    "lastRunAt": "2026-06-04T15:42:29.337Z",
+    "lastRunVersion": "2026.6.1",
     "lastRunCommand": "configure",
     "lastRunMode": "local"
   },
@@ -36,6 +36,11 @@
       "anthropic:claude-cli": {
         "provider": "claude-cli",
         "mode": "oauth"
+      },
+      "openai:leo.pasqua88@gmail.com": {
+        "provider": "openai",
+        "mode": "oauth",
+        "email": "leo.pasqua88@gmail.com"
       }
     }
   },
@@ -140,14 +145,23 @@
   "agents": {
     "defaults": {
       "model": {
-        "primary": "openai-codex/gpt-5.5",
+        "primary": "openrouter/google/gemini-2.5-flash",
         "fallbacks": [
           "openai-codex/gpt-5.4-mini",
           "openrouter/google/gemini-2.5-flash",
           "openrouter/moonshotai/kimi-k2.6",
           "ollama/qwen3:14b",
           "ollama/gemma4:e4b",
-          "openrouter/auto"
+          "openrouter/auto",
+          "openai-codex/chat-latest",
+          "ollama/deepseek-r1:14b",
+          "ollama/qwen2.5-coder:14b",
+          "ollama/devstral:24b",
+          "ollama/nomic-embed-text",
+          "anthropic/claude-haiku-4-5",
+          "anthropic/claude-sonnet-4-6",
+          "anthropic/claude-opus-4-7",
+          "openai/gpt-5.5"
         ]
       },
       "models": {
@@ -189,7 +203,8 @@
         },
         "openrouter/google/gemini-2.5-flash": {},
         "openrouter/moonshotai/kimi-k2.6": {},
-        "openrouter/auto": {}
+        "openrouter/auto": {},
+        "openai/gpt-5.5": {}
       },
       "workspace": "/home/clawbot/.openclaw/workspace",
       "memorySearch": {
@@ -280,7 +295,8 @@
     "dmScope": "per-channel-peer"
   },
   "cron": {
-    "enabled": true
+    "enabled": true,
+    "store": "~/.openclaw/cron/jobs.json"
   },
   "channels": {
     "telegram": {
@@ -496,12 +512,7 @@
         "enabled": true
       },
       "codex": {
-        "enabled": true,
-        "config": {
-          "appServer": {
-            "command": "/home/clawbot/.openclaw/extensions/codex/node_modules/@openai/codex-linux-x64/vendor/x86_64-unknown-linux-musl/codex/codex"
-          }
-        }
+        "enabled": true
       }
     }
   }

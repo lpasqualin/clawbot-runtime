@@ -1,6 +1,6 @@
 # MEMORY.md — ClawBot Durable Memory
 
-_Last updated: 2026-06-03_
+_Last updated: 2026-06-04_
 
 ---
 
@@ -22,7 +22,7 @@ Do not store tasks, drafts, research, or open loops here — those live in Todoi
 ## ACTIVE SUMMARY
 
 - Primary machine: MS-01 (leo-paz-MS-10-Venus, 100.86.220.59)
-- Primary orchestrator: OpenClaw 2026.5.28, model: openai-codex/gpt-5.5
+- Primary orchestrator: OpenClaw 2026.6.1, model: openrouter/google/gemini-2.5-flash (temporary — Codex OAuth broken on 6.1, missing model.request scope)
 - Revenue motion is top priority — BBS client acquisition before more architecture
 - Dashboard fully live at http://100.86.220.59:8181 — scripts own data, ClawBot owns judgment via patch workflow only
 - Agent OS is active as ClawBot governance layer — Phases A-H, Core Loop Proof Gate blocks expansion
@@ -76,8 +76,10 @@ Intel i9-13900H, 32GB DDR5, Ubuntu 24.04. ProDesk retained as fallback only.
 - Remaining automation setup: cron jobs being built with Ax, vault git sync cron, Obsidian vault sync to laptop.
 
 **Model stack:**
-Primary: openai-codex/gpt-5.5
-Fallback chain: gpt-5.4-mini → openrouter/google/gemini-2.5-flash → openrouter/moonshotai/kimi-k2.6 → ollama/qwen3:14b → ollama/gemma4:e4b → openrouter/auto (last resort only — picks GPT-5.5 by default, expensive)
+Primary (temporary): openrouter/google/gemini-2.5-flash
+Codex status: OAuth broken on 6.1 — missing model.request scope — awaiting OpenClaw fix
+Fallback chain: openai-codex/gpt-5.4-mini → openrouter/google/gemini-2.5-flash → openrouter/moonshotai/kimi-k2.6 → ollama/qwen3:14b → ollama/gemma4:e4b → openrouter/auto (last resort)
+OpenRouter weekly budget cap: in place
 NEVER edit llmFallbacks in openclaw.json directly — use openclaw models fallbacks add/remove/clear
 
 **Model aliases:**
@@ -132,6 +134,30 @@ Morning brief write pattern:
 
 Project card IDs are auto-generated from Todoist section names via slugify(). Current IDs:
 beacon-bridge-strategies, farah, clawbot, siftwise, agent-os, portfolio-positioning, certifications, job-search, admin, finance, other
+
+---
+
+## Cron Jobs (current — 13 total)
+
+| Job | Agent | Schedule | Delivery |
+|-----|-------|----------|----------|
+| daily-morning-brief-discord | main | 7am ET daily | #today |
+| daily-midday-checkin-discord | main | 12pm ET daily | #today |
+| daily-evening-review-discord | main | 9pm ET daily | #today |
+| oracle-intelligence-digest | oracle | 7:30am ET daily | #today |
+| system-health-check | main | every 12h | #clawbot-config |
+| tron-systems-review | tron | TBD | #clawbot-config |
+| oracle-weekly-brief | oracle | Sunday 9am ET | #clawbot-intelligence |
+| daily-memory-staging | main | nightly | none |
+| weekly-memory-governor | main | weekly | #clawbot-config |
+| weekly-system-hygiene-audit | main | weekly | #clawbot-config |
+| vito-weekly-pipeline-review | vito | Mon/Wed/Fri 9am ET | #clawbot-config |
+| belfort-weekly-capital-review | belfort | Sunday 10am ET (disabled) | #clawbot-config |
+| weekly-file-retention | main | Monday 3am ET | #clawbot-config |
+
+Morning brief now writes judgment patches to MEMORY.md via apply_judgment_patch.py.
+File retention archives session logs/staging/proposals/judgment after 30-45 days.
+SQLite is OpenClaw 6.1's internal cron store — jobs.json is source of truth, synced to SQLite on deploy.
 
 ---
 
@@ -199,7 +225,7 @@ Todoist section deep links not supported — cards link to project root.
 ## Codex Re-auth Pattern
 
 When `openai-codex/gpt-5.5` returns `livenessState: blocked`:
-1. Open SSH tunnel from Windows: `ssh -L 9222:localhost:9222 leo-paz@100.86.220.59`
+1. Open SSH tunnel from Windows: `ssh -L 1455:localhost:1455 leo-paz@100.86.220.59`
 2. On MS-01: `sudo -u clawbot bash -l -c 'openclaw configure'`
 3. Follow the OAuth URL it provides — opens in browser via tunnel
 4. After configure completes, test: `sudo -u clawbot bash -l -c 'openclaw agent --agent main --message "reply with just: ok" --model openai-codex/gpt-5.5 --timeout 30 2>/dev/null'`
@@ -211,16 +237,18 @@ When `openai-codex/gpt-5.5` returns `livenessState: blocked`:
 
 ## Fallback Chain (current)
 
-Primary: `openai-codex/gpt-5.5`
+Primary (temporary): `openrouter/google/gemini-2.5-flash`
+Reason: openai-codex OAuth broken on 6.1 — missing model.request scope — awaiting OpenClaw patch
+
 Fallbacks (in order):
 1. `openai-codex/gpt-5.4-mini`
 2. `openrouter/google/gemini-2.5-flash`
 3. `openrouter/moonshotai/kimi-k2.6`
 4. `ollama/qwen3:14b`
 5. `ollama/gemma4:e4b`
-6. `openrouter/auto` — last resort only
+6. `openrouter/auto` — last resort only, expensive
 
-OpenRouter `auto` picks GPT-5.5 by default = expensive. Use only as last resort.
+OpenRouter weekly budget cap in place.
 
 ---
 
@@ -247,7 +275,7 @@ Applied permanently to:
 - **System ownership:** MEMORY.md + Todoist + Calendar + Dashboard → ClawBot. CRM → Vito. Obsidian → Leo/Oracle/Tron. Code/infra → Tron. Content → Harley. Trading journal → Belfort.
 - **Dashboard:** scripts own data writes, ClawBot owns judgment only via patch workflow. No agent writes dashboard.json directly.
 - **External actions:** Posting, emailing, messaging, creating accounts — explicit approval required every time.
-- **Model spend governance:** Using paid external model providers (OpenRouter, etc.) = spending money = requires Leo's explicit approval per session. Automatic fallback chain is local-only after gpt-5.4-mini.
+- **Model spend governance:** Using paid external model providers (OpenRouter, etc.) = spending money = requires Leo's explicit approval per session. Fallback chain hits gemini and kimi (OpenRouter) before Ollama. OpenRouter weekly budget cap in place.
 - **Capability model:** Shared read, owned write. Domain ownership determines judgment and write authority.
 - **Operating cadence:** Morning Brief → day capture → Evening Review. Daily: ClawBot. 3x/week: Vito. Weekly: Oracle, Tron, Harley, Belfort.
 - **Brief delivery:** Telegram + Obsidian daily note + Discord morning brief channel (`1492262253255200838`). Dashboard snapshot written at morning brief time.
