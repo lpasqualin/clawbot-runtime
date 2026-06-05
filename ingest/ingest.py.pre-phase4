@@ -1,14 +1,10 @@
 #!/usr/bin/env python3
 import argparse
 import hashlib
-import json
 import mimetypes
-import os
 import shutil
 import sqlite3
 import sys
-import threading
-import time
 import uuid
 from dataclasses import dataclass
 from datetime import datetime, timezone, timedelta
@@ -30,25 +26,14 @@ ARCHIVE_EXTRACTED = "/home/leo-paz/ingest/archive/extracted"
 UNSUPPORTED_DIR   = "/home/leo-paz/ingest/unsupported"
 REVIEW_NOTES_DIR  = "/home/leo-paz/obsidian-vault/05 - Ingest/Reviews"
 DB_PATH           = "/home/clawbot/.openclaw/ingest/ingest.db"
-DASHBOARD_PATH    = "/home/leo-paz/Dashboard/dashboard.json"
-DASHBOARD_LOG     = "/home/leo-paz/Dashboard/logs/sync.log"
-FAILURES_DIR      = "/home/leo-paz/obsidian-vault/05 - Ingest/Failures"
 
 TZ = timezone(timedelta(hours=-4))  # America/New_York ET
 
-ENABLE_LLM               = True
-ENABLE_RULES             = True
-LLM_CONFIDENCE_THRESHOLD = 0.5
-MIN_CHARS_FOR_LLM        = 200
-MAX_WORKERS              = 1
-SEQUENTIAL_PROCESSING    = True
-LLM_TIMEOUT_SECONDS      = 600
-LLM_MAX_INPUT_CHARS      = 12000
-LLM_MODEL                = "gemma4:12b"
-LLM_FAST_MODEL           = "gemma4:e4b"
-LLM_FALLBACK_MODEL       = "qwen3:14b"
-
-LLM_LOCK = threading.Lock()
+ENABLE_LLM              = True   # set False to disable all LLM calls
+ENABLE_RULES            = True   # set False to disable rules classifier
+LLM_CONFIDENCE_THRESHOLD = 0.5  # call LLM if rules confidence below this
+MIN_CHARS_FOR_LLM       = 200   # skip LLM for very short extractions
+LLM_MODEL               = "qwen3:14b"  # override with INGEST_LLM_MODEL env var
 
 # ---------------------------------------------------------------------------
 # Data contract
@@ -146,10 +131,6 @@ def today_str():
     return datetime.now(tz=TZ).strftime("%Y%m%d")
 
 
-def today_dash():
-    return datetime.now(tz=TZ).strftime("%Y-%m-%d")
-
-
 def sha256_of(path):
     h = hashlib.sha256()
     with open(path, "rb") as fh:
@@ -211,20 +192,13 @@ def write_review_note_enhanced(ingest_id, archive_path, sha256, result,
         f"source_file: {archive_path}",
         f"source_hash: {sha256}",
         "status: needs_review",
-        "review_status: pending",
-        "reviewed_by:",
-        "reviewed_at:",
-        "routing_decision:",
         f"file_type: {result.file_type}",
         f"extractor: {result.extractor_name}",
         f"project: {classification.project}",
         f"content_type: {classification.content_type}",
         f"suggested_destination: {classification.destination}",
         f"llm_used: {'true' if llm_used else 'false'}",
-    ]
-    if llm_used:
-        frontmatter.append(f"model: {model_used}")
-    frontmatter += [
+        f"model: {model_used}",
         f"confidence: {classification.confidence}",
         f"tags: {tags_str}",
         f"char_count: {result.char_count}",
@@ -318,17 +292,6 @@ def db_insert_document(conn, ingest_id, filename, source_path, sha256, ext,
     )
 
 
-def db_update_attempt_meta(conn, ingest_id, attempt_count, last_attempt_at, duration_seconds):
-    try:
-        conn.execute(
-            "UPDATE documents SET attempt_count = ?, last_attempt_at = ?, duration_seconds = ? "
-            "WHERE id = ?",
-            (attempt_count, last_attempt_at, duration_seconds, ingest_id),
-        )
-    except Exception:
-        pass
-
-
 def db_insert_artifact(conn, document_id, artifact_type,
                         extracted_text_path=None, review_note_path=None):
     conn.execute(
@@ -370,8 +333,7 @@ def db_insert_llm_call(conn, document_id, model, provider, purpose,
 # Core processing
 # ---------------------------------------------------------------------------
 
-def process_file(conn, file_path: Path, prior_attempts: int = 0):
-    t_start = time.time()
+def process_file(conn, file_path: Path):
     filename = file_path.name
     ext = file_path.suffix.lower()
 
@@ -401,8 +363,6 @@ def process_file(conn, file_path: Path, prior_attempts: int = 0):
                                "unsupported", None, ingested_at,
                                f"unsupported type: {ext}",
                                mime_type, size_bytes, None)
-            db_update_attempt_meta(conn, ingest_id, prior_attempts + 1, ingested_at,
-                                   round(time.time() - t_start, 3))
             db_insert_review_queue(conn, ingest_id, "unsupported")
             conn.commit()
         except Exception as exc:
@@ -422,8 +382,6 @@ def process_file(conn, file_path: Path, prior_attempts: int = 0):
                                "failed", None, ingested_at,
                                result.error_message,
                                mime_type, size_bytes, result.extractor_name)
-            db_update_attempt_meta(conn, ingest_id, prior_attempts + 1, ingested_at,
-                                   round(time.time() - t_start, 3))
             db_insert_review_queue(conn, ingest_id, "failed")
             conn.commit()
         except Exception as exc:
@@ -465,29 +423,15 @@ def process_file(conn, file_path: Path, prior_attempts: int = 0):
             and classification.confidence < LLM_CONFIDENCE_THRESHOLD
             and result.char_count >= MIN_CHARS_FOR_LLM):
         try:
-            with LLM_LOCK:
-                classification = LLMClassifier(model=LLM_FAST_MODEL).classify(
-                    result.extracted_text, filename
-                )
+            classification = LLMClassifier().classify(result.extracted_text, filename)
         except Exception as exc:
             print(f"  WARN | {filename} | LLM classifier error: {exc}")
 
     if ENABLE_LLM and result.char_count >= MIN_CHARS_FOR_LLM:
         try:
-            with LLM_LOCK:
-                summary = LocalLLMSummarizer(
-                    model=LLM_MODEL,
-                    timeout=LLM_TIMEOUT_SECONDS,
-                    max_input_chars=LLM_MAX_INPUT_CHARS,
-                ).summarize(result.extracted_text, filename, ext)
-            if not summary.success:
-                print(f"  WARN | {filename} | primary summarizer failed ({summary.error_message}), retrying with fallback")
-                with LLM_LOCK:
-                    summary = LocalLLMSummarizer(
-                        model=LLM_FALLBACK_MODEL,
-                        timeout=LLM_TIMEOUT_SECONDS,
-                        max_input_chars=LLM_MAX_INPUT_CHARS,
-                    ).summarize(result.extracted_text, filename, ext)
+            summary = LocalLLMSummarizer(model=LLM_MODEL).summarize(
+                result.extracted_text, filename, ext
+            )
         except Exception as exc:
             print(f"  WARN | {filename} | LLM summarizer error: {exc}")
             summary = None
@@ -505,8 +449,6 @@ def process_file(conn, file_path: Path, prior_attempts: int = 0):
         db_insert_document(conn, ingest_id, filename, file_path, digest, ext,
                            "needs_review", dest, ingested_at, None,
                            mime_type, size_bytes, result.extractor_name)
-        db_update_attempt_meta(conn, ingest_id, prior_attempts + 1, ingested_at,
-                               round(time.time() - t_start, 3))
         db_insert_artifact(conn, ingest_id, "extracted_text",
                            extracted_text_path=extracted_path)
         db_insert_artifact(conn, ingest_id, "obsidian_review_note",
@@ -561,182 +503,23 @@ def dry_run_scan(conn, files):
             print(f"  {filename:<40} {'ingest':<20} extractor={fn_name} size={size_bytes}B")
 
 # ---------------------------------------------------------------------------
-# Rerun failed
-# ---------------------------------------------------------------------------
-
-def rerun_failed(conn):
-    today = today_dash()
-    failures_dir = Path(FAILURES_DIR)
-    failures_dir.mkdir(parents=True, exist_ok=True)
-    log_path = failures_dir / f"{today}.md"
-
-    failed_docs = conn.execute(
-        "SELECT id, source_filename, archive_path, attempt_count, failure_reason "
-        "FROM documents WHERE status = 'failed'"
-    ).fetchall()
-
-    if not failed_docs:
-        print("No failed documents to rerun.")
-        return
-
-    rerun_log = []
-    still_failed = []
-
-    for doc_id, filename, archive_path, attempt_count, failure_reason in failed_docs:
-        rerun_log.append((filename, "failed", attempt_count or 0, failure_reason or ""))
-
-        if not archive_path or not Path(archive_path).exists():
-            msg = f"archive file not found: {archive_path}"
-            print(f"  SKIP | {filename} | {msg}")
-            still_failed.append((filename, msg))
-            continue
-
-        try:
-            dest = Path(DROPZONE) / Path(archive_path).name
-            shutil.copy2(str(archive_path), str(dest))
-        except Exception as exc:
-            msg = f"copy to dropzone failed: {exc}"
-            print(f"  SKIP | {filename} | {msg}")
-            still_failed.append((filename, msg))
-            continue
-
-        conn.execute("DELETE FROM artifacts WHERE document_id = ?", (doc_id,))
-        conn.execute("DELETE FROM review_queue WHERE document_id = ?", (doc_id,))
-        conn.execute("DELETE FROM documents WHERE id = ?", (doc_id,))
-        conn.commit()
-
-        process_file(conn, dest, prior_attempts=attempt_count or 0)
-
-        new_filename = dest.name
-        new_row = conn.execute(
-            "SELECT status, failure_reason FROM documents "
-            "WHERE source_filename = ? ORDER BY ingested_at DESC LIMIT 1",
-            (new_filename,),
-        ).fetchone()
-        if new_row and new_row[0] == "failed":
-            still_failed.append((new_filename, new_row[1] or "unknown"))
-
-    lines = [
-        f"# Ingest Failures — {today}",
-        "",
-        "## Rerun Attempted",
-        "",
-    ]
-    for fname, orig_status, ac, err in rerun_log:
-        lines.append(f"- {fname} | {orig_status} | {ac} | {err or 'none'}")
-    lines += ["", "## Still Failed", ""]
-    if still_failed:
-        for fname, err in still_failed:
-            lines.append(f"- {fname} | {err}")
-    else:
-        lines.append("None.")
-
-    log_path.write_text("\n".join(lines), encoding="utf-8")
-    print(f"Failure log written: {log_path}")
-
-# ---------------------------------------------------------------------------
-# Dashboard
-# ---------------------------------------------------------------------------
-
-def write_dashboard_ingest_counts(conn):
-    today = today_dash()
-    dashboard_path = Path(DASHBOARD_PATH)
-    log_path = Path(DASHBOARD_LOG)
-    log_path.parent.mkdir(parents=True, exist_ok=True)
-
-    try:
-        processed_today = conn.execute(
-            "SELECT COUNT(*) FROM documents WHERE substr(ingested_at, 1, 10) = ?",
-            (today,),
-        ).fetchone()[0]
-
-        pending_review = conn.execute(
-            "SELECT COUNT(*) FROM review_queue WHERE status = 'needs_review'"
-        ).fetchone()[0]
-
-        failed = conn.execute(
-            "SELECT COUNT(*) FROM documents WHERE status = 'failed'"
-        ).fetchone()[0]
-
-        llm_calls_today = conn.execute(
-            "SELECT COUNT(*) FROM llm_calls WHERE substr(created_at, 1, 10) = ?",
-            (today,),
-        ).fetchone()[0]
-
-        llm_timeouts_today = conn.execute(
-            "SELECT COUNT(*) FROM llm_calls WHERE success = 0 AND substr(created_at, 1, 10) = ?",
-            (today,),
-        ).fetchone()[0]
-
-        last_run_row = conn.execute(
-            "SELECT MAX(ingested_at) FROM documents"
-        ).fetchone()
-        last_run = last_run_row[0] if last_run_row else None
-
-        ingest_data = {
-            "processed_today": processed_today,
-            "pending_review": pending_review,
-            "failed": failed,
-            "llm_calls_today": llm_calls_today,
-            "llm_timeouts_today": llm_timeouts_today,
-            "active_model": LLM_MODEL,
-            "last_run": last_run,
-        }
-
-        try:
-            existing = json.loads(dashboard_path.read_text(encoding="utf-8"))
-        except Exception:
-            existing = {}
-
-        existing["ingest"] = ingest_data
-        tmp_path = Path(str(dashboard_path) + ".tmp")
-        tmp_path.write_text(json.dumps(existing, indent=2), encoding="utf-8")
-        os.replace(str(tmp_path), str(dashboard_path))
-
-        log_entry = (
-            f"{now_iso()} | ingest | processed_today={processed_today} "
-            f"pending={pending_review} failed={failed} "
-            f"llm_calls={llm_calls_today}\n"
-        )
-        with open(str(log_path), "a", encoding="utf-8") as fh:
-            fh.write(log_entry)
-
-        print("Dashboard updated: ingest counts written")
-
-    except Exception as exc:
-        print(f"  WARN | dashboard update failed: {exc}")
-
-# ---------------------------------------------------------------------------
 # Entry point
 # ---------------------------------------------------------------------------
 
 def main():
-    parser = argparse.ArgumentParser(description="Ingest pipeline — Phase 4")
+    parser = argparse.ArgumentParser(description="Ingest pipeline — Phase 3")
     parser.add_argument(
         "--dry-run", action="store_true",
         help="Report what would happen without moving files or writing to DB",
     )
-    parser.add_argument(
-        "--rerun-failed", action="store_true",
-        help="Reprocess all documents with status=failed",
-    )
     args = parser.parse_args()
 
     conn = init_db(DB_PATH)
-
-    if args.rerun_failed:
-        rerun_failed(conn)
-        write_dashboard_ingest_counts(conn)
-        conn.close()
-        return
-
     dropzone = Path(DROPZONE)
-    files = sorted(f for f in dropzone.iterdir() if f.is_file())
 
+    files = sorted(f for f in dropzone.iterdir() if f.is_file())
     if not files:
         print(f"Dropzone empty: {DROPZONE}")
-        if not args.dry_run:
-            write_dashboard_ingest_counts(conn)
         conn.close()
         return
 
@@ -750,7 +533,6 @@ def main():
     for f in files:
         process_file(conn, f)
 
-    write_dashboard_ingest_counts(conn)
     conn.close()
     print("Done.")
 

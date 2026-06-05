@@ -4,9 +4,12 @@ from summarizers.local_llm_summarizer import LocalLLMSummarizer
 
 class LLMClassifier:
 
+    def __init__(self, model: str = None):
+        self.model = model
+
     def classify(self, text: str, filename: str) -> ClassificationResult:
         try:
-            summarizer = LocalLLMSummarizer()
+            summarizer = LocalLLMSummarizer(model=self.model)
             result = summarizer.summarize(text, filename, "unknown")
 
             if not result.success:

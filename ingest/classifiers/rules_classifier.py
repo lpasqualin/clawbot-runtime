@@ -37,6 +37,15 @@ class RulesClassifier:
                     confidence=0.90,
                     method="rules",
                 )
+            if any(w in fn for w in ("paystatement", "pay statement", "pay stub", "paystub")):
+                return ClassificationResult(
+                    project="Personal",
+                    destination="60 - Personal/Finance/",
+                    content_type="finance",
+                    tags=["finance", "payroll"],
+                    confidence=0.90,
+                    method="rules",
+                )
 
             # Text rules — first match wins
             if "beacon bridge" in tx or " bbs" in tx:
@@ -90,6 +99,16 @@ class RulesClassifier:
                     destination="30 - ClawBot/Agent OS/",
                     content_type="technical",
                     tags=["agent-os"],
+                    confidence=0.85,
+                    method="rules",
+                )
+            if (any(w in tx for w in ("net pay", "gross pay", "federal income tax", "social security"))
+                    and "earnings" in tx):
+                return ClassificationResult(
+                    project="Personal",
+                    destination="60 - Personal/Finance/",
+                    content_type="finance",
+                    tags=["finance", "payroll"],
                     confidence=0.85,
                     method="rules",
                 )

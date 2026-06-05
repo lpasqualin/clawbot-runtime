@@ -7,8 +7,6 @@ from dataclasses import dataclass
 
 OLLAMA_URL = "http://localhost:11434/api/generate"
 DEFAULT_MODEL = os.environ.get("INGEST_LLM_MODEL", "qwen3:14b")
-MAX_INPUT_CHARS = 12000
-SUMMARY_TIMEOUT = 120
 
 
 @dataclass
@@ -56,11 +54,13 @@ _PROMPT_TEMPLATE = (
 
 class LocalLLMSummarizer:
 
-    def __init__(self, model: str = None):
+    def __init__(self, model: str = None, timeout: int = 600, max_input_chars: int = 12000):
         self.model = model or DEFAULT_MODEL
+        self.timeout = timeout
+        self.max_input_chars = max_input_chars
 
     def summarize(self, text: str, filename: str, file_type: str) -> SummaryResult:
-        truncated = text[:MAX_INPUT_CHARS]
+        truncated = text[:self.max_input_chars]
         input_chars = len(truncated)
         prompt = _PROMPT_TEMPLATE.format(
             filename=filename,
@@ -82,7 +82,7 @@ class LocalLLMSummarizer:
                 headers={"Content-Type": "application/json"},
                 method="POST",
             )
-            with urllib.request.urlopen(req, timeout=SUMMARY_TIMEOUT) as resp:
+            with urllib.request.urlopen(req, timeout=self.timeout) as resp:
                 raw = resp.read().decode("utf-8")
         except Exception as exc:
             return SummaryResult(
