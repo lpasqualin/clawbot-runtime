@@ -1,0 +1,204 @@
+{
+  "version": 1,
+  "jobs": {
+    "b6608876-29c4-4eee-810d-34640621a0a7": {
+      "updatedAtMs": 1780570830809,
+      "scheduleIdentity": "{\"version\":1,\"enabled\":true,\"schedule\":{\"kind\":\"cron\",\"expr\":\"0 7 * * *\",\"tz\":\"America/New_York\"}}",
+      "state": {
+        "nextRunAtMs": 1780657200000,
+        "lastRunAtMs": 1780570800032,
+        "lastRunStatus": "ok",
+        "lastStatus": "ok",
+        "lastDurationMs": 30777,
+        "lastDeliveryStatus": "delivered",
+        "consecutiveErrors": 0,
+        "consecutiveSkipped": 0,
+        "lastFailureNotificationDeliveryStatus": "not-requested",
+        "lastDelivered": true
+      }
+    },
+    "36b21d05-5c48-432c-b086-2635cfea95e1": {
+      "updatedAtMs": 1780502442895,
+      "scheduleIdentity": "{\"version\":1,\"enabled\":true,\"schedule\":{\"kind\":\"cron\",\"expr\":\"0 12 * * *\",\"tz\":\"America/New_York\"}}",
+      "state": {
+        "nextRunAtMs": 1780588800000,
+        "lastRunAtMs": 1780502400024,
+        "lastRunStatus": "ok",
+        "lastStatus": "ok",
+        "lastDurationMs": 42871,
+        "lastDeliveryStatus": "delivered",
+        "consecutiveErrors": 0,
+        "lastDelivered": true,
+        "consecutiveSkipped": 0,
+        "lastFailureNotificationDeliveryStatus": "not-requested"
+      }
+    },
+    "97aba831-e957-45f6-ade0-e7c2a90a4dbd": {
+      "updatedAtMs": 1780531223901,
+      "scheduleIdentity": "{\"version\":1,\"enabled\":true,\"schedule\":{\"kind\":\"cron\",\"expr\":\"0 20 * * *\",\"tz\":\"America/New_York\"}}",
+      "state": {
+        "nextRunAtMs": 1780617600000,
+        "lastRunAtMs": 1780531200029,
+        "lastRunStatus": "ok",
+        "lastStatus": "ok",
+        "lastDurationMs": 23872,
+        "lastDeliveryStatus": "delivered",
+        "consecutiveErrors": 0,
+        "consecutiveSkipped": 0,
+        "lastFailureNotificationDeliveryStatus": "not-requested",
+        "lastDelivered": true
+      }
+    },
+    "e68baf8f-f3cf-428f-8b2e-b97c01bbc225": {
+      "updatedAtMs": 1780580110350,
+      "scheduleIdentity": "{\"version\":1,\"enabled\":true,\"schedule\":{\"kind\":\"cron\",\"expr\":\"*/30 * * * *\",\"tz\":\"America/New_York\",\"staggerMs\":300000}}",
+      "state": {
+        "nextRunAtMs": 1780581886433,
+        "lastRunAtMs": 1780580086454,
+        "lastRunStatus": "ok",
+        "lastStatus": "ok",
+        "lastDurationMs": 23896,
+        "lastDeliveryStatus": "delivered",
+        "consecutiveErrors": 0,
+        "consecutiveSkipped": 0,
+        "lastFailureNotificationDeliveryStatus": "not-requested",
+        "lastDelivered": true,
+        "lastDiagnostics": {
+          "summary": "⚠️ 🛠️ `message action=send channel=discord message='✅ All systems OK.' (agent)` failed",
+          "entries": [
+            {
+              "ts": 1780580109916,
+              "source": "tool",
+              "severity": "warn",
+              "message": "⚠️ 🛠️ `message action=send channel=discord message='✅ All systems OK.' (agent)` failed"
+            }
+          ]
+        },
+        "lastDiagnosticSummary": "⚠️ 🛠️ `message action=send channel=discord message='✅ All systems OK.' (agent)` failed"
+      }
+    },
+    "3c945d93-f092-4056-8d3d-56c07b6c4ea6": {
+      "updatedAtMs": 1780243842673,
+      "scheduleIdentity": "{\"version\":1,\"enabled\":true,\"schedule\":{\"kind\":\"cron\",\"expr\":\"0 10 * * 0\",\"tz\":\"America/New_York\"}}",
+      "state": {
+        "nextRunAtMs": 1780840800000,
+        "lastRunAtMs": 1780242734186,
+        "lastRunStatus": "error",
+        "lastStatus": "error",
+        "lastDurationMs": 1108487,
+        "lastDeliveryStatus": "unknown",
+        "consecutiveErrors": 1,
+        "lastDelivered": false,
+        "lastError": "cron: job interrupted by gateway restart",
+        "lastDeliveryError": "cron: job interrupted by gateway restart",
+        "lastFailureNotificationDeliveryStatus": "unknown"
+      }
+    },
+    "552e0b4a-91a2-4155-9cf2-ebd3906ddda7": {
+      "updatedAtMs": 1780243842675,
+      "scheduleIdentity": "{\"version\":1,\"enabled\":true,\"schedule\":{\"kind\":\"cron\",\"expr\":\"0 9 * * 0\",\"tz\":\"America/New_York\"}}",
+      "state": {
+        "nextRunAtMs": 1780837200000,
+        "lastRunAtMs": 1780242734186,
+        "lastRunStatus": "error",
+        "lastStatus": "error",
+        "lastDurationMs": 1108489,
+        "lastDeliveryStatus": "unknown",
+        "consecutiveErrors": 1,
+        "lastDelivered": false,
+        "lastError": "cron: job interrupted by gateway restart",
+        "lastDeliveryError": "cron: job interrupted by gateway restart",
+        "lastFailureNotificationDeliveryStatus": "unknown"
+      }
+    },
+    "bd26203c-0181-4ce1-bfc7-d9deb5883b96": {
+      "updatedAtMs": 1780544700041,
+      "scheduleIdentity": "{\"version\":1,\"enabled\":true,\"schedule\":{\"kind\":\"cron\",\"expr\":\"45 23 * * *\",\"tz\":\"America/New_York\"}}",
+      "state": {
+        "nextRunAtMs": 1780631100000,
+        "lastRunAtMs": 1780544700032,
+        "lastRunStatus": "error",
+        "lastStatus": "error",
+        "lastDurationMs": 9,
+        "lastDeliveryStatus": "not-requested",
+        "consecutiveErrors": 29,
+        "lastDiagnostics": {
+          "summary": "cron payload.model 'openai-codex/gpt-5.4' rejected by agents.defaults.models allowlist: openai-codex/gpt-5.4 is not in [anthropic/claude-haiku-4-5, anthropic/claude-opus-4-7, anthropic/claude-sonnet-4-6, ollama/deepseek-r1:14b, ollama/devstral:24b, ollama/gemma4:e4b, ollama/nomic-embed-text, ollama/qwen2.5-coder:14b, ollama/qwen3:14b, openai-codex/chat-latest, openai-codex/gpt-5.4-mini, openai-codex/gpt-5.5, openrouter/auto, openrouter/google/gemini-2.5-flash, openrouter/moonshotai/kimi-k2.6]",
+          "entries": [
+            {
+              "ts": 1780544700041,
+              "source": "cron-preflight",
+              "severity": "error",
+              "message": "cron payload.model 'openai-codex/gpt-5.4' rejected by agents.defaults.models allowlist: openai-codex/gpt-5.4 is not in [anthropic/claude-haiku-4-5, anthropic/claude-opus-4-7, anthropic/claude-sonnet-4-6, ollama/deepseek-r1:14b, ollama/devstral:24b, ollama/gemma4:e4b, ollama/nomic-embed-text, ollama/qwen2.5-coder:14b, ollama/qwen3:14b, openai-codex/chat-latest, openai-codex/gpt-5.4-mini, openai-codex/gpt-5.5, openrouter/auto, openrouter/google/gemini-2.5-flash, openrouter/moonshotai/kimi-k2.6]"
+            }
+          ]
+        },
+        "lastDiagnosticSummary": "cron payload.model 'openai-codex/gpt-5.4' rejected by agents.defaults.models allowlist: openai-codex/gpt-5.4 is not in [anthropic/claude-haiku-4-5, anthropic/claude-opus-4-7, anthropic/claude-sonnet-4-6, ollama/deepseek-r1:14b, ollama/devstral:24b, ollama/gemma4:e4b, ollama/nomic-embed-text, ollama/qwen2.5-coder:14b, ollama/qwen3:14b, openai-codex/chat-latest, openai-codex/gpt-5.4-mini, openai-codex/gpt-5.5, openrouter/auto, openrouter/google/gemini-2.5-flash, openrouter/moonshotai/kimi-k2.6]",
+        "consecutiveSkipped": 0,
+        "lastFailureNotificationDeliveryStatus": "not-requested",
+        "lastError": "cron payload.model 'openai-codex/gpt-5.4' rejected by agents.defaults.models allowlist: openai-codex/gpt-5.4 is not in [anthropic/claude-haiku-4-5, anthropic/claude-opus-4-7, anthropic/claude-sonnet-4-6, ollama/deepseek-r1:14b, ollama/devstral:24b, ollama/gemma4:e4b, ollama/nomic-embed-text, ollama/qwen2.5-coder:14b, ollama/qwen3:14b, openai-codex/chat-latest, openai-codex/gpt-5.4-mini, openai-codex/gpt-5.5, openrouter/auto, openrouter/google/gemini-2.5-flash, openrouter/moonshotai/kimi-k2.6]"
+      }
+    },
+    "373bb31b-bc1b-45ba-9577-063e635f605a": {
+      "updatedAtMs": 1780275600057,
+      "scheduleIdentity": "{\"version\":1,\"enabled\":true,\"schedule\":{\"kind\":\"cron\",\"expr\":\"0 21 * * 0\",\"tz\":\"America/New_York\"}}",
+      "state": {
+        "nextRunAtMs": 1780880400000,
+        "lastRunAtMs": 1780275600037,
+        "lastRunStatus": "error",
+        "lastStatus": "error",
+        "lastDurationMs": 20,
+        "lastDeliveryStatus": "unknown",
+        "consecutiveErrors": 7,
+        "lastFailureNotificationDeliveryStatus": "unknown",
+        "lastError": "cron payload.model 'openai/gpt-5.4' rejected by agents.defaults.models allowlist: openai/gpt-5.4 is not in [anthropic/claude-haiku-4-5, anthropic/claude-opus-4-7, anthropic/claude-sonnet-4-6, ollama/deepseek-r1:14b, ollama/devstral:24b, ollama/gemma4:e4b, ollama/nomic-embed-text, ollama/qwen2.5-coder:14b, ollama/qwen3:14b, openai-codex/chat-latest, openai-codex/gpt-5.4-mini, openai-codex/gpt-5.5]",
+        "lastDiagnostics": {
+          "summary": "cron payload.model 'openai/gpt-5.4' rejected by agents.defaults.models allowlist: openai/gpt-5.4 is not in [anthropic/claude-haiku-4-5, anthropic/claude-opus-4-7, anthropic/claude-sonnet-4-6, ollama/deepseek-r1:14b, ollama/devstral:24b, ollama/gemma4:e4b, ollama/nomic-embed-text, ollama/qwen2.5-coder:14b, ollama/qwen3:14b, openai-codex/chat-latest, openai-codex/gpt-5.4-mini, openai-codex/gpt-5.5]",
+          "entries": [
+            {
+              "ts": 1780275600056,
+              "source": "cron-preflight",
+              "severity": "error",
+              "message": "cron payload.model 'openai/gpt-5.4' rejected by agents.defaults.models allowlist: openai/gpt-5.4 is not in [anthropic/claude-haiku-4-5, anthropic/claude-opus-4-7, anthropic/claude-sonnet-4-6, ollama/deepseek-r1:14b, ollama/devstral:24b, ollama/gemma4:e4b, ollama/nomic-embed-text, ollama/qwen2.5-coder:14b, ollama/qwen3:14b, openai-codex/chat-latest, openai-codex/gpt-5.4-mini, openai-codex/gpt-5.5]"
+            }
+          ]
+        },
+        "lastDiagnosticSummary": "cron payload.model 'openai/gpt-5.4' rejected by agents.defaults.models allowlist: openai/gpt-5.4 is not in [anthropic/claude-haiku-4-5, anthropic/claude-opus-4-7, anthropic/claude-sonnet-4-6, ollama/deepseek-r1:14b, ollama/devstral:24b, ollama/gemma4:e4b, ollama/nomic-embed-text, ollama/qwen2.5-coder:14b, ollama/qwen3:14b, openai-codex/chat-latest, openai-codex/gpt-5.4-mini, openai-codex/gpt-5.5]",
+        "consecutiveSkipped": 0
+      }
+    },
+    "da5ca511-22db-4358-b5b8-8d41772f7687": {
+      "updatedAtMs": 1780243842678,
+      "scheduleIdentity": "{\"version\":1,\"enabled\":true,\"schedule\":{\"kind\":\"cron\",\"expr\":\"0 10 * * 0\",\"tz\":\"America/New_York\"}}",
+      "state": {
+        "nextRunAtMs": 1780840800000,
+        "lastRunAtMs": 1780242734186,
+        "lastRunStatus": "error",
+        "lastStatus": "error",
+        "lastDurationMs": 1108492,
+        "lastDeliveryStatus": "unknown",
+        "consecutiveErrors": 2,
+        "lastDelivered": false,
+        "lastError": "cron: job interrupted by gateway restart",
+        "lastDeliveryError": "cron: job interrupted by gateway restart",
+        "lastFailureNotificationDeliveryStatus": "unknown"
+      }
+    },
+    "27f1022a-91fd-4a7a-a8c3-b06b1bd5ac12": {
+      "updatedAtMs": 1780572610326,
+      "scheduleIdentity": "{\"version\":1,\"enabled\":true,\"schedule\":{\"kind\":\"cron\",\"expr\":\"30 7 * * *\",\"tz\":\"America/New_York\"}}",
+      "state": {
+        "nextRunAtMs": 1780659000000,
+        "lastRunAtMs": 1780572600036,
+        "lastRunStatus": "ok",
+        "lastStatus": "ok",
+        "lastDurationMs": 10290,
+        "lastDelivered": true,
+        "lastDeliveryStatus": "delivered",
+        "lastFailureNotificationDeliveryStatus": "not-requested",
+        "consecutiveErrors": 0,
+        "consecutiveSkipped": 0
+      }
+    }
+  }
+}
