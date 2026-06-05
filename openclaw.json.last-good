@@ -1,7 +1,7 @@
 {
   "meta": {
     "lastTouchedVersion": "2026.6.1",
-    "lastTouchedAt": "2026-06-05T00:22:12.975Z"
+    "lastTouchedAt": "2026-06-05T13:19:51.607Z"
   },
   "wizard": {
     "lastRunAt": "2026-06-05T00:09:32.123Z",
@@ -173,21 +173,15 @@
   "agents": {
     "defaults": {
       "model": {
-        "primary": "openai/gpt-5.5",
+        "primary": "openai/gpt-5.5-instant",
         "fallbacks": [
           "openai/gpt-5.4-mini",
           "openrouter/moonshotai/kimi-k2.6",
-          "ollama/qwen3:14b",
-          "ollama/gemma4:e4b",
-          "openrouter/auto",
           "openai/chat-latest",
-          "ollama/deepseek-r1:14b",
-          "ollama/qwen2.5-coder:14b",
-          "ollama/devstral:24b",
-          "ollama/nomic-embed-text",
           "anthropic/claude-haiku-4-5",
           "anthropic/claude-sonnet-4-6",
-          "anthropic/claude-opus-4-7"
+          "anthropic/claude-opus-4-7",
+          "openrouter/auto"
         ]
       },
       "models": {
@@ -248,7 +242,7 @@
       "compaction": {
         "mode": "safeguard"
       },
-      "thinkingDefault": "low",
+      "thinkingDefault": "medium",
       "maxConcurrent": 1,
       "subagents": {
         "maxConcurrent": 1

@@ -24,6 +24,22 @@ OUTPUT_FILE     = os.path.join(INBOX_DIR, f"{TODAY_STR}.json")
 GOG_BIN         = "/home/clawbot/gogcli/bin/gog"
 GOG_ACCOUNT     = "leo.pasqua88@gmail.com"
 
+def _build_gog_env():
+    env = os.environ.copy()
+    env['HOME'] = '/home/clawbot'
+    try:
+        with open('/etc/openclaw.env') as f:
+            for line in f:
+                line = line.strip()
+                if '=' in line and not line.startswith('#'):
+                    k, v = line.split('=', 1)
+                    env[k.strip()] = v.strip()
+    except Exception:
+        pass
+    return env
+
+GOG_ENV = _build_gog_env()
+
 def log(msg):
     print(f"[{NOW_ISO}] {msg}", flush=True)
 
@@ -32,11 +48,12 @@ def fetch_gmail(from_addr, newer_than="2d"):
     try:
         query = f'from:{from_addr} newer_than:{newer_than}'
         cmd = [GOG_BIN, "gmail", "search", query,
-               "--account", GOG_ACCOUNT,
+               "-a", GOG_ACCOUNT,
                "--max", "3",
                "--json"]
-        result = subprocess.run(cmd, capture_output=True, text=True, timeout=15)
+        result = subprocess.run(cmd, capture_output=True, text=True, timeout=15, env=GOG_ENV)
         if result.returncode != 0:
+            log(f"  GOG exited {result.returncode}: {result.stderr[:200]}")
             return []
         data = json.loads(result.stdout)
         # handle array or object response

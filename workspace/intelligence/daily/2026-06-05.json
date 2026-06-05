@@ -1,0 +1,131 @@
+{
+  "date": "2026-06-05",
+  "fetched_at": "2026-06-05T09:15:36.980614-04:00",
+  "sources": [
+    {
+      "name": "The Rundown AI",
+      "lane": "daily_ai_radar",
+      "priority": "medium",
+      "reason": "Daily AI headline radar — good breadth, filter for signal",
+      "items": [
+        {
+          "source_name": "The Rundown AI",
+          "source_lane": "daily_ai_radar",
+          "priority": "medium",
+          "reason": "Daily AI headline radar — good breadth, filter for signal",
+          "subject": "⌛️ Anthropic's self-improving AI warning",
+          "sender": "The Rundown AI <news@daily.therundown.ai>",
+          "date": "2026-06-05 06:11",
+          "snippet": "",
+          "thread_id": "19e974404455523c"
+        },
+        {
+          "source_name": "The Rundown AI",
+          "source_lane": "daily_ai_radar",
+          "priority": "medium",
+          "reason": "Daily AI headline radar — good breadth, filter for signal",
+          "subject": "🎨 Reve, Ideogram trade prompts for layouts",
+          "sender": "The Rundown AI <news@daily.therundown.ai>",
+          "date": "2026-06-04 06:07",
+          "snippet": "",
+          "thread_id": "19e921a6bfeefdf1"
+        }
+      ]
+    },
+    {
+      "name": "TLDR",
+      "lane": "tech_radar",
+      "priority": "medium",
+      "reason": "Tech/AI breadth, new models, tools — needs filtering",
+      "items": [
+        {
+          "source_name": "TLDR",
+          "source_lane": "tech_radar",
+          "priority": "medium",
+          "reason": "Tech/AI breadth, new models, tools — needs filtering",
+          "subject": "iMessage agents 🤖, Anthropic wants pause 🛑, Open Code Review 👨‍💻  ",
+          "sender": "TLDR <dan@tldrnewsletter.com>",
+          "date": "2026-06-05 06:25",
+          "snippet": "",
+          "thread_id": "19e9750fc9a4df8f"
+        },
+        {
+          "source_name": "TLDR",
+          "source_lane": "tech_radar",
+          "priority": "medium",
+          "reason": "Tech/AI breadth, new models, tools — needs filtering",
+          "subject": "SpaceX prices IPO 💰, Meta AI agents for business 🤖, Google's laptop LLM 👨‍💻",
+          "sender": "TLDR <dan@tldrnewsletter.com>",
+          "date": "2026-06-04 06:29",
+          "snippet": "",
+          "thread_id": "19e922e36a0efa67"
+        }
+      ]
+    },
+    {
+      "name": "AI for Work",
+      "lane": "workflow_templates",
+      "priority": "low",
+      "reason": "AI productivity workflows — keep only if producing usable patterns",
+      "items": [
+        {
+          "source_name": "AI for Work",
+          "source_lane": "workflow_templates",
+          "priority": "low",
+          "reason": "AI productivity workflows — keep only if producing usable patterns",
+          "subject": "Google’s Logan Kilpatrick on turning prompts into startups",
+          "sender": "AI For Work <aiforwork@mail.beehiiv.com>",
+          "date": "2026-06-04 14:34",
+          "snippet": "",
+          "thread_id": "19e93ea320acfed2"
+        },
+        {
+          "source_name": "AI for Work",
+          "source_lane": "workflow_templates",
+          "priority": "low",
+          "reason": "AI productivity workflows — keep only if producing usable patterns",
+          "subject": "OpenAI’s new Codex plug-ins go beyond coders",
+          "sender": "AI For Work <aiforwork@mail.beehiiv.com>",
+          "date": "2026-06-03 11:24",
+          "snippet": "",
+          "thread_id": "19e8e164cce3fa03"
+        }
+      ]
+    },
+    {
+      "name": "Half Baked",
+      "lane": "business_ideas",
+      "priority": "medium",
+      "reason": "Business/startup ideas — filter for BBS offer angles and automation opportunities",
+      "items": [
+        {
+          "source_name": "Half Baked",
+          "source_lane": "business_ideas",
+          "priority": "medium",
+          "reason": "Business/startup ideas — filter for BBS offer angles and automation opportunities",
+          "subject": "🍪 Alt Advertising",
+          "sender": "Half Baked <ideas@mail.gethalfbaked.com>",
+          "date": "2026-06-04 18:45",
+          "snippet": "",
+          "thread_id": "19e94d03187a42ff"
+        },
+        {
+          "source_name": "Half Baked",
+          "source_lane": "business_ideas",
+          "priority": "medium",
+          "reason": "Business/startup ideas — filter for BBS offer angles and automation opportunities",
+          "subject": "🍪 Agentic Insurance",
+          "sender": "Half Baked <ideas@mail.gethalfbaked.com>",
+          "date": "2026-06-03 18:30",
+          "snippet": "",
+          "thread_id": "19e8f9c5cea84da2"
+        }
+      ]
+    }
+  ],
+  "total_items": 8,
+  "fetch_errors": [
+    "The Batch: no emails found",
+    "OpenRouter Updates: no emails found"
+  ]
+}
