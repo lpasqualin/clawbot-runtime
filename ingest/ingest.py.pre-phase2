@@ -10,8 +10,6 @@ from dataclasses import dataclass
 from datetime import datetime, timezone, timedelta
 from pathlib import Path
 
-from extractors.docling_extractor import extract_docling
-
 # ---------------------------------------------------------------------------
 # Config — edit these paths, nothing else needs changing
 # ---------------------------------------------------------------------------
@@ -114,9 +112,6 @@ EXTRACTORS = {
     ".txt":  extract_plaintext,
     ".md":   extract_plaintext,
     ".html": extract_html,
-    ".pdf":  extract_docling,
-    ".docx": extract_docling,
-    ".pptx": extract_docling,
 }
 
 # ---------------------------------------------------------------------------
@@ -387,7 +382,7 @@ def dry_run_scan(conn, files):
 # ---------------------------------------------------------------------------
 
 def main():
-    parser = argparse.ArgumentParser(description="Ingest pipeline — Phase 2")
+    parser = argparse.ArgumentParser(description="Ingest pipeline — Phase 1")
     parser.add_argument(
         "--dry-run", action="store_true",
         help="Report what would happen without moving files or writing to DB",
