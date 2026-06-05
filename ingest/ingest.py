@@ -12,6 +12,9 @@ from pathlib import Path
 
 from extractors.docling_extractor import extract_docling
 from models import ExtractedDocument
+from classifiers.rules_classifier import RulesClassifier, ClassificationResult
+from classifiers.local_llm_classifier import LLMClassifier
+from summarizers.local_llm_summarizer import LocalLLMSummarizer, SummaryResult
 
 # ---------------------------------------------------------------------------
 # Config — edit these paths, nothing else needs changing
@@ -25,6 +28,12 @@ REVIEW_NOTES_DIR  = "/home/leo-paz/obsidian-vault/05 - Ingest/Reviews"
 DB_PATH           = "/home/clawbot/.openclaw/ingest/ingest.db"
 
 TZ = timezone(timedelta(hours=-4))  # America/New_York ET
+
+ENABLE_LLM              = True   # set False to disable all LLM calls
+ENABLE_RULES            = True   # set False to disable rules classifier
+LLM_CONFIDENCE_THRESHOLD = 0.5  # call LLM if rules confidence below this
+MIN_CHARS_FOR_LLM       = 200   # skip LLM for very short extractions
+LLM_MODEL               = "qwen3:14b"  # override with INGEST_LLM_MODEL env var
 
 # ---------------------------------------------------------------------------
 # Data contract
@@ -160,29 +169,95 @@ def archive_dest(filename, date_str):
         counter += 1
 
 
-def write_review_note(ingest_id, archive_path, result, ingested_at, filename):
-    preview = result.extracted_text[:2000]
-    lines = [
+def write_review_note_enhanced(ingest_id, archive_path, sha256, result,
+                                ingested_at, filename, classification, summary):
+    llm_used = summary is not None and summary.success
+    model_used = summary.model if summary is not None else ""
+
+    all_tags = list(classification.tags)
+    if summary is not None:
+        for t in summary.tags:
+            if t not in all_tags:
+                all_tags.append(t)
+    tags_str = ", ".join(all_tags)
+
+    def bullet_list(items):
+        if not items:
+            return "None identified."
+        return "\n".join(f"- {item}" for item in items)
+
+    frontmatter = [
         "---",
         f"ingest_id: {ingest_id}",
         f"source_file: {archive_path}",
+        f"source_hash: {sha256}",
         "status: needs_review",
         f"file_type: {result.file_type}",
         f"extractor: {result.extractor_name}",
+        f"project: {classification.project}",
+        f"content_type: {classification.content_type}",
+        f"suggested_destination: {classification.destination}",
+        f"llm_used: {'true' if llm_used else 'false'}",
+        f"model: {model_used}",
+        f"confidence: {classification.confidence}",
+        f"tags: {tags_str}",
         f"char_count: {result.char_count}",
         f"ingested_at: {ingested_at}",
         "---",
+    ]
+
+    sum_text = summary.summary if llm_used else "No summary generated."
+    key_facts = summary.key_facts if llm_used else []
+    action_items = summary.action_items if llm_used else []
+    entities = summary.entities if llm_used else []
+    risks = summary.risks if llm_used else []
+
+    preview = result.extracted_text[:2000]
+    raw_lines = [preview]
+    if len(result.extracted_text) > 2000:
+        raw_lines.append("\n[Truncated: full text in extracted archive]")
+
+    body = [
         "",
         f"# Ingest Review: {filename}",
         "",
-        "## Extracted Text",
+        "## Summary",
         "",
-        preview,
+        sum_text,
+        "",
+        "## Key Facts",
+        "",
+        bullet_list(key_facts),
+        "",
+        "## Suggested Routing",
+        "",
+        f"Project: {classification.project or 'Unknown'}",
+        f"Destination: {classification.destination or 'Needs review'}",
+        f"Confidence: {classification.confidence}",
+        "",
+        "## Suggested Actions",
+        "",
+        bullet_list(action_items),
+        "",
+        "## Entities",
+        "",
+        bullet_list(entities),
+        "",
+        "## Risks / Open Questions",
+        "",
+        bullet_list(risks),
+        "",
+        "## Raw Extract",
+        "",
+    ] + raw_lines + [
+        "",
+        "## Source",
+        "",
+        str(archive_path),
     ]
-    if len(result.extracted_text) > 2000:
-        lines.append("\n[Truncated: full text in extracted archive]")
+
     note_path = Path(REVIEW_NOTES_DIR) / f"{ingest_id}.md"
-    note_path.write_text("\n".join(lines), encoding="utf-8")
+    note_path.write_text("\n".join(frontmatter + body), encoding="utf-8")
     return note_path
 
 # ---------------------------------------------------------------------------
@@ -237,6 +312,21 @@ def db_insert_review_queue(conn, document_id, status):
     conn.execute(
         "INSERT INTO review_queue (id, document_id, status) VALUES (?, ?, ?)",
         (str(uuid.uuid4()), document_id, status),
+    )
+
+
+def db_insert_llm_call(conn, document_id, model, provider, purpose,
+                        input_chars, output_chars, success, error_message, created_at):
+    conn.execute(
+        "INSERT INTO llm_calls "
+        "(id, document_id, model, provider, purpose, input_chars, output_chars, "
+        "success, error_message, created_at) "
+        "VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?)",
+        (
+            str(uuid.uuid4()), document_id, model, provider, purpose,
+            input_chars, output_chars, 1 if success else 0,
+            error_message, created_at,
+        ),
     )
 
 # ---------------------------------------------------------------------------
@@ -316,8 +406,41 @@ def process_file(conn, file_path: Path):
         print(f"  ERROR | {filename} | write extracted text failed: {exc}")
         return
 
+    # Classification and summarization — advisory only, never block ingest
+    classification = ClassificationResult(
+        project="", destination="", content_type="unknown",
+        tags=[], confidence=0.0, method="rules",
+    )
+    summary = None
+
+    if ENABLE_RULES:
+        try:
+            classification = RulesClassifier().classify(result.extracted_text, filename)
+        except Exception as exc:
+            print(f"  WARN | {filename} | rules classifier error: {exc}")
+
+    if (ENABLE_LLM
+            and classification.confidence < LLM_CONFIDENCE_THRESHOLD
+            and result.char_count >= MIN_CHARS_FOR_LLM):
+        try:
+            classification = LLMClassifier().classify(result.extracted_text, filename)
+        except Exception as exc:
+            print(f"  WARN | {filename} | LLM classifier error: {exc}")
+
+    if ENABLE_LLM and result.char_count >= MIN_CHARS_FOR_LLM:
+        try:
+            summary = LocalLLMSummarizer(model=LLM_MODEL).summarize(
+                result.extracted_text, filename, ext
+            )
+        except Exception as exc:
+            print(f"  WARN | {filename} | LLM summarizer error: {exc}")
+            summary = None
+
     try:
-        review_note_path = write_review_note(ingest_id, dest, result, ingested_at, filename)
+        review_note_path = write_review_note_enhanced(
+            ingest_id, dest, digest, result, ingested_at, filename,
+            classification, summary,
+        )
     except Exception as exc:
         print(f"  ERROR | {filename} | write review note failed: {exc}")
         return
@@ -331,6 +454,12 @@ def process_file(conn, file_path: Path):
         db_insert_artifact(conn, ingest_id, "obsidian_review_note",
                            review_note_path=review_note_path)
         db_insert_review_queue(conn, ingest_id, "needs_review")
+        if summary is not None:
+            db_insert_llm_call(
+                conn, ingest_id, summary.model, "ollama", "summary",
+                summary.input_chars, summary.output_chars, summary.success,
+                summary.error_message, now_iso(),
+            )
         conn.commit()
     except Exception as exc:
         print(f"  ERROR | {filename} | DB insert failed: {exc}")
@@ -378,7 +507,7 @@ def dry_run_scan(conn, files):
 # ---------------------------------------------------------------------------
 
 def main():
-    parser = argparse.ArgumentParser(description="Ingest pipeline — Phase 2")
+    parser = argparse.ArgumentParser(description="Ingest pipeline — Phase 3")
     parser.add_argument(
         "--dry-run", action="store_true",
         help="Report what would happen without moving files or writing to DB",
