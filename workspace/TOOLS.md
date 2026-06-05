@@ -198,3 +198,88 @@ These skills live in specialist workspaces. ClawBot does not call them directly 
 | `social-media-scheduler` | Schedule social posts |
 | `landing-page-roast` | Landing page critique |
 | `lead-magnets` | Lead magnet creation |
+
+## Operations Cheat Sheet
+
+### Always run as clawbot
+```bash
+sudo -u clawbot bash -l -c '<command>'
+```
+
+### OpenClaw binary (not in system PATH)
+```bash
+OC=/home/clawbot/.npm-global/bin/openclaw
+```
+
+### File transfer from Windows laptop → MS-01 → execute
+```bash
+# From Windows (PowerShell)
+scp "C:\Users\leopa\Documents\Dev and Tech\Code Projects\<file>" leo-paz@100.86.220.59:/tmp/
+
+# Then on MS-01
+sudo cp /tmp/<file> /home/clawbot/.openclaw/<dest>/
+sudo chown clawbot:clawbot /home/clawbot/.openclaw/<dest>/<file>
+```
+
+### OpenClaw — common commands
+```bash
+# Status
+sudo -u clawbot bash -l -c 'OC=/home/clawbot/.npm-global/bin/openclaw && $OC status'
+
+# Skills
+sudo -u clawbot bash -l -c '$OC skills list'
+sudo -u clawbot bash -l -c '$OC skills list --eligible'
+
+# Cron jobs
+sudo -u clawbot bash -l -c '$OC cron list'
+sudo -u clawbot bash -l -c '$OC cron runs --limit 5'
+sudo -u clawbot bash -l -c '$OC cron runs --id <job-id> --limit 3 --json'
+sudo -u clawbot bash -l -c '$OC cron enable <job-id>'
+sudo -u clawbot bash -l -c '$OC cron disable <job-id>'
+
+# Agents
+sudo -u clawbot bash -l -c '$OC agents list'
+
+# Send a message (scripted / shell)
+sudo -u clawbot bash -l -c '$OC message send --channel discord --target channel:<id> --message "text"'
+
+# Config patch (use inline Python, NOT heredocs, NOT openclaw doctor --fix)
+sudo -u clawbot bash -l -c 'python3 /tmp/patch_script.py'
+
+# Restart service
+sudo systemctl restart openclaw.service
+sudo journalctl -u openclaw.service -n 50 --no-pager
+```
+
+### Git ops (always as clawbot)
+```bash
+sudo -u clawbot bash -l -c 'cd /home/clawbot/.openclaw && git add -A && git commit -m "message" && git push'
+```
+
+### Permissions (reset after every openclaw restart)
+```bash
+# .openclaw resets to 700/clawbot:clawbot on restart
+# Durable fix: openclaw-perms.service handles ACL restoration
+# Manual reset if needed:
+sudo chmod 750 /home/clawbot/.openclaw
+sudo chown clawbot:clawbot /home/clawbot/.openclaw
+```
+
+### Codex binary (recreate after any OC upgrade)
+```bash
+CODEX_DIR="/home/clawbot/.openclaw/extensions/codex/node_modules/@openai/codex-linux-x64/vendor/x86_64-unknown-linux-musl"
+sudo mkdir -p "$CODEX_DIR/codex"
+sudo ln -sf "$CODEX_DIR/bin/codex" "$CODEX_DIR/codex/codex"
+sudo chown -h clawbot:clawbot "$CODEX_DIR/codex/codex"
+```
+
+### When in doubt — discover flags
+```bash
+sudo -u clawbot bash -l -c '$OC <subcommand> --help'
+# e.g. $OC cron --help, $OC skills --help, $OC message --help
+```
+
+# ACL fix — leo-paz write access to .openclaw (survives restarts via openclaw-perms.service)
+sudo setfacl -m u:leo-paz:rwx /home/clawbot/.openclaw/workspace
+sudo setfacl -m u:leo-paz:rw /home/clawbot/.openclaw/workspace/<file>
+``` 
