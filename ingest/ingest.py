@@ -11,6 +11,7 @@ from datetime import datetime, timezone, timedelta
 from pathlib import Path
 
 from extractors.docling_extractor import extract_docling
+from models import ExtractedDocument
 
 # ---------------------------------------------------------------------------
 # Config — edit these paths, nothing else needs changing
@@ -29,16 +30,6 @@ TZ = timezone(timedelta(hours=-4))  # America/New_York ET
 # Data contract
 # ---------------------------------------------------------------------------
 
-@dataclass
-class ExtractedDocument:
-    input_path: str
-    file_type: str
-    success: bool
-    extracted_text: str
-    metadata: dict
-    extractor_name: str
-    char_count: int
-    error_message: str = ""
 
 # ---------------------------------------------------------------------------
 # Extractors — each must never raise; catch all exceptions internally
