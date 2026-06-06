@@ -1,1 +1,2 @@
 flock: cannot open lock file /tmp/openclaw-ingest.lock: Permission denied
+flock: cannot open lock file /tmp/openclaw-ingest.lock: Permission denied
