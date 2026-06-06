@@ -215,6 +215,19 @@ def refresh_dashboard():
         last_run_row = conn.execute("SELECT MAX(ingested_at) FROM documents").fetchone()
         last_run = last_run_row[0] if last_run_row else None
 
+        failed_rows = conn.execute(
+            "SELECT document_id, action_taken FROM review_queue "
+            "WHERE review_status='failed' LIMIT 10"
+        ).fetchall()
+        failed_items = [{"filename": r[0] or "", "reason": r[1] or ""} for r in failed_rows]
+
+        auto_filed_rows = conn.execute(
+            "SELECT document_id, final_path FROM review_queue "
+            "WHERE review_status='approved' AND reviewed_at >= ? LIMIT 10",
+            (today + " 00:00:00",)
+        ).fetchall()
+        auto_filed_items = [{"filename": r[0] or "", "destination": r[1] or ""} for r in auto_filed_rows]
+
         pending_rows = conn.execute(
             "SELECT d.id, d.source_filename, d.suggested_destination, d.suggested_project, "
             "d.confidence, d.content_type, a.review_note_path, d.sha256, "
@@ -266,6 +279,8 @@ def refresh_dashboard():
             "llm_timeouts_today": llm_timeouts_today,
             "active_model":       LLM_MODEL,
             "last_run":           last_run,
+            "failed_items":       failed_items,
+            "auto_filed_items":   auto_filed_items,
         }
 
         # Drain activity_queue.jsonl into activity_feed
