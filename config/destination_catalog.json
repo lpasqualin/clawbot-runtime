@@ -1,0 +1,69 @@
+{
+  "vault_name": "obsidian-vault",
+  "vault_root": "/home/leo-paz/obsidian-vault",
+  "destinations": [
+    {
+      "id": "command",
+      "root": "00 - Command",
+      "relative_path": "00 - Command",
+      "aliases": ["command", "policy", "routing", "soul", "governance", "operating instructions"],
+      "description": "Core command, governance, agent instructions, operating doctrine."
+    },
+    {
+      "id": "bbs",
+      "root": "10 - BBS",
+      "relative_path": "10 - BBS",
+      "aliases": ["BBS", "Beacon Bridge", "Beacon Bridge Strategies", "bbstrats", "consulting", "client outreach", "capability statement", "med spa"],
+      "description": "Beacon Bridge Strategies consulting business, client research, offers, outreach, deliverables."
+    },
+    {
+      "id": "clawbot",
+      "root": "20 - ClawBot",
+      "relative_path": "20 - ClawBot",
+      "aliases": ["ClawBot", "dashboard", "cron", "ingest pipeline", "agent runtime", "Vito", "Oracle", "Harley"],
+      "description": "ClawBot operational system, dashboard, cron jobs, ingestion, execution logs, agent workflows."
+    },
+    {
+      "id": "ai_systems",
+      "root": "30 - AI Systems",
+      "relative_path": "30 - AI Systems",
+      "aliases": ["AI systems", "Agent OS", "OpenClaw", "LLM", "model stack", "multi-agent", "context compiler"],
+      "description": "Broader AI architecture, model stack, agent design, OpenClaw system design."
+    },
+    {
+      "id": "ventures",
+      "root": "40 - Ventures",
+      "relative_path": "40 - Ventures",
+      "aliases": ["RankBeacon", "side business", "startup", "venture", "product idea", "business idea"],
+      "description": "Other ventures outside BBS."
+    },
+    {
+      "id": "career",
+      "root": "50 - Career",
+      "relative_path": "50 - Career",
+      "aliases": ["Mirage", "Boa-Franc", "D365", "CSR", "dealer", "stock check", "work email", "resume", "job"],
+      "description": "W-2 career, Mirage work, job search, role documentation."
+    },
+    {
+      "id": "personal",
+      "root": "60 - Personal",
+      "relative_path": "60 - Personal",
+      "aliases": ["personal finance", "receipt", "bank", "statement", "Venmo", "medical", "health", "school", "family"],
+      "description": "Personal documents, finance, health, family admin."
+    },
+    {
+      "id": "household",
+      "root": "70 - Household",
+      "relative_path": "70 - Household",
+      "aliases": ["house", "home", "property", "repair", "maintenance", "utility", "rental", "Palm Bay"],
+      "description": "Household, property, maintenance, utilities, rental/home operations."
+    },
+    {
+      "id": "archive",
+      "root": "99 - Archive",
+      "relative_path": "99 - Archive",
+      "aliases": ["archive", "old", "obsolete", "rejected"],
+      "description": "Archived or rejected material."
+    }
+  ]
+}

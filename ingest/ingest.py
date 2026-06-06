@@ -223,9 +223,11 @@ def write_review_note_enhanced(ingest_id, archive_path, sha256, result,
         "routing_decision:",
         f"file_type: {result.file_type}",
         f"extractor: {result.extractor_name}",
-        f"project: {classification.project}",
-        f"content_type: {classification.content_type}",
-        f"suggested_destination: {classification.destination}",
+        f"document_type: {classification.document_type}",
+        f"vault_root: {classification.root}",
+        f"suggested_subfolder: {classification.suggested_subfolder}",
+        f"content_type: {classification.document_type}",
+        f"suggested_destination: {classification.relative_path}",
         f"llm_used: {'true' if llm_used else 'false'}",
     ]
     if llm_used:
@@ -263,9 +265,10 @@ def write_review_note_enhanced(ingest_id, archive_path, sha256, result,
         "",
         "## Suggested Routing",
         "",
-        f"Project: {classification.project or 'Unknown'}",
-        f"Destination: {classification.destination or 'Needs review'}",
+        f"Vault root: {classification.root or 'Unknown'}",
+        f"Suggested subfolder: {classification.suggested_subfolder or '(none)'}",
         f"Confidence: {classification.confidence}",
+        f"Signals: {classification.signal_count} | needs_review: {classification.needs_review}",
         "",
         "## Suggested Actions",
         "",
@@ -543,8 +546,9 @@ def process_file(conn, file_path: Path, prior_attempts: int = 0):
 
     # Classification and summarization — advisory only, never block ingest
     classification = ClassificationResult(
-        project="", destination="", content_type="unknown",
-        tags=[], confidence=0.0, method="rules",
+        document_type="other", root="", relative_path="", suggested_subfolder="",
+        path_exists=False, confidence=0.0, reason="not yet classified",
+        evidence=[], signal_count=0, needs_review=True, tags=[], method="rules",
     )
     summary = None
 
@@ -596,12 +600,15 @@ def process_file(conn, file_path: Path, prior_attempts: int = 0):
 
     # Route the review note: auto-file or pending review
     doc_meta = {
-        "content_type":          classification.content_type,
-        "suggested_project":     classification.project,
-        "suggested_destination": classification.destination,
+        "content_type":          classification.document_type,
+        "suggested_project":     classification.suggested_subfolder,
+        "suggested_destination": classification.relative_path,
         "confidence":            classification.confidence,
         "source_filename":       filename,
         "tags":                  ", ".join(classification.tags) if classification.tags else "",
+        "needs_review":          classification.needs_review,
+        "path_exists":           classification.path_exists,
+        "signal_count":          classification.signal_count,
     }
     decision = ReviewRouter().route(doc_meta)
 
@@ -615,6 +622,7 @@ def process_file(conn, file_path: Path, prior_attempts: int = 0):
         review_status = "pending"
         action_taken  = "routed_to_pending"
         auto_filed    = 0
+        # pending_strong = high confidence + path exists but needs human confirmation
 
     try:
         db_insert_document(conn, ingest_id, filename, file_path, digest, ext,
@@ -624,9 +632,9 @@ def process_file(conn, file_path: Path, prior_attempts: int = 0):
                                round(time.time() - t_start, 3))
         db_update_classification(
             conn, ingest_id,
-            classification.content_type,
-            classification.project,
-            classification.destination,
+            classification.document_type,
+            classification.suggested_subfolder,  # suggested_project col repurposed
+            classification.relative_path,         # vault root only
             classification.confidence,
             ", ".join(classification.tags) if classification.tags else "",
         )
@@ -836,6 +844,7 @@ def write_dashboard_ingest_counts(conn):
         last_run = last_run_row[0] if last_run_row else None
 
         # Dedup by sha256 — MAX(id) selects latest for ing_YYYYMMDD_NNN lexicographic ordering
+        # suggested_destination = vault root; suggested_project = suggested_subfolder (repurposed)
         pending_rows = conn.execute(
             "SELECT d.id, d.source_filename, d.suggested_destination, d.suggested_project, "
             "d.confidence, d.content_type, a.review_note_path, d.sha256, "
@@ -853,14 +862,26 @@ def write_dashboard_ingest_counts(conn):
         pending_items = []
         for row in pending_rows:
             ingest_id = row[0]
-            note_path = row[6] or ""
-            raw_conf  = row[4]
-            summary   = _parse_summary_from_note(note_path) if note_path else ""
+            note_path  = row[6] or ""
+            raw_conf   = row[4]
+            vault_root = row[2] or ""          # suggested_destination = vault root
+            subfolder  = row[3] or ""          # suggested_project = suggested_subfolder
+            summary    = _parse_summary_from_note(note_path) if note_path else ""
+            # Recompute path_exists dynamically — filesystem is source of truth
+            if subfolder:
+                path_exists = os.path.isdir(
+                    os.path.join("/home/leo-paz/obsidian-vault", vault_root, subfolder)
+                ) if vault_root else False
+            else:
+                path_exists = os.path.isdir(
+                    os.path.join("/home/leo-paz/obsidian-vault", vault_root)
+                ) if vault_root else False
             pending_items.append({
                 "id":                    ingest_id,
                 "filename":              row[1],
-                "suggested_destination": row[2] or "",
-                "suggested_project":     row[3] or "",
+                "suggested_destination": vault_root,
+                "suggested_subfolder":   subfolder,
+                "suggested_project":     subfolder,   # kept for backward compat
                 "confidence":            raw_conf if raw_conf is not None else None,
                 "content_type":          row[5] or "",
                 "review_note_path":      note_path,
@@ -869,6 +890,7 @@ def write_dashboard_ingest_counts(conn):
                 "ingested_at":           row[8] or "",
                 "review_status":         row[9] or "pending",
                 "summary":               summary or None,
+                "path_exists":           path_exists,
             })
 
         ingest_data = {
