@@ -409,6 +409,18 @@ def db_update_routing(conn, ingest_id: str, review_status: str, final_path, acti
         print(f"  WARN | {ingest_id} | db_update_routing failed: {exc}")
 
 
+def db_update_classification(conn, ingest_id, content_type, suggested_project,
+                              suggested_destination, confidence, tags):
+    try:
+        conn.execute(
+            "UPDATE documents SET content_type=?, suggested_project=?, "
+            "suggested_destination=?, confidence=?, tags=? WHERE id=?",
+            (content_type, suggested_project, suggested_destination, confidence, tags, ingest_id),
+        )
+    except Exception as exc:
+        print(f"  WARN | {ingest_id} | db_update_classification failed: {exc}")
+
+
 def db_insert_artifact(conn, document_id, artifact_type,
                         extracted_text_path=None, review_note_path=None):
     conn.execute(
@@ -609,6 +621,14 @@ def process_file(conn, file_path: Path, prior_attempts: int = 0):
                            mime_type, size_bytes, result.extractor_name)
         db_update_attempt_meta(conn, ingest_id, prior_attempts + 1, ingested_at,
                                round(time.time() - t_start, 3))
+        db_update_classification(
+            conn, ingest_id,
+            classification.content_type,
+            classification.project,
+            classification.destination,
+            classification.confidence,
+            ", ".join(classification.tags) if classification.tags else "",
+        )
         db_insert_artifact(conn, ingest_id, "extracted_text",
                            extracted_text_path=extracted_path)
         db_insert_artifact(conn, ingest_id, "obsidian_review_note",
@@ -786,9 +806,35 @@ def write_dashboard_ingest_counts(conn):
         ).fetchone()
         last_run = last_run_row[0] if last_run_row else None
 
+        pending_rows = conn.execute(
+            "SELECT d.id, d.source_filename, d.suggested_destination, d.suggested_project, "
+            "d.confidence, d.content_type, a.review_note_path, rq.id "
+            "FROM documents d "
+            "JOIN review_queue rq ON rq.document_id = d.id "
+            "LEFT JOIN artifacts a ON a.document_id = d.id "
+            "  AND a.artifact_type = 'obsidian_review_note' "
+            "WHERE rq.status = 'needs_review' "
+            "ORDER BY d.ingested_at DESC LIMIT 5",
+        ).fetchall()
+        pending_items = [
+            {
+                "id":                    row[0],
+                "queue_id":              row[7],
+                "filename":              row[1],
+                "suggested_destination": row[2] or "",
+                "suggested_project":     row[3] or "",
+                "confidence":            row[4] if row[4] is not None else 0.0,
+                "content_type":          row[5] or "",
+                "review_note_path":      row[6] or "",
+            }
+            for row in pending_rows
+        ]
+
         ingest_data = {
             "processed_today":    processed_today,
             "pending_review":     pending_review,
+            "pending_total":      pending_review,
+            "pending_items":      pending_items,
             "auto_filed_today":   auto_filed_today,
             "failed":             failed,
             "llm_calls_today":    llm_calls_today,
