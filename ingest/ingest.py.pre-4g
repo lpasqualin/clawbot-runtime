@@ -1,5 +1,4 @@
 #!/usr/bin/env python3
-# SINGLE WRITER RULE: Agents may request ingest. Only ingest_runner writes final ingest queue state.
 import argparse
 import hashlib
 import json
@@ -7,7 +6,6 @@ import mimetypes
 import os
 import shutil
 import sqlite3
-import subprocess
 import sys
 import threading
 import time
@@ -21,7 +19,6 @@ from models import ExtractedDocument
 from classifiers.rules_classifier import RulesClassifier, ClassificationResult
 from classifiers.local_llm_classifier import LLMClassifier
 from summarizers.local_llm_summarizer import LocalLLMSummarizer, SummaryResult
-from review_router import ReviewRouter
 
 # ---------------------------------------------------------------------------
 # Config — edit these paths, nothing else needs changing
@@ -32,13 +29,10 @@ ARCHIVE_ORIGINAL  = "/home/leo-paz/ingest/archive/original"
 ARCHIVE_EXTRACTED = "/home/leo-paz/ingest/archive/extracted"
 UNSUPPORTED_DIR   = "/home/leo-paz/ingest/unsupported"
 REVIEW_NOTES_DIR  = "/home/leo-paz/obsidian-vault/05 - Ingest/Reviews"
-PENDING_DIR       = "/home/leo-paz/obsidian-vault/05 - Ingest/Pending"
 DB_PATH           = "/home/clawbot/.openclaw/ingest/ingest.db"
 DASHBOARD_PATH    = "/home/leo-paz/Dashboard/dashboard.json"
 DASHBOARD_LOG     = "/home/leo-paz/Dashboard/logs/sync.log"
 FAILURES_DIR      = "/home/leo-paz/obsidian-vault/05 - Ingest/Failures"
-OPENCLAW_CLI      = "/home/clawbot/.npm-global/bin/openclaw"
-DISCORD_ALERT_TARGET = "channel:1492265696850346086"
 
 TZ = timezone(timedelta(hours=-4))  # America/New_York ET
 
@@ -293,54 +287,6 @@ def write_review_note_enhanced(ingest_id, archive_path, sha256, result,
     return note_path
 
 # ---------------------------------------------------------------------------
-# Review routing helpers
-# ---------------------------------------------------------------------------
-
-def copy_to_pending(ingest_id: str, note_path: Path):
-    try:
-        pending_dir = Path(PENDING_DIR)
-        pending_dir.mkdir(parents=True, exist_ok=True)
-        dest = pending_dir / note_path.name
-        shutil.copy2(str(note_path), str(dest))
-        return dest
-    except Exception as exc:
-        print(f"  WARN | {ingest_id} | copy to pending failed: {exc}")
-        return None
-
-
-def apply_auto_file(ingest_id: str, note_path: Path, destination_dir: str):
-    try:
-        dest_dir = Path(destination_dir)
-        dest_dir.mkdir(parents=True, exist_ok=True)
-        dest = dest_dir / note_path.name
-        shutil.copy2(str(note_path), str(dest))
-        return dest
-    except Exception as exc:
-        print(f"  WARN | {ingest_id} | auto-file copy failed: {exc}")
-        return None
-
-
-def send_pending_alert(ingest_id: str, filename: str, reason: str, confidence: float):
-    msg = (
-        f"Ingest pending review: {ingest_id} | {filename} "
-        f"| confidence={confidence:.2f} | {reason}"
-    )
-    try:
-        subprocess.run(
-            [
-                OPENCLAW_CLI,
-                "message", "send",
-                "--channel", "discord",
-                "--target", DISCORD_ALERT_TARGET,
-                "--message", msg,
-            ],
-            timeout=30,
-            capture_output=True,
-        )
-    except Exception as exc:
-        print(f"  WARN | {ingest_id} | Discord alert failed: {exc}")
-
-# ---------------------------------------------------------------------------
 # Database
 # ---------------------------------------------------------------------------
 
@@ -381,45 +327,6 @@ def db_update_attempt_meta(conn, ingest_id, attempt_count, last_attempt_at, dura
         )
     except Exception:
         pass
-
-
-def db_update_routing(conn, ingest_id: str, review_status: str, final_path, action_taken, auto_filed: int):
-    try:
-        conn.execute(
-            "UPDATE documents SET review_status=?, final_path=?, action_taken=?, auto_filed=? "
-            "WHERE id=?",
-            (
-                review_status,
-                str(final_path) if final_path else None,
-                action_taken,
-                auto_filed,
-                ingest_id,
-            ),
-        )
-        conn.execute(
-            "UPDATE review_queue SET review_status=?, final_path=?, action_taken=? "
-            "WHERE document_id=?",
-            (
-                review_status,
-                str(final_path) if final_path else None,
-                action_taken,
-                ingest_id,
-            ),
-        )
-    except Exception as exc:
-        print(f"  WARN | {ingest_id} | db_update_routing failed: {exc}")
-
-
-def db_update_classification(conn, ingest_id, content_type, suggested_project,
-                              suggested_destination, confidence, tags):
-    try:
-        conn.execute(
-            "UPDATE documents SET content_type=?, suggested_project=?, "
-            "suggested_destination=?, confidence=?, tags=? WHERE id=?",
-            (content_type, suggested_project, suggested_destination, confidence, tags, ingest_id),
-        )
-    except Exception as exc:
-        print(f"  WARN | {ingest_id} | db_update_classification failed: {exc}")
 
 
 def db_insert_artifact(conn, document_id, artifact_type,
@@ -594,42 +501,12 @@ def process_file(conn, file_path: Path, prior_attempts: int = 0):
         print(f"  ERROR | {filename} | write review note failed: {exc}")
         return
 
-    # Route the review note: auto-file or pending review
-    doc_meta = {
-        "content_type":          classification.content_type,
-        "suggested_project":     classification.project,
-        "suggested_destination": classification.destination,
-        "confidence":            classification.confidence,
-        "source_filename":       filename,
-        "tags":                  ", ".join(classification.tags) if classification.tags else "",
-    }
-    decision = ReviewRouter().route(doc_meta)
-
-    if decision.action == "auto_file":
-        routed_path = apply_auto_file(ingest_id, review_note_path, decision.destination)
-        review_status = "auto_filed"
-        action_taken  = "auto_filed"
-        auto_filed    = 1
-    else:
-        routed_path = copy_to_pending(ingest_id, review_note_path)
-        review_status = "pending"
-        action_taken  = "routed_to_pending"
-        auto_filed    = 0
-
     try:
         db_insert_document(conn, ingest_id, filename, file_path, digest, ext,
                            "needs_review", dest, ingested_at, None,
                            mime_type, size_bytes, result.extractor_name)
         db_update_attempt_meta(conn, ingest_id, prior_attempts + 1, ingested_at,
                                round(time.time() - t_start, 3))
-        db_update_classification(
-            conn, ingest_id,
-            classification.content_type,
-            classification.project,
-            classification.destination,
-            classification.confidence,
-            ", ".join(classification.tags) if classification.tags else "",
-        )
         db_insert_artifact(conn, ingest_id, "extracted_text",
                            extracted_text_path=extracted_path)
         db_insert_artifact(conn, ingest_id, "obsidian_review_note",
@@ -650,19 +527,13 @@ def process_file(conn, file_path: Path, prior_attempts: int = 0):
             pass
         return
 
-    db_update_routing(conn, ingest_id, review_status, routed_path, action_taken, auto_filed)
-    conn.commit()
-
     try:
         shutil.move(str(file_path), str(dest))
     except Exception as exc:
         print(f"  ERROR | {filename} | archive move failed: {exc}")
         return
 
-    if decision.action == "pending_review":
-        send_pending_alert(ingest_id, filename, decision.reason, decision.confidence)
-
-    print(f"  {ingest_id} | {filename} | {decision.action} | {decision.reason}")
+    print(f"  {ingest_id} | {filename} | needs_review")
 
 
 def dry_run_scan(conn, files):
@@ -767,33 +638,6 @@ def rerun_failed(conn):
 # Dashboard
 # ---------------------------------------------------------------------------
 
-def _parse_summary_from_note(note_path: str) -> str:
-    """Extract summary paragraph from Obsidian review note body (after ## Summary header)."""
-    try:
-        text = Path(note_path).read_text(encoding="utf-8")
-        in_summary = False
-        lines = []
-        for line in text.splitlines():
-            if line.strip() == "## Summary":
-                in_summary = True
-                continue
-            if in_summary:
-                if line.startswith("## "):
-                    break
-                if line.strip():
-                    lines.append(line.strip())
-        return " ".join(lines)[:300] if lines else ""
-    except Exception:
-        return ""
-
-
-def _obsidian_uri(ingest_id: str) -> str:
-    """Build obsidian:// URI pointing to the Pending copy of the review note."""
-    from urllib.parse import quote
-    rel = f"05 - Ingest/Pending/{ingest_id}.md"
-    return f"obsidian://open?vault=obsidian-vault&file={quote(rel, safe='')}"
-
-
 def write_dashboard_ingest_counts(conn):
     today = today_dash()
     dashboard_path = Path(DASHBOARD_PATH)
@@ -806,14 +650,8 @@ def write_dashboard_ingest_counts(conn):
             (today,),
         ).fetchone()[0]
 
-        # documents.review_status is authoritative for live pending state
         pending_review = conn.execute(
-            "SELECT COUNT(*) FROM documents WHERE review_status = 'pending'"
-        ).fetchone()[0]
-
-        auto_filed_today = conn.execute(
-            "SELECT COUNT(*) FROM documents WHERE auto_filed = 1 AND substr(ingested_at, 1, 10) = ?",
-            (today,),
+            "SELECT COUNT(*) FROM review_queue WHERE status = 'needs_review'"
         ).fetchone()[0]
 
         failed = conn.execute(
@@ -835,53 +673,14 @@ def write_dashboard_ingest_counts(conn):
         ).fetchone()
         last_run = last_run_row[0] if last_run_row else None
 
-        # Dedup by sha256 — MAX(id) selects latest for ing_YYYYMMDD_NNN lexicographic ordering
-        pending_rows = conn.execute(
-            "SELECT d.id, d.source_filename, d.suggested_destination, d.suggested_project, "
-            "d.confidence, d.content_type, a.review_note_path, d.sha256, "
-            "d.ingested_at, d.review_status "
-            "FROM documents d "
-            "LEFT JOIN artifacts a ON a.document_id = d.id "
-            "  AND a.artifact_type = 'obsidian_review_note' "
-            "WHERE d.review_status = 'pending' "
-            "AND d.id IN ("
-            "  SELECT MAX(id) FROM documents WHERE review_status = 'pending' GROUP BY sha256"
-            ") "
-            "ORDER BY d.ingested_at DESC LIMIT 5",
-        ).fetchall()
-
-        pending_items = []
-        for row in pending_rows:
-            ingest_id = row[0]
-            note_path = row[6] or ""
-            raw_conf  = row[4]
-            summary   = _parse_summary_from_note(note_path) if note_path else ""
-            pending_items.append({
-                "id":                    ingest_id,
-                "filename":              row[1],
-                "suggested_destination": row[2] or "",
-                "suggested_project":     row[3] or "",
-                "confidence":            raw_conf if raw_conf is not None else None,
-                "content_type":          row[5] or "",
-                "review_note_path":      note_path,
-                "obsidian_uri":          _obsidian_uri(ingest_id),
-                "sha256":                row[7] or "",
-                "ingested_at":           row[8] or "",
-                "review_status":         row[9] or "pending",
-                "summary":               summary or None,
-            })
-
         ingest_data = {
-            "processed_today":    processed_today,
-            "pending_review":     pending_review,
-            "pending_total":      pending_review,
-            "pending_items":      pending_items,
-            "auto_filed_today":   auto_filed_today,
-            "failed":             failed,
-            "llm_calls_today":    llm_calls_today,
+            "processed_today": processed_today,
+            "pending_review": pending_review,
+            "failed": failed,
+            "llm_calls_today": llm_calls_today,
             "llm_timeouts_today": llm_timeouts_today,
-            "active_model":       LLM_MODEL,
-            "last_run":           last_run,
+            "active_model": LLM_MODEL,
+            "last_run": last_run,
         }
 
         try:
@@ -896,8 +695,8 @@ def write_dashboard_ingest_counts(conn):
 
         log_entry = (
             f"{now_iso()} | ingest | processed_today={processed_today} "
-            f"pending={pending_review} auto_filed={auto_filed_today} "
-            f"failed={failed} llm_calls={llm_calls_today}\n"
+            f"pending={pending_review} failed={failed} "
+            f"llm_calls={llm_calls_today}\n"
         )
         with open(str(log_path), "a", encoding="utf-8") as fh:
             fh.write(log_entry)
@@ -912,7 +711,7 @@ def write_dashboard_ingest_counts(conn):
 # ---------------------------------------------------------------------------
 
 def main():
-    parser = argparse.ArgumentParser(description="Ingest pipeline — Phase 4G")
+    parser = argparse.ArgumentParser(description="Ingest pipeline — Phase 4")
     parser.add_argument(
         "--dry-run", action="store_true",
         help="Report what would happen without moving files or writing to DB",
