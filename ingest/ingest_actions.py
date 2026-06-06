@@ -223,8 +223,7 @@ def refresh_dashboard():
 
         auto_filed_rows = conn.execute(
             "SELECT document_id, final_path FROM review_queue "
-            "WHERE review_status='approved' AND reviewed_at >= ? LIMIT 10",
-            (today + " 00:00:00",)
+            "WHERE review_status='approved' LIMIT 10"
         ).fetchall()
         auto_filed_items = [{"filename": r[0] or "", "destination": r[1] or ""} for r in auto_filed_rows]
 
