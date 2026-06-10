@@ -291,7 +291,26 @@ def write_review_note_enhanced(ingest_id, archive_path, sha256, result,
         str(archive_path),
     ]
 
-    note_path = Path(REVIEW_NOTES_DIR) / f"{ingest_id}.md"
+    def _slug(s, max_len=60):
+        s = s.lower()
+        out = []
+        for ch in s:
+            if ch.isalnum():
+                out.append(ch)
+            elif out and out[-1] != '-':
+                out.append('-')
+        return ''.join(out).strip('-')[:max_len].rstrip('-')
+    date_prefix = ingested_at[:10]
+    _note_slug = None
+    if llm_used and sum_text:
+        for _line in sum_text.splitlines():
+            _line = _line.strip()
+            if _line.startswith('# '):
+                _note_slug = _slug(_line[2:].strip())
+                break
+    if not _note_slug:
+        _note_slug = _slug(Path(filename).stem)
+    note_path = Path(REVIEW_NOTES_DIR) / f"{date_prefix}_{_note_slug}.md"
     note_path.write_text("\n".join(frontmatter + body), encoding="utf-8")
     return note_path
 

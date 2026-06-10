@@ -83,7 +83,26 @@ def _get_filename(conn, ingest_id):
 # ---------------------------------------------------------------------------
 
 def _pending_note(ingest_id):
-    return Path(PENDING_DIR) / f"{ingest_id}.md"
+    db_note_path = None
+    try:
+        conn = _db_connect()
+        row = conn.execute(
+            "SELECT review_note_path FROM artifacts "
+            "WHERE document_id=? AND artifact_type='obsidian_review_note'",
+            (ingest_id,)
+        ).fetchone()
+        conn.close()
+        if row and row[0]:
+            db_note_path = Path(row[0])
+            pending_path = Path(PENDING_DIR) / db_note_path.name
+            if pending_path.exists() and str(pending_path).startswith(str(PENDING_DIR)):
+                return pending_path
+    except Exception:
+        pass
+    fallback = Path(PENDING_DIR) / f"{ingest_id}.md"
+    if fallback.exists():
+        return fallback
+    return db_note_path if db_note_path else fallback
 
 
 def _parse_frontmatter(note_path):
