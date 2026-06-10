@@ -30,10 +30,7 @@ fi
     exit 1
   fi
 
-  # Remove immutable, write, restore immutable
-  sudo chattr -i "$MEMORY_PATH"
   cp "$CONTENT_FILE" "$MEMORY_PATH"
-  sudo chattr +i "$MEMORY_PATH"
 
   # Git commit
   cd /home/clawbot/.openclaw/workspace
