@@ -977,6 +977,24 @@ def main():
     conn.close()
     print("Done.")
 
+    subprocess.run(
+        ["git", "-C", "/home/leo-paz/obsidian-vault", "add", "-A"],
+        capture_output=True
+    )
+    result = subprocess.run(
+        ["git", "-C", "/home/leo-paz/obsidian-vault", "commit", "-m",
+         f"ingest: {len(files)} files processed"],
+        capture_output=True, text=True
+    )
+    if result.returncode == 0:
+        subprocess.run(
+            ["git", "-C", "/home/leo-paz/obsidian-vault", "push"],
+            capture_output=True
+        )
+        print("Obsidian vault pushed to git")
+    else:
+        print("Nothing new to push to Obsidian")
+
 
 if __name__ == "__main__":
     main()

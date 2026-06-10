@@ -58,8 +58,8 @@ class ReviewRouter:
 
         return False
 
-    def resolve_destination(self, suggested_destination: Optional[str]) -> Optional[str]:
-        """Resolve a vault root string to an absolute path. Requires the folder to exist."""
+    def resolve_destination(self, suggested_destination: Optional[str], subfolder: Optional[str] = None) -> Optional[str]:
+        """Resolve vault destination to an absolute path. Root must exist; subfolder is created if needed."""
         if not suggested_destination:
             return None
         root = suggested_destination.strip().rstrip("/")
@@ -68,6 +68,9 @@ class ReviewRouter:
             return None
         if not os.path.isdir(full_path):
             return None
+        if subfolder:
+            full_path = os.path.join(full_path, subfolder.strip().strip("/"))
+            os.makedirs(full_path, exist_ok=True)
         return full_path
 
     def route(self, doc_meta: dict) -> RouteDecision:
@@ -86,36 +89,38 @@ class ReviewRouter:
                 confidence=confidence,
             )
 
-        # AUTO-FILE: all 4 conditions must hold
+        # AUTO-FILE: 3 conditions must hold
         # 1. confidence >= 0.90
-        # 2. suggested subfolder exists on disk (path_exists)
-        # 3. at least 2 independent signals (doctype + content or entity)
-        # 4. not flagged needs_review
+        # 2. at least 2 independent signals (doctype + content or entity)
+        # 3. not flagged needs_review
+        # Subfolder is created if it doesn't exist — root must be a valid vault root.
         if (confidence >= AUTO_FILE_CONFIDENCE
-                and path_exists
                 and signal_count >= 2
                 and not needs_review):
-            dest = self.resolve_destination(doc_meta.get("suggested_destination"))
+            dest = self.resolve_destination(
+                doc_meta.get("suggested_destination"),
+                doc_meta.get("suggested_project"),
+            )
             if dest is not None:
                 return RouteDecision(
                     action="auto_file",
                     destination=dest,
                     reason=(
                         f"confidence {confidence:.2f} >= {AUTO_FILE_CONFIDENCE}, "
-                        f"path_exists, signal_count={signal_count}, not needs_review"
+                        f"signal_count={signal_count}, not needs_review"
                     ),
                     sensitive=False,
                     confidence=confidence,
                 )
 
-        # PENDING STRONG: confident with valid root but missing subfolder or single signal
-        if confidence >= PENDING_STRONG_CONFIDENCE and path_exists:
+        # PENDING STRONG: confident with valid root but single signal or needs_review
+        if confidence >= PENDING_STRONG_CONFIDENCE:
             return RouteDecision(
                 action="pending_strong",
                 destination=self.pending_dir,
                 reason=(
-                    f"confidence {confidence:.2f} >= {PENDING_STRONG_CONFIDENCE}, path_exists "
-                    f"but signal_count={signal_count} or needs_review={needs_review}"
+                    f"confidence {confidence:.2f} >= {PENDING_STRONG_CONFIDENCE}, "
+                    f"signal_count={signal_count} or needs_review={needs_review}"
                 ),
                 sensitive=False,
                 confidence=confidence,

@@ -1,0 +1,69 @@
+{
+  "date": "2026-06-07",
+  "fetched_at": "2026-06-07T07:15:01.613896-04:00",
+  "sources": [
+    {
+      "name": "The Batch",
+      "lane": "ai_industry",
+      "priority": "high",
+      "reason": "Serious AI industry signal, less hype than consumer newsletters, agent/model/applied AI focus",
+      "items": [
+        {
+          "source_name": "The Batch",
+          "source_lane": "ai_industry",
+          "priority": "high",
+          "reason": "Serious AI industry signal, less hype than consumer newsletters, agent/model/applied AI focus",
+          "subject": "Qwen3.7-Max Challenges Google for Third Place, AI Saves Whales, Fine-Tuning Breaks Copyright Alignment",
+          "sender": "\"The Batch @ DeepLearning.AI\" <thebatch@deeplearning.ai>",
+          "date": "2026-06-05 15:21",
+          "snippet": "",
+          "thread_id": "19e993be0a1e9e69"
+        }
+      ]
+    },
+    {
+      "name": "AI for Work",
+      "lane": "workflow_templates",
+      "priority": "low",
+      "reason": "AI productivity workflows — keep only if producing usable patterns",
+      "items": [
+        {
+          "source_name": "AI for Work",
+          "source_lane": "workflow_templates",
+          "priority": "low",
+          "reason": "AI productivity workflows — keep only if producing usable patterns",
+          "subject": "Anthropic explains the role of humans when RSI comes",
+          "sender": "AI For Work <aiforwork@mail.beehiiv.com>",
+          "date": "2026-06-05 17:08",
+          "snippet": "",
+          "thread_id": "19e999dcca214a65"
+        }
+      ]
+    },
+    {
+      "name": "Half Baked",
+      "lane": "business_ideas",
+      "priority": "medium",
+      "reason": "Business/startup ideas — filter for BBS offer angles and automation opportunities",
+      "items": [
+        {
+          "source_name": "Half Baked",
+          "source_lane": "business_ideas",
+          "priority": "medium",
+          "reason": "Business/startup ideas — filter for BBS offer angles and automation opportunities",
+          "subject": "🍪 Video Retention",
+          "sender": "Half Baked <ideas@mail.gethalfbaked.com>",
+          "date": "2026-06-05 18:02",
+          "snippet": "",
+          "thread_id": "19e99cf178b00907"
+        }
+      ]
+    }
+  ],
+  "total_items": 3,
+  "fetch_errors": [
+    "The Rundown AI: no emails found",
+    "TLDR: no emails found",
+    "OpenRouter Updates: no emails found"
+  ]
+}

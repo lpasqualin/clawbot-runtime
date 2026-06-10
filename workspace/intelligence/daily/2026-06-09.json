@@ -1,0 +1,131 @@
+{
+  "date": "2026-06-09",
+  "fetched_at": "2026-06-09T07:15:01.212182-04:00",
+  "sources": [
+    {
+      "name": "The Rundown AI",
+      "lane": "daily_ai_radar",
+      "priority": "medium",
+      "reason": "Daily AI headline radar — good breadth, filter for signal",
+      "items": [
+        {
+          "source_name": "The Rundown AI",
+          "source_lane": "daily_ai_radar",
+          "priority": "medium",
+          "reason": "Daily AI headline radar — good breadth, filter for signal",
+          "subject": "📱 Apple’s new Siri AI overhaul is here (sort of)",
+          "sender": "The Rundown AI <news@daily.therundown.ai>",
+          "date": "2026-06-09 06:05",
+          "snippet": "",
+          "thread_id": "19eabd8234802bf3"
+        },
+        {
+          "source_name": "The Rundown AI",
+          "source_lane": "daily_ai_radar",
+          "priority": "medium",
+          "reason": "Daily AI headline radar — good breadth, filter for signal",
+          "subject": "🇺🇸 OpenAI's plan to make every American a shareholder",
+          "sender": "The Rundown AI <news@daily.therundown.ai>",
+          "date": "2026-06-08 06:04",
+          "snippet": "",
+          "thread_id": "19ea6b12d8e48f1c"
+        }
+      ]
+    },
+    {
+      "name": "TLDR",
+      "lane": "tech_radar",
+      "priority": "medium",
+      "reason": "Tech/AI breadth, new models, tools — needs filtering",
+      "items": [
+        {
+          "source_name": "TLDR",
+          "source_lane": "tech_radar",
+          "priority": "medium",
+          "reason": "Tech/AI breadth, new models, tools — needs filtering",
+          "subject": "Siri AI 📱, Apple Core AI 🤖, loop engineering 👨‍💻",
+          "sender": "TLDR <dan@tldrnewsletter.com>",
+          "date": "2026-06-09 06:25",
+          "snippet": "",
+          "thread_id": "19eabeadaa6fe6a5"
+        },
+        {
+          "source_name": "TLDR",
+          "source_lane": "tech_radar",
+          "priority": "medium",
+          "reason": "Tech/AI breadth, new models, tools — needs filtering",
+          "subject": "Apple's secret AI meeting 📱, Google SpaceX deal 🤝, intent debt 👨‍💻 ",
+          "sender": "TLDR <dan@tldrnewsletter.com>",
+          "date": "2026-06-08 06:29",
+          "snippet": "",
+          "thread_id": "19ea6c82a7c76b64"
+        }
+      ]
+    },
+    {
+      "name": "AI for Work",
+      "lane": "workflow_templates",
+      "priority": "low",
+      "reason": "AI productivity workflows — keep only if producing usable patterns",
+      "items": [
+        {
+          "source_name": "AI for Work",
+          "source_lane": "workflow_templates",
+          "priority": "low",
+          "reason": "AI productivity workflows — keep only if producing usable patterns",
+          "subject": "50 workflows your agent can run for you",
+          "sender": "AI For Work <aiforwork@mail.beehiiv.com>",
+          "date": "2026-06-08 16:12",
+          "snippet": "",
+          "thread_id": "19ea8dda1c1330b6"
+        },
+        {
+          "source_name": "AI for Work",
+          "source_lane": "workflow_templates",
+          "priority": "low",
+          "reason": "AI productivity workflows — keep only if producing usable patterns",
+          "subject": "How AI gained a 4x advantage in Apple's App Store",
+          "sender": "AI For Work <aiforwork@mail.beehiiv.com>",
+          "date": "2026-06-07 09:33",
+          "snippet": "",
+          "thread_id": "19ea24980dbbb86a"
+        }
+      ]
+    },
+    {
+      "name": "Half Baked",
+      "lane": "business_ideas",
+      "priority": "medium",
+      "reason": "Business/startup ideas — filter for BBS offer angles and automation opportunities",
+      "items": [
+        {
+          "source_name": "Half Baked",
+          "source_lane": "business_ideas",
+          "priority": "medium",
+          "reason": "Business/startup ideas — filter for BBS offer angles and automation opportunities",
+          "subject": "🍪 Google Docs for X",
+          "sender": "Half Baked <ideas@mail.gethalfbaked.com>",
+          "date": "2026-06-08 18:01",
+          "snippet": "",
+          "thread_id": "19ea9411001dfa69"
+        },
+        {
+          "source_name": "Half Baked",
+          "source_lane": "business_ideas",
+          "priority": "medium",
+          "reason": "Business/startup ideas — filter for BBS offer angles and automation opportunities",
+          "subject": "🍪 Fully Baked: VC Vetting",
+          "sender": "Half Baked <ideas@mail.gethalfbaked.com>",
+          "date": "2026-06-07 18:01",
+          "snippet": "",
+          "thread_id": "19ea41b474f265ee"
+        }
+      ]
+    }
+  ],
+  "total_items": 8,
+  "fetch_errors": [
+    "The Batch: no emails found",
+    "OpenRouter Updates: no emails found"
+  ]
+}
