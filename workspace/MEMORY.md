@@ -133,7 +133,7 @@ Morning brief write pattern:
 5. If apply fails, warn but do not retry
 
 Project card IDs are auto-generated from Todoist section names via slugify(). Current IDs:
-beacon-bridge-strategies, farah, clawbot, siftwise, agent-os, portfolio-positioning, certifications, job-search, admin, finance, other
+bbs-pre-launch, bbs-marketing, bbs-outreach, certificates, portfolio-positioning, job-search-income, parked, side-projects, clawbot-agent-operator, future-ideas, clawbot-agent-dashboard, worth-exploring, siftwise-v4, tool-research, personal-admin, personal-finance, personal-other, home-maintenance, home-renovations, home-upgrades-someday
 
 ---
 
