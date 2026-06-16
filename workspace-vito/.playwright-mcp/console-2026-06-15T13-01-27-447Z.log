@@ -1,0 +1,11 @@
+[     139ms] [LOG] [watchdog] init @ https://app.todoist.com/app/today:22
+[     139ms] [LOG] [watchdog] clearing last tried CDN @ https://app.todoist.com/app/today:51
+[     139ms] [LOG] [watchdog] saving last tried CDN: https://todoist.b-cdn.net/ @ https://app.todoist.com/app/today:28
+[    1022ms] [LOG] [watchdog] All assets have reported back; successes: 42; failures: 0 @ https://app.todoist.com/app/today:197
+[    1193ms] [ERROR] Failed to load resource: the server responded with a status of 401 () @ https://app.todoist.com/api/v1/user:0
+[    1585ms] [LOG] [watchdog] init @ https://app.todoist.com/auth/login?success_page=%2Fapp%2Ftoday:22
+[    1586ms] [LOG] [watchdog] retrieving last tried CDN: https://todoist.b-cdn.net/ @ https://app.todoist.com/auth/login?success_page=%2Fapp%2Ftoday:41
+[    1586ms] [LOG] [watchdog] saving last tried CDN: https://todoist.b-cdn.net/ @ https://app.todoist.com/auth/login?success_page=%2Fapp%2Ftoday:28
+[    1937ms] [LOG] [watchdog] All assets have reported back; successes: 20; failures: 0 @ https://app.todoist.com/auth/login?success_page=%2Fapp%2Ftoday:197
+[    2838ms] [ERROR] Access to XMLHttpRequest at 'https://tr.capterra.com/events/' from origin 'https://app.todoist.com' has been blocked by CORS policy: Response to preflight request doesn't pass access control check: No 'Access-Control-Allow-Origin' header is present on the requested resource. @ https://app.todoist.com/auth/login?success_page=%2Fapp%2Ftoday:0
+[    2838ms] [ERROR] Failed to load resource: net::ERR_FAILED @ https://tr.capterra.com/events/:0

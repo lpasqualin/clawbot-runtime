@@ -1,0 +1,12 @@
+[     731ms] Error: Minified React error #418; visit https://react.dev/errors/418?args[]= for the full message or use the non-minified dev environment for full errors and additional helpful warnings.
+    at da (https://www.todoist.com/_astro/client.BWFqRWag.js:24:24705)
+    at A1 (https://www.todoist.com/_astro/client.BWFqRWag.js:24:73925)
+    at w1 (https://www.todoist.com/_astro/client.BWFqRWag.js:24:106263)
+    at _h (https://www.todoist.com/_astro/client.BWFqRWag.js:24:106236)
+    at Nh (https://www.todoist.com/_astro/client.BWFqRWag.js:24:106097)
+    at C1 (https://www.todoist.com/_astro/client.BWFqRWag.js:24:101993)
+    at fv (https://www.todoist.com/_astro/client.BWFqRWag.js:24:113630)
+    at MessagePort.Ea (https://www.todoist.com/_astro/client.BWFqRWag.js:9:1650)
+[    1164ms] [ERROR] Access to XMLHttpRequest at 'https://tr.capterra.com/events/' from origin 'https://www.todoist.com' has been blocked by CORS policy: Response to preflight request doesn't pass access control check: No 'Access-Control-Allow-Origin' header is present on the requested resource. @ https://www.todoist.com/:0
+[    1164ms] [ERROR] Failed to load resource: net::ERR_FAILED @ https://tr.capterra.com/events/:0
+[    5185ms] [WARNING] The resource https://www.todoist.com/_server-islands/MessageBanner?e=93ECD6DE84202A18F6B83B4FZ5W9rthfiK3A9RJkoCXVWxokjroXz2Q%3D&p=CB9FF12B01DFCA380515351CfLi4ug37HMVwy5sUZ%2BUqXQbcrbwOPMUQmpAjrUlAtJTL15UVc3%2BUsFARl2sUUBES2yIdPA3WqoRYY90DYCpBvP1b0NQaBsxnk3djs3GNGYfvgjWGjRl5FSAI&s= was preloaded using link preload but not used within a few seconds from the window's load event. Please make sure it has an appropriate `as` value and it is preloaded intentionally. @ https://www.todoist.com/:0

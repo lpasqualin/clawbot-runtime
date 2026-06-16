@@ -1,0 +1,142 @@
+{
+  "date": "2026-06-12",
+  "fetched_at": "2026-06-12T07:15:01.406711-04:00",
+  "sources": [
+    {
+      "name": "The Rundown AI",
+      "lane": "daily_ai_radar",
+      "priority": "medium",
+      "reason": "Daily AI headline radar — good breadth, filter for signal",
+      "items": [
+        {
+          "source_name": "The Rundown AI",
+          "source_lane": "daily_ai_radar",
+          "priority": "medium",
+          "reason": "Daily AI headline radar — good breadth, filter for signal",
+          "subject": "🛠️ Jeff Bezos' $41B 'artificial general engineer'",
+          "sender": "The Rundown AI <news@daily.therundown.ai>",
+          "date": "2026-06-12 06:06",
+          "snippet": "",
+          "thread_id": "19ebb4c7b6fcc15a"
+        },
+        {
+          "source_name": "The Rundown AI",
+          "source_lane": "daily_ai_radar",
+          "priority": "medium",
+          "reason": "Daily AI headline radar — good breadth, filter for signal",
+          "subject": "🏛️ Amodei's Treebeard warning to Washington",
+          "sender": "The Rundown AI <news@daily.therundown.ai>",
+          "date": "2026-06-11 06:06",
+          "snippet": "",
+          "thread_id": "19eb625be489adb9"
+        },
+        {
+          "source_name": "The Rundown AI",
+          "source_lane": "daily_ai_radar",
+          "priority": "medium",
+          "reason": "Daily AI headline radar — good breadth, filter for signal",
+          "subject": "Action Required: Confirm Email Subscription",
+          "sender": "The Rundown AI <news@daily.therundown.ai>",
+          "date": "2026-06-11 03:35",
+          "snippet": "",
+          "thread_id": "19eb59b7a2a3bebc"
+        }
+      ]
+    },
+    {
+      "name": "TLDR",
+      "lane": "tech_radar",
+      "priority": "medium",
+      "reason": "Tech/AI breadth, new models, tools — needs filtering",
+      "items": [
+        {
+          "source_name": "TLDR",
+          "source_lane": "tech_radar",
+          "priority": "medium",
+          "reason": "Tech/AI breadth, new models, tools — needs filtering",
+          "subject": "Bezos' AI engineer 🤖, SpaceX record IPO 💰, building vertical agents 👨‍💻  ",
+          "sender": "TLDR <dan@tldrnewsletter.com>",
+          "date": "2026-06-12 06:25",
+          "snippet": "",
+          "thread_id": "19ebb5d6d1336321"
+        },
+        {
+          "source_name": "TLDR",
+          "source_lane": "tech_radar",
+          "priority": "medium",
+          "reason": "Tech/AI breadth, new models, tools — needs filtering",
+          "subject": "SpaceX IPO oversubscribed 💰, OpenAI's price war 📉, Stack Overflow for Agents 🤖",
+          "sender": "TLDR <dan@tldrnewsletter.com>",
+          "date": "2026-06-11 06:30",
+          "snippet": "",
+          "thread_id": "19eb63bd48086f54"
+        }
+      ]
+    },
+    {
+      "name": "AI for Work",
+      "lane": "workflow_templates",
+      "priority": "low",
+      "reason": "AI productivity workflows — keep only if producing usable patterns",
+      "items": [
+        {
+          "source_name": "AI for Work",
+          "source_lane": "workflow_templates",
+          "priority": "low",
+          "reason": "AI productivity workflows — keep only if producing usable patterns",
+          "subject": "Anthropic confronts AI’s growing dilemma head-on",
+          "sender": "AI For Work <aiforwork@mail.beehiiv.com>",
+          "date": "2026-06-12 01:05",
+          "snippet": "",
+          "thread_id": "19eba382a831f41a"
+        },
+        {
+          "source_name": "AI for Work",
+          "source_lane": "workflow_templates",
+          "priority": "low",
+          "reason": "AI productivity workflows — keep only if producing usable patterns",
+          "subject": "Beyond Siri, these new Apple AI features deliver",
+          "sender": "AI For Work <aiforwork@mail.beehiiv.com>",
+          "date": "2026-06-10 23:15",
+          "snippet": "",
+          "thread_id": "19eb4ad9ebc79e11"
+        }
+      ]
+    },
+    {
+      "name": "Half Baked",
+      "lane": "business_ideas",
+      "priority": "medium",
+      "reason": "Business/startup ideas — filter for BBS offer angles and automation opportunities",
+      "items": [
+        {
+          "source_name": "Half Baked",
+          "source_lane": "business_ideas",
+          "priority": "medium",
+          "reason": "Business/startup ideas — filter for BBS offer angles and automation opportunities",
+          "subject": "🍪  Employment Simulations",
+          "sender": "Half Baked <ideas@mail.gethalfbaked.com>",
+          "date": "2026-06-11 18:03",
+          "snippet": "",
+          "thread_id": "19eb8b5ec9761b05"
+        },
+        {
+          "source_name": "Half Baked",
+          "source_lane": "business_ideas",
+          "priority": "medium",
+          "reason": "Business/startup ideas — filter for BBS offer angles and automation opportunities",
+          "subject": "🍪 Chat Coordination",
+          "sender": "Half Baked <ideas@mail.gethalfbaked.com>",
+          "date": "2026-06-10 18:01",
+          "snippet": "",
+          "thread_id": "19eb38e1e00f6ed2"
+        }
+      ]
+    }
+  ],
+  "total_items": 9,
+  "fetch_errors": [
+    "The Batch: no emails found",
+    "OpenRouter Updates: no emails found"
+  ]
+}

@@ -1,0 +1,69 @@
+{
+  "date": "2026-06-14",
+  "fetched_at": "2026-06-14T07:15:01.216188-04:00",
+  "sources": [
+    {
+      "name": "The Batch",
+      "lane": "ai_industry",
+      "priority": "high",
+      "reason": "Serious AI industry signal, less hype than consumer newsletters, agent/model/applied AI focus",
+      "items": [
+        {
+          "source_name": "The Batch",
+          "source_lane": "ai_industry",
+          "priority": "high",
+          "reason": "Serious AI industry signal, less hype than consumer newsletters, agent/model/applied AI focus",
+          "subject": "Mythos Begets Fable, Cursor's Composer 2.5, Agents Building Agents",
+          "sender": "\"The Batch @ DeepLearning.AI\" <thebatch@deeplearning.ai>",
+          "date": "2026-06-12 15:12",
+          "snippet": "",
+          "thread_id": "19ebd4071a9a7c3e"
+        }
+      ]
+    },
+    {
+      "name": "AI for Work",
+      "lane": "workflow_templates",
+      "priority": "low",
+      "reason": "AI productivity workflows — keep only if producing usable patterns",
+      "items": [
+        {
+          "source_name": "AI for Work",
+          "source_lane": "workflow_templates",
+          "priority": "low",
+          "reason": "AI productivity workflows — keep only if producing usable patterns",
+          "subject": "Why the tokenmaxxing trend just folded its tent",
+          "sender": "AI For Work <aiforwork@mail.beehiiv.com>",
+          "date": "2026-06-12 17:52",
+          "snippet": "",
+          "thread_id": "19ebdd20d3d0d024"
+        }
+      ]
+    },
+    {
+      "name": "Half Baked",
+      "lane": "business_ideas",
+      "priority": "medium",
+      "reason": "Business/startup ideas — filter for BBS offer angles and automation opportunities",
+      "items": [
+        {
+          "source_name": "Half Baked",
+          "source_lane": "business_ideas",
+          "priority": "medium",
+          "reason": "Business/startup ideas — filter for BBS offer angles and automation opportunities",
+          "subject": "🍪 Gift Marketing",
+          "sender": "Half Baked <ideas@mail.gethalfbaked.com>",
+          "date": "2026-06-12 15:01",
+          "snippet": "",
+          "thread_id": "19ebd362bb5b14dd"
+        }
+      ]
+    }
+  ],
+  "total_items": 3,
+  "fetch_errors": [
+    "The Rundown AI: no emails found",
+    "TLDR: no emails found",
+    "OpenRouter Updates: no emails found"
+  ]
+}

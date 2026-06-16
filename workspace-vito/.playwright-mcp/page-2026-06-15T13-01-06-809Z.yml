@@ -1,0 +1,419 @@
+- generic [ref=e1]:
+  - generic [ref=e2]:
+    - generic [ref=e3]:
+      - navigation [ref=e6]:
+        - generic [ref=e7]:
+          - link "Home" [ref=e10] [cursor=pointer]:
+            - /url: /home
+            - img "Todoist Logo" [ref=e11]:
+              - img [ref=e13]
+          - generic [ref=e21]:
+            - list [ref=e22]:
+              - listitem [ref=e23]:
+                - button "Made For" [ref=e24] [cursor=pointer]:
+                  - generic: Made For
+                  - generic:
+                    - img
+              - listitem [ref=e25]:
+                - button "Resources" [ref=e26] [cursor=pointer]:
+                  - generic: Resources
+                  - generic:
+                    - img
+              - listitem [ref=e27]:
+                - link "Pricing" [ref=e28] [cursor=pointer]:
+                  - /url: /pricing
+                  - generic: Pricing
+            - list [ref=e30]:
+              - listitem [ref=e31]:
+                - link "Log in" [ref=e32] [cursor=pointer]:
+                  - /url: https://www.todoist.com/auth/login?locale=en
+                  - generic: Log in
+              - listitem [ref=e33]:
+                - link "Start for free" [ref=e34] [cursor=pointer]:
+                  - /url: https://www.todoist.com/auth/signup?locale=en
+                  - generic: Start for free
+      - button
+    - generic [ref=e35]:
+      - generic [ref=e36]:
+        - heading "Clarity, finally." [level=1] [ref=e37]
+        - paragraph [ref=e38]: "Join 50+ million professionals who simplify work and life with the world’s #1 to-do list app."
+        - generic [ref=e39]:
+          - img [ref=e41]
+          - img [ref=e44]
+          - paragraph [ref=e46]: 374K+ ★★★★★ reviews
+        - link "Start for free" [ref=e50] [cursor=pointer]:
+          - /url: https://www.todoist.com/auth/signup?locale=en
+          - generic: Start for free
+          - img [ref=e51]
+          - img [ref=e53]
+          - img [ref=e55]
+      - img "Todoist app interface showing daily tasks, projects, and team sections with a mobile view of task entry screen." [ref=e61]
+    - generic [ref=e64]:
+      - generic [ref=e65]:
+        - blockquote [ref=e66]:
+          - text: “Simple, straightforward,
+          - text: and super powerful”
+        - img "the-verge customer logo" [ref=e68]
+      - generic [ref=e69]:
+        - blockquote [ref=e70]:
+          - text: “The best to-do list app
+          - text: on the market”
+        - img "pc-mag customer logo" [ref=e72]
+      - generic [ref=e73]:
+        - blockquote [ref=e74]: “Nothing short of stellar”
+        - img "techradar customer logo" [ref=e76]
+    - generic [ref=e82]:
+      - generic [ref=e87]:
+        - paragraph [ref=e88]: Clear your mind
+        - paragraph [ref=e89]: Capture tasks at the speed of thought
+        - paragraph [ref=e90]: We’ve spent over a decade refining Todoist to be an extension of your mind. Capture and organize tasks instantly using easy-flowing, natural language.
+      - generic [ref=e95]:
+        - paragraph [ref=e96]: Focus on what’s important
+        - paragraph [ref=e97]: Stay organized and focused
+        - paragraph [ref=e98]: Achieve mental clarity by sorting tasks into Today, Upcoming, or using custom filters. See only what you need, when you need it.
+      - generic [ref=e103]:
+        - paragraph [ref=e104]: Plan with confidence
+        - paragraph [ref=e105]: Simplify your planning
+        - paragraph [ref=e106]: Make the most of your time. Schedule due dates, visualize your week in calendar view, and set recurring tasks with ease.
+      - generic [ref=e109]:
+        - generic [ref=e111]:
+          - paragraph [ref=e112]: Organize your teamwork, too
+          - paragraph [ref=e113]: A home for your team’s tasks
+          - paragraph [ref=e114]: Give your team a shared space to collaborate and stay on top of it all – alongside but separate from your personal tasks and projects.
+          - link "Learn more about teams" [ref=e116] [cursor=pointer]:
+            - /url: /teamwork
+            - generic: Learn more about teams
+            - generic:
+              - img
+        - generic [ref=e120]:
+          - paragraph [ref=e121]: Enterprise-grade security with SOC2 Type II certification.
+          - paragraph [ref=e122]:
+            - text: Todoist meets the
+            - link "compliance standards" [ref=e123] [cursor=pointer]:
+              - /url: https://trustcenter.doist.com/
+            - text: your company requires, without the complexity.
+    - generic [ref=e133]:
+      - paragraph [ref=e135]:
+        - generic [ref=e136]:
+          - text: Take a peek!
+          - text: Watch Todoist in action.
+      - button "Play" [ref=e141] [cursor=pointer]:
+        - generic:
+          - img
+        - generic: Play
+    - generic [ref=e142]:
+      - generic [ref=e143]:
+        - heading "Kickstart your next project with Todoist Templates" [level=2] [ref=e144]
+        - paragraph [ref=e145]: No need to create projects or setups from scratch when we have 50+ templates made for you.
+      - generic [ref=e146]:
+        - radiogroup [ref=e149]:
+          - listitem [ref=e150]:
+            - generic [ref=e151] [cursor=pointer]:
+              - radio "Work" [checked] [ref=e152]
+              - text: Work
+          - listitem [ref=e153]:
+            - generic [ref=e154] [cursor=pointer]:
+              - radio "Personal" [ref=e155]
+              - text: Personal
+          - listitem [ref=e156]:
+            - generic [ref=e157] [cursor=pointer]:
+              - radio "Education" [ref=e158]
+              - text: Education
+          - listitem [ref=e159]:
+            - generic [ref=e160] [cursor=pointer]:
+              - radio "Management" [ref=e161]
+              - text: Management
+          - listitem [ref=e162]:
+            - generic [ref=e163] [cursor=pointer]:
+              - radio "Marketing & Sales" [ref=e164]
+              - text: Marketing & Sales
+          - listitem [ref=e165]:
+            - generic [ref=e166] [cursor=pointer]:
+              - radio "Customer Support" [ref=e167]
+              - text: Customer Support
+        - generic [ref=e169]:
+          - list [ref=e170]:
+            - listitem [ref=e171]:
+              - generic [ref=e172] [cursor=pointer]:
+                - separator [ref=e174]
+                - paragraph [ref=e175]:
+                  - link "Accounting Tasks" [ref=e176]:
+                    - /url: /templates/accounting-tasks
+                - paragraph [ref=e177]: Create a system to keep your books, receipts, and invoices organized.
+                - generic [ref=e178]:
+                  - img [ref=e180]
+                  - paragraph [ref=e182]: List
+            - listitem [ref=e183]:
+              - generic [ref=e184] [cursor=pointer]:
+                - separator [ref=e186]
+                - paragraph [ref=e187]:
+                  - link "Business Travel Packing" [ref=e188]:
+                    - /url: /templates/business-travel-packing
+                - paragraph [ref=e189]: Never forget your laptop charger, lucky shoes, or passport again.
+                - generic [ref=e190]:
+                  - img [ref=e192]
+                  - paragraph [ref=e194]: List
+            - listitem [ref=e195]:
+              - generic [ref=e196] [cursor=pointer]:
+                - separator [ref=e198]
+                - paragraph [ref=e199]:
+                  - link "Client Management" [ref=e200]:
+                    - /url: /templates/client-management
+                - paragraph [ref=e201]: Organize your work with clients from the smallest to largest details.
+                - generic [ref=e202]:
+                  - img [ref=e204]
+                  - paragraph [ref=e206]: List
+            - listitem [ref=e207]:
+              - generic [ref=e208] [cursor=pointer]:
+                - separator [ref=e210]
+                - paragraph [ref=e211]:
+                  - link "Deep Work" [ref=e212]:
+                    - /url: /templates/deep-work
+                - paragraph [ref=e213]: Practice prioritizing focus and eliminating distraction with this template.
+                - generic [ref=e214]:
+                  - img [ref=e216]
+                  - paragraph [ref=e218]: List
+          - link "See more templates" [ref=e219] [cursor=pointer]:
+            - /url: /templates/category/work
+            - generic: See more templates
+            - generic:
+              - img
+    - generic [ref=e220]:
+      - button "Play" [ref=e224] [cursor=pointer]:
+        - generic:
+          - img
+        - generic: Play
+      - generic [ref=e228]:
+        - paragraph [ref=e229]: Smart features that feel magical
+        - paragraph [ref=e230]: See how Todoist Assist works intelligently behind the scenes to transform scattered tasks into clear action plans.
+        - link "Learn about our thoughtful approach to AI" [ref=e232] [cursor=pointer]:
+          - /url: /todoist-assist
+          - generic: Learn about our thoughtful approach to AI
+          - generic:
+            - img
+    - generic [ref=e234]:
+      - generic [ref=e235]:
+        - paragraph [ref=e236]: In it for the long haul
+        - heading "A task manager you can trust for life" [level=2] [ref=e237]
+        - paragraph [ref=e238]: We’ve been building Todoist for 19 years and 138 days. Rest assured that we’ll never sell out to the highest bidder.
+        - link "Read about our long-term mission" [ref=e239] [cursor=pointer]:
+          - /url: https://doist.com/how-we-work/no-exit-strategy?utm_source=todoist&utm_medium=home&utm_campaign=new_td_landing_page_c2205
+          - generic:
+            - img
+          - generic: Read about our long-term mission
+      - generic [ref=e243]:
+        - generic [ref=e245]:
+          - paragraph [ref=e246]: 30+ million
+          - paragraph [ref=e247]: app downloads
+        - generic [ref=e249]:
+          - paragraph [ref=e250]: 2+ billion
+          - paragraph [ref=e251]: tasks completed
+        - generic [ref=e253]:
+          - paragraph [ref=e254]: 160+ countries
+          - paragraph [ref=e255]: worldwide
+        - generic [ref=e257]:
+          - paragraph [ref=e258]: 1+ million
+          - paragraph [ref=e259]: Pro users
+        - generic [ref=e261]:
+          - paragraph [ref=e262]: 30+ million
+          - paragraph [ref=e263]: app downloads
+        - generic [ref=e265]:
+          - paragraph [ref=e266]: 2+ billion
+          - paragraph [ref=e267]: tasks completed
+        - generic [ref=e269]:
+          - paragraph [ref=e270]: 160+ countries
+          - paragraph [ref=e271]: worldwide
+        - generic [ref=e273]:
+          - paragraph [ref=e274]: 1+ million
+          - paragraph [ref=e275]: Pro users
+        - generic [ref=e277]:
+          - paragraph [ref=e278]: 30+ million
+          - paragraph [ref=e279]: app downloads
+        - generic [ref=e281]:
+          - paragraph [ref=e282]: 2+ billion
+          - paragraph [ref=e283]: tasks completed
+        - generic [ref=e285]:
+          - paragraph [ref=e286]: 160+ countries
+          - paragraph [ref=e287]: worldwide
+        - generic [ref=e289]:
+          - paragraph [ref=e290]: 1+ million
+          - paragraph [ref=e291]: Pro users
+    - generic [ref=e293]:
+      - heading "Gain calmness and clarity with the world’s most beloved productivity app" [level=2] [ref=e294]
+      - paragraph [ref=e295]: 374000+ ★★★★★ reviews on Google Play and App Store
+      - generic [ref=e296]:
+        - link "Start for free" [ref=e300] [cursor=pointer]:
+          - /url: https://www.todoist.com/auth/signup?locale=en
+          - generic: Start for free
+          - img [ref=e301]
+          - img [ref=e303]
+          - img [ref=e305]
+        - link "Download apps" [ref=e308] [cursor=pointer]:
+          - /url: /downloads
+          - generic:
+            - img
+          - generic: Download apps
+    - contentinfo [ref=e309]:
+      - generic [ref=e310]:
+        - generic [ref=e311]:
+          - link "Home" [ref=e312] [cursor=pointer]:
+            - /url: /home
+            - img "Todoist Logo" [ref=e313]:
+              - img [ref=e315]
+          - paragraph [ref=e322]: Join millions of people who organize work and life with Todoist.
+        - generic [ref=e323]:
+          - generic [ref=e324]:
+            - paragraph [ref=e325]: Features
+            - list [ref=e326]:
+              - listitem [ref=e327]:
+                - link "How It Works" [ref=e328] [cursor=pointer]:
+                  - /url: /features
+                  - generic: How It Works
+              - listitem [ref=e329]:
+                - link "For Teams" [ref=e330] [cursor=pointer]:
+                  - /url: /teamwork
+                  - generic: For Teams
+              - listitem [ref=e331]:
+                - link "Pricing" [ref=e332] [cursor=pointer]:
+                  - /url: /pricing
+                  - generic: Pricing
+              - listitem [ref=e333]:
+                - link "Compare" [ref=e334] [cursor=pointer]:
+                  - /url: /compare
+                  - generic: Compare
+              - listitem [ref=e335]:
+                - link "Templates" [ref=e336] [cursor=pointer]:
+                  - /url: /templates
+                  - generic: Templates
+          - generic [ref=e337]:
+            - paragraph [ref=e338]: Resources
+            - list [ref=e339]:
+              - listitem [ref=e340]:
+                - link "Download Apps" [ref=e341] [cursor=pointer]:
+                  - /url: /downloads
+                  - generic: Download Apps
+              - listitem [ref=e342]:
+                - link "Help Center" [ref=e343] [cursor=pointer]:
+                  - /url: /help
+                  - generic: Help Center
+              - listitem [ref=e344]:
+                - link "Customer Stories" [ref=e345] [cursor=pointer]:
+                  - /url: /customers
+                  - generic: Customer Stories
+              - listitem [ref=e346]:
+                - link "Productivity Methods" [ref=e347] [cursor=pointer]:
+                  - /url: /productivity-methods
+                  - generic: Productivity Methods
+              - listitem [ref=e348]:
+                - link "Integrations" [ref=e349] [cursor=pointer]:
+                  - /url: /integrations
+                  - generic: Integrations
+              - listitem [ref=e350]:
+                - link "Channel Partners" [ref=e351] [cursor=pointer]:
+                  - /url: /channelpartners
+                  - generic: Channel Partners
+              - listitem [ref=e352]:
+                - link "Developer API" [ref=e353] [cursor=pointer]:
+                  - /url: https://developer.todoist.com
+                  - generic: Developer API
+              - listitem [ref=e354]:
+                - link "Status" [ref=e355] [cursor=pointer]:
+                  - /url: https://status.todoist.com/
+                  - generic: Status
+          - generic [ref=e356]:
+            - paragraph [ref=e357]: Company
+            - list [ref=e358]:
+              - listitem [ref=e359]:
+                - link "About Us" [ref=e360] [cursor=pointer]:
+                  - /url: https://doist.com
+                  - generic: About Us
+              - listitem [ref=e361]:
+                - link "Careers" [ref=e362] [cursor=pointer]:
+                  - /url: https://doist.com/jobs
+                  - generic: Careers
+              - listitem [ref=e363]:
+                - link "Inspiration Hub" [ref=e364] [cursor=pointer]:
+                  - /url: /inspiration
+                  - generic: Inspiration Hub
+              - listitem [ref=e365]:
+                - link "Press" [ref=e366] [cursor=pointer]:
+                  - /url: https://doist.com/press/
+                  - generic: Press
+              - listitem [ref=e367]:
+                - link "Twist" [ref=e368] [cursor=pointer]:
+                  - /url: https://twist.com/
+                  - generic: Twist
+          - list [ref=e370]:
+            - listitem [ref=e371]:
+              - link "Todoist on YouTube" [ref=e372] [cursor=pointer]:
+                - /url: https://www.youtube.com/channel/UCQ_61yRKscCnkIJBPoR15EA
+                - generic:
+                  - img
+            - listitem [ref=e373]:
+              - link "Todoist on LinkedIn" [ref=e374] [cursor=pointer]:
+                - /url: https://www.linkedin.com/showcase/todoist
+                - generic:
+                  - img
+            - listitem [ref=e375]:
+              - link "Todoist on Instagram" [ref=e376] [cursor=pointer]:
+                - /url: https://www.instagram.com/todoistofficial
+                - generic:
+                  - img
+            - listitem [ref=e377]:
+              - link "Todoist on Reddit" [ref=e378] [cursor=pointer]:
+                - /url: https://www.reddit.com/r/todoist
+                - generic:
+                  - img
+      - generic [ref=e380]:
+        - generic [ref=e381]:
+          - list [ref=e382]:
+            - listitem [ref=e383]:
+              - link "Security |" [ref=e384] [cursor=pointer]:
+                - /url: /security
+            - listitem [ref=e385]:
+              - link "Privacy |" [ref=e386] [cursor=pointer]:
+                - /url: https://doist.com/privacy
+            - listitem [ref=e387]:
+              - link "Terms |" [ref=e388] [cursor=pointer]:
+                - /url: https://doist.com/terms-of-service
+            - listitem [ref=e389]:
+              - link "Cookie preferences" [ref=e390] [cursor=pointer]:
+                - /url: "#cookie-preferences"
+          - paragraph [ref=e391]: © Doist Inc.
+        - generic [ref=e397]:
+          - generic:
+            - img
+          - combobox "Select your language" [ref=e398]:
+            - option "Čeština"
+            - option "Dansk"
+            - option "Deutsch"
+            - option "English" [selected]
+            - option "Español"
+            - option "Suomi"
+            - option "Français"
+            - option "Italiano"
+            - option "日本語"
+            - option "한국어"
+            - option "Norsk"
+            - option "Nederlands"
+            - option "Polski"
+            - option "Português (Brazil)"
+            - option "Pусский (Russian)"
+            - option "Svenska"
+            - option "Türkçe"
+            - option "中文 (简体)"
+            - option "中文 (繁體)"
+          - generic:
+            - img
+  - dialog [ref=e399]:
+    - generic [ref=e400]:
+      - button "Close" [active] [ref=e401] [cursor=pointer]:
+        - generic:
+          - img
+      - heading "We respect your privacy" [level=1] [ref=e402]
+      - paragraph [ref=e403]: We use cookies to improve our site and how we market Todoist. Select your preference, and we’ll remember your choice.
+      - generic [ref=e404]:
+        - button "Accept" [ref=e405] [cursor=pointer]:
+          - generic: Accept
+        - button "Decline" [ref=e406] [cursor=pointer]:
+          - generic: Decline

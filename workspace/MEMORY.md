@@ -286,6 +286,7 @@ Applied permanently to:
 - **Agent OS:** Active as ClawBot governance layer. Phases A-H roadmap sealed with Ax. Core Loop Proof Gate blocks all expansion phases.
 
 ---
+- **[JP-2026-06-11-001]** Hold BBS outreach until the one-line offer and CTA are finalized; that is the gating unblocker for first outbound.
 
 ## Proposal / Approval Pattern
 

@@ -11,8 +11,8 @@
   },
   "ui": {
     "assistant": {
-      "name": "🦞 ClawBot",
-      "avatar": "🦞"
+      "name": "\ud83e\udd9e ClawBot",
+      "avatar": "\ud83e\udd9e"
     }
   },
   "secrets": {
@@ -173,7 +173,7 @@
   "agents": {
     "defaults": {
       "model": {
-        "primary": "openai-codex/gpt-5.5",
+        "primary": "openai/gpt-5.5",
         "fallbacks": [
           "openai/gpt-5.4-mini",
           "openrouter/moonshotai/kimi-k2.6",
@@ -260,8 +260,8 @@
         "id": "main",
         "identity": {
           "name": "ClawBot",
-          "theme": "Leo Paz’s local AI operator running locally",
-          "emoji": "🦞",
+          "theme": "Leo Paz\u2019s local AI operator running locally",
+          "emoji": "\ud83e\udd9e",
           "avatar": "avatars/telegram-bot-avatar.jpg"
         }
       },

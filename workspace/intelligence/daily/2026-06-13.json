@@ -1,0 +1,127 @@
+{
+  "date": "2026-06-13",
+  "fetched_at": "2026-06-13T07:15:01.984140-04:00",
+  "sources": [
+    {
+      "name": "The Batch",
+      "lane": "ai_industry",
+      "priority": "high",
+      "reason": "Serious AI industry signal, less hype than consumer newsletters, agent/model/applied AI focus",
+      "items": [
+        {
+          "source_name": "The Batch",
+          "source_lane": "ai_industry",
+          "priority": "high",
+          "reason": "Serious AI industry signal, less hype than consumer newsletters, agent/model/applied AI focus",
+          "subject": "Mythos Begets Fable, Cursor's Composer 2.5, Agents Building Agents",
+          "sender": "\"The Batch @ DeepLearning.AI\" <thebatch@deeplearning.ai>",
+          "date": "2026-06-12 15:12",
+          "snippet": "",
+          "thread_id": "19ebd4071a9a7c3e"
+        }
+      ]
+    },
+    {
+      "name": "The Rundown AI",
+      "lane": "daily_ai_radar",
+      "priority": "medium",
+      "reason": "Daily AI headline radar — good breadth, filter for signal",
+      "items": [
+        {
+          "source_name": "The Rundown AI",
+          "source_lane": "daily_ai_radar",
+          "priority": "medium",
+          "reason": "Daily AI headline radar — good breadth, filter for signal",
+          "subject": "🛠️ Jeff Bezos' $41B 'artificial general engineer'",
+          "sender": "The Rundown AI <news@daily.therundown.ai>",
+          "date": "2026-06-12 06:06",
+          "snippet": "",
+          "thread_id": "19ebb4c7b6fcc15a"
+        }
+      ]
+    },
+    {
+      "name": "TLDR",
+      "lane": "tech_radar",
+      "priority": "medium",
+      "reason": "Tech/AI breadth, new models, tools — needs filtering",
+      "items": [
+        {
+          "source_name": "TLDR",
+          "source_lane": "tech_radar",
+          "priority": "medium",
+          "reason": "Tech/AI breadth, new models, tools — needs filtering",
+          "subject": "Bezos' AI engineer 🤖, SpaceX record IPO 💰, building vertical agents 👨‍💻  ",
+          "sender": "TLDR <dan@tldrnewsletter.com>",
+          "date": "2026-06-12 06:25",
+          "snippet": "",
+          "thread_id": "19ebb5d6d1336321"
+        }
+      ]
+    },
+    {
+      "name": "AI for Work",
+      "lane": "workflow_templates",
+      "priority": "low",
+      "reason": "AI productivity workflows — keep only if producing usable patterns",
+      "items": [
+        {
+          "source_name": "AI for Work",
+          "source_lane": "workflow_templates",
+          "priority": "low",
+          "reason": "AI productivity workflows — keep only if producing usable patterns",
+          "subject": "Why the tokenmaxxing trend just folded its tent",
+          "sender": "AI For Work <aiforwork@mail.beehiiv.com>",
+          "date": "2026-06-12 17:52",
+          "snippet": "",
+          "thread_id": "19ebdd20d3d0d024"
+        },
+        {
+          "source_name": "AI for Work",
+          "source_lane": "workflow_templates",
+          "priority": "low",
+          "reason": "AI productivity workflows — keep only if producing usable patterns",
+          "subject": "Anthropic confronts AI’s growing dilemma head-on",
+          "sender": "AI For Work <aiforwork@mail.beehiiv.com>",
+          "date": "2026-06-12 01:05",
+          "snippet": "",
+          "thread_id": "19eba382a831f41a"
+        }
+      ]
+    },
+    {
+      "name": "Half Baked",
+      "lane": "business_ideas",
+      "priority": "medium",
+      "reason": "Business/startup ideas — filter for BBS offer angles and automation opportunities",
+      "items": [
+        {
+          "source_name": "Half Baked",
+          "source_lane": "business_ideas",
+          "priority": "medium",
+          "reason": "Business/startup ideas — filter for BBS offer angles and automation opportunities",
+          "subject": "🍪 Gift Marketing",
+          "sender": "Half Baked <ideas@mail.gethalfbaked.com>",
+          "date": "2026-06-12 15:01",
+          "snippet": "",
+          "thread_id": "19ebd362bb5b14dd"
+        },
+        {
+          "source_name": "Half Baked",
+          "source_lane": "business_ideas",
+          "priority": "medium",
+          "reason": "Business/startup ideas — filter for BBS offer angles and automation opportunities",
+          "subject": "🍪  Employment Simulations",
+          "sender": "Half Baked <ideas@mail.gethalfbaked.com>",
+          "date": "2026-06-11 18:03",
+          "snippet": "",
+          "thread_id": "19eb8b5ec9761b05"
+        }
+      ]
+    }
+  ],
+  "total_items": 7,
+  "fetch_errors": [
+    "OpenRouter Updates: no emails found"
+  ]
+}

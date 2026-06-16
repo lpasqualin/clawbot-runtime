@@ -1,0 +1,44 @@
+- generic [ref=e3]:
+  - generic [ref=e4]:
+    - main [ref=e7]:
+      - generic [ref=e8]:
+        - link "Attio logo" [ref=e11] [cursor=pointer]:
+          - /url: /
+          - img "Attio logo" [ref=e12]
+        - generic [ref=e16]:
+          - generic [ref=e17]: Sign in
+          - generic [ref=e18]:
+            - link "Sign in with Google" [ref=e20] [cursor=pointer]:
+              - /url: /auth/google/start?platform=web-app&flow=user-authentication
+              - generic [ref=e21]:
+                - img [ref=e22]
+                - generic [ref=e27]: Sign in with Google
+            - generic [ref=e28]:
+              - generic [ref=e30]:
+                - generic [ref=e31]:
+                  - generic:
+                    - img
+                - textbox "email address" [active] [ref=e32]:
+                  - /placeholder: Enter your work email address
+              - button "Continue" [ref=e33] [cursor=pointer]:
+                - generic [ref=e34]: Continue
+        - generic [ref=e36]:
+          - generic [ref=e37]:
+            - text: By proceeding you acknowledge that you have read, understood and agree to our
+            - link "Services Agreement." [ref=e38] [cursor=pointer]:
+              - /url: https://attio.com/legal/services-agreement
+          - list [ref=e39]:
+            - listitem [ref=e40]:
+              - generic [ref=e41]: © 2026 Attio Limited
+            - listitem [ref=e42]:
+              - link "Privacy Policy" [ref=e43] [cursor=pointer]:
+                - /url: https://attio.com/legal/privacy
+            - listitem [ref=e44]:
+              - link "Support" [ref=e45] [cursor=pointer]:
+                - /url: https://attio.com/help
+    - generic:
+      - region "Notifications (F8)":
+        - list
+  - generic:
+    - region "Notifications (F8)":
+      - list

@@ -1,0 +1,131 @@
+{
+  "date": "2026-06-16",
+  "fetched_at": "2026-06-16T07:15:01.391427-04:00",
+  "sources": [
+    {
+      "name": "The Rundown AI",
+      "lane": "daily_ai_radar",
+      "priority": "medium",
+      "reason": "Daily AI headline radar — good breadth, filter for signal",
+      "items": [
+        {
+          "source_name": "The Rundown AI",
+          "source_lane": "daily_ai_radar",
+          "priority": "medium",
+          "reason": "Daily AI headline radar — good breadth, filter for signal",
+          "subject": "🔐 Why 100+ security experts say the Fable 5 ban backfires",
+          "sender": "The Rundown AI <news@daily.therundown.ai>",
+          "date": "2026-06-16 06:07",
+          "snippet": "",
+          "thread_id": "19ecfe639466ead8"
+        },
+        {
+          "source_name": "The Rundown AI",
+          "source_lane": "daily_ai_radar",
+          "priority": "medium",
+          "reason": "Daily AI headline radar — good breadth, filter for signal",
+          "subject": "🔒 Anthropic pulls Mythos, Fable after U.S. order",
+          "sender": "The Rundown AI <news@daily.therundown.ai>",
+          "date": "2026-06-15 06:06",
+          "snippet": "",
+          "thread_id": "19ecabee02bcb3de"
+        }
+      ]
+    },
+    {
+      "name": "TLDR",
+      "lane": "tech_radar",
+      "priority": "medium",
+      "reason": "Tech/AI breadth, new models, tools — needs filtering",
+      "items": [
+        {
+          "source_name": "TLDR",
+          "source_lane": "tech_radar",
+          "priority": "medium",
+          "reason": "Tech/AI breadth, new models, tools — needs filtering",
+          "subject": "Anthropic's superpower 🤖, Roku acquired 💰, agentic code review 👨‍💻",
+          "sender": "TLDR <dan@tldrnewsletter.com>",
+          "date": "2026-06-16 06:26",
+          "snippet": "",
+          "thread_id": "19ecff79fd02bac7"
+        },
+        {
+          "source_name": "TLDR",
+          "source_lane": "tech_radar",
+          "priority": "medium",
+          "reason": "Tech/AI breadth, new models, tools — needs filtering",
+          "subject": "Elon is trillionaire 💰, Anthropic removes Fable 🚫, Meta's AI gulag 👨‍💻",
+          "sender": "TLDR <dan@tldrnewsletter.com>",
+          "date": "2026-06-15 06:29",
+          "snippet": "",
+          "thread_id": "19ecad4686ab3b11"
+        }
+      ]
+    },
+    {
+      "name": "AI for Work",
+      "lane": "workflow_templates",
+      "priority": "low",
+      "reason": "AI productivity workflows — keep only if producing usable patterns",
+      "items": [
+        {
+          "source_name": "AI for Work",
+          "source_lane": "workflow_templates",
+          "priority": "low",
+          "reason": "AI productivity workflows — keep only if producing usable patterns",
+          "subject": "The 3 human skills that will endure in the AI era",
+          "sender": "AI For Work <aiforwork@mail.beehiiv.com>",
+          "date": "2026-06-15 22:00",
+          "snippet": "",
+          "thread_id": "19ece284f01fb0c0"
+        },
+        {
+          "source_name": "AI for Work",
+          "source_lane": "workflow_templates",
+          "priority": "low",
+          "reason": "AI productivity workflows — keep only if producing usable patterns",
+          "subject": "Lessons from Steve Jobs, Brian Chesky, and more",
+          "sender": "AI For Work <aiforwork@mail.beehiiv.com>",
+          "date": "2026-06-14 18:03",
+          "snippet": "",
+          "thread_id": "19ec8290f46cf291"
+        }
+      ]
+    },
+    {
+      "name": "Half Baked",
+      "lane": "business_ideas",
+      "priority": "medium",
+      "reason": "Business/startup ideas — filter for BBS offer angles and automation opportunities",
+      "items": [
+        {
+          "source_name": "Half Baked",
+          "source_lane": "business_ideas",
+          "priority": "medium",
+          "reason": "Business/startup ideas — filter for BBS offer angles and automation opportunities",
+          "subject": "💡 Micro-Vlogging",
+          "sender": "Half Baked <ideas@mail.gethalfbaked.com>",
+          "date": "2026-06-15 19:15",
+          "snippet": "",
+          "thread_id": "19ecd91b1d0e05cf"
+        },
+        {
+          "source_name": "Half Baked",
+          "source_lane": "business_ideas",
+          "priority": "medium",
+          "reason": "Business/startup ideas — filter for BBS offer angles and automation opportunities",
+          "subject": "🍪 Fully Baked: Mold App",
+          "sender": "Half Baked <ideas@mail.gethalfbaked.com>",
+          "date": "2026-06-14 18:00",
+          "snippet": "",
+          "thread_id": "19ec826f26cdc684"
+        }
+      ]
+    }
+  ],
+  "total_items": 8,
+  "fetch_errors": [
+    "The Batch: no emails found",
+    "OpenRouter Updates: no emails found"
+  ]
+}
