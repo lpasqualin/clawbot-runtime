@@ -1,13 +1,20 @@
+---
+name: approvals
+description: List, review, approve, or reject pending ClawBot decisions.
+user-invocable: true
+---
+
 # Approval Review Skill
 
 ## Purpose
 
 Approvals are pending decisions stored in SQLite at `/home/clawbot/.openclaw/state/approvals.db`. ClawBot is the approval **clerk**, not the authority — `approval_handler.py` is the authority. All state changes go through it.
 
-This skill covers exactly four commands and no others:
+This skill covers exactly five commands and no others:
 
 - `list pending`
 - `show <id>`
+- `review <id>` (alias for `show <id>`)
 - `approve <id>`
 - `reject <id> [reason]`
 
@@ -23,11 +30,10 @@ Rules:
 
 ```bash
 python3 /home/clawbot/.openclaw/scripts/approval_handler.py \
-  --actor discord:1204238178584887310 \
   --command "list pending"
 ```
 
-Report the output verbatim.
+Report the output verbatim. No actor required — this is a read-only command.
 
 ### `show <id>`
 
@@ -35,39 +41,64 @@ Run two commands and combine their output:
 
 ```bash
 python3 /home/clawbot/.openclaw/scripts/approval_handler.py \
-  --actor discord:1204238178584887310 \
   --command "show <id>"
 
 python3 /home/clawbot/.openclaw/scripts/approval_store.py show-brief <id>
 ```
 
-Present the `show-brief` output first as the decision summary, then the `show` output as the full detail below a separator (`---`).
+Present the `show-brief` output first as the decision summary, then the `show` output as the full detail below a separator (`---`). No actor required — this is a read-only command.
 
-### `approve <id>`
+### `review <id>`
+
+`review <id>` is an alias for `show <id>`. Use either — they do the same thing.
+
+This is the preferred operator-facing command because notification cards use `review`.
+
+When the operator types `review <id>`, execute identically to `show <id>`:
 
 ```bash
 python3 /home/clawbot/.openclaw/scripts/approval_handler.py \
-  --actor discord:1204238178584887310 \
+  --command "show <id>"
+
+python3 /home/clawbot/.openclaw/scripts/approval_store.py show-brief <id>
+```
+
+Present `show-brief` output first as the decision summary, then `show` output as full detail below a separator. No actor required — this is a read-only command.
+
+### `approve <id>`
+
+Requires the sender's actual user ID from session context — see **Actor identity** below.
+
+```bash
+python3 /home/clawbot/.openclaw/scripts/approval_handler.py \
+  --actor <platform>:<sender_user_id> \
   --command "approve <id>"
 ```
 
 ### `reject <id> [reason]`
 
+Requires the sender's actual user ID from session context — see **Actor identity** below.
+
 ```bash
 python3 /home/clawbot/.openclaw/scripts/approval_handler.py \
-  --actor discord:1204238178584887310 \
+  --actor <platform>:<sender_user_id> \
   --command "reject <id> [reason]"
 ```
 
-## Actor identity rule
+## Actor identity
 
-Hardcode the actor string based on the channel the command arrived on:
+For `approve` and `reject` commands:
 
-- Always use `--actor discord:1204238178584887310` when invoked from Discord.
-- Always use `--actor telegram:8376304007` when invoked from Telegram.
-- If the channel source is unknown, default to `--actor discord:1204238178584887310`.
+- If OpenClaw exposes the sender's user ID in session context, use it as the actor:
+  - Discord: `--actor discord:<sender_user_id>`
+  - Telegram: `--actor telegram:<sender_user_id>`
+- If sender identity is not available in context, do NOT attempt to approve or reject.
+  Instead respond: "Cannot execute approval — sender identity unavailable. Use the dashboard or CLI directly."
+- Do NOT hardcode any user ID.
+- Do NOT invent or guess an actor ID.
 
-Do not ask Leo for his ID. Do not invent an ID.
+For `list`, `show`, and `review` commands:
+- No actor required. These are read-only and work without authentication.
 
 ## Refused commands
 

@@ -313,7 +313,7 @@
   },
   "commands": {
     "native": "auto",
-    "nativeSkills": "auto",
+    "nativeSkills": false,
     "restart": true,
     "ownerAllowFrom": [
       "discord:1204238178584887310"
