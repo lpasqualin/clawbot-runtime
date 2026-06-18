@@ -1,0 +1,23 @@
+{
+  "operators": [
+    {
+      "name": "Leo",
+      "role": "owner",
+      "telegram_user_id": "8376304007",
+      "discord_user_id": "1204238178584887310",
+      "allowed_channels": [
+        "telegram_direct",
+        "telegram_channel",
+        "discord_channel"
+      ],
+      "permissions": [
+        "approval:list",
+        "approval:show",
+        "approval:approve",
+        "approval:reject",
+        "approval:edit",
+        "approval:apply"
+      ]
+    }
+  ]
+}

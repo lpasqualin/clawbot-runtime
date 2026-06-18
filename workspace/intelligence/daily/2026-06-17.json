@@ -1,0 +1,131 @@
+{
+  "date": "2026-06-17",
+  "fetched_at": "2026-06-17T07:15:01.110972-04:00",
+  "sources": [
+    {
+      "name": "The Rundown AI",
+      "lane": "daily_ai_radar",
+      "priority": "medium",
+      "reason": "Daily AI headline radar — good breadth, filter for signal",
+      "items": [
+        {
+          "source_name": "The Rundown AI",
+          "source_lane": "daily_ai_radar",
+          "priority": "medium",
+          "reason": "Daily AI headline radar — good breadth, filter for signal",
+          "subject": "🚀 Musk cashes SpaceX IPO surge into Cursor",
+          "sender": "The Rundown AI <news@daily.therundown.ai>",
+          "date": "2026-06-17 05:01",
+          "snippet": "",
+          "thread_id": "19ed4d0d05064292"
+        },
+        {
+          "source_name": "The Rundown AI",
+          "source_lane": "daily_ai_radar",
+          "priority": "medium",
+          "reason": "Daily AI headline radar — good breadth, filter for signal",
+          "subject": "🔐 Why 100+ security experts say the Fable 5 ban backfires",
+          "sender": "The Rundown AI <news@daily.therundown.ai>",
+          "date": "2026-06-16 06:07",
+          "snippet": "",
+          "thread_id": "19ecfe639466ead8"
+        }
+      ]
+    },
+    {
+      "name": "TLDR",
+      "lane": "tech_radar",
+      "priority": "medium",
+      "reason": "Tech/AI breadth, new models, tools — needs filtering",
+      "items": [
+        {
+          "source_name": "TLDR",
+          "source_lane": "tech_radar",
+          "priority": "medium",
+          "reason": "Tech/AI breadth, new models, tools — needs filtering",
+          "subject": "SpaceX buys Cursor 💰, camera AirPods 🎧, S3 annotations 👨‍💻 ",
+          "sender": "TLDR <dan@tldrnewsletter.com>",
+          "date": "2026-06-17 06:26",
+          "snippet": "",
+          "thread_id": "19ed51dfe3e2f001"
+        },
+        {
+          "source_name": "TLDR",
+          "source_lane": "tech_radar",
+          "priority": "medium",
+          "reason": "Tech/AI breadth, new models, tools — needs filtering",
+          "subject": "Anthropic's superpower 🤖, Roku acquired 💰, agentic code review 👨‍💻",
+          "sender": "TLDR <dan@tldrnewsletter.com>",
+          "date": "2026-06-16 06:26",
+          "snippet": "",
+          "thread_id": "19ecff79fd02bac7"
+        }
+      ]
+    },
+    {
+      "name": "AI for Work",
+      "lane": "workflow_templates",
+      "priority": "low",
+      "reason": "AI productivity workflows — keep only if producing usable patterns",
+      "items": [
+        {
+          "source_name": "AI for Work",
+          "source_lane": "workflow_templates",
+          "priority": "low",
+          "reason": "AI productivity workflows — keep only if producing usable patterns",
+          "subject": "1Password, Cursor want to save agents",
+          "sender": "AI For Work <aiforwork@mail.beehiiv.com>",
+          "date": "2026-06-16 19:36",
+          "snippet": "",
+          "thread_id": "19ed2cac19b70272"
+        },
+        {
+          "source_name": "AI for Work",
+          "source_lane": "workflow_templates",
+          "priority": "low",
+          "reason": "AI productivity workflows — keep only if producing usable patterns",
+          "subject": "The 3 human skills that will endure in the AI era",
+          "sender": "AI For Work <aiforwork@mail.beehiiv.com>",
+          "date": "2026-06-15 22:00",
+          "snippet": "",
+          "thread_id": "19ece284f01fb0c0"
+        }
+      ]
+    },
+    {
+      "name": "Half Baked",
+      "lane": "business_ideas",
+      "priority": "medium",
+      "reason": "Business/startup ideas — filter for BBS offer angles and automation opportunities",
+      "items": [
+        {
+          "source_name": "Half Baked",
+          "source_lane": "business_ideas",
+          "priority": "medium",
+          "reason": "Business/startup ideas — filter for BBS offer angles and automation opportunities",
+          "subject": "💡 Home Onboarding",
+          "sender": "Half Baked <ideas@mail.gethalfbaked.com>",
+          "date": "2026-06-16 18:50",
+          "snippet": "",
+          "thread_id": "19ed2a10e7ce5d5c"
+        },
+        {
+          "source_name": "Half Baked",
+          "source_lane": "business_ideas",
+          "priority": "medium",
+          "reason": "Business/startup ideas — filter for BBS offer angles and automation opportunities",
+          "subject": "💡 Micro-Vlogging",
+          "sender": "Half Baked <ideas@mail.gethalfbaked.com>",
+          "date": "2026-06-15 19:15",
+          "snippet": "",
+          "thread_id": "19ecd91b1d0e05cf"
+        }
+      ]
+    }
+  ],
+  "total_items": 8,
+  "fetch_errors": [
+    "The Batch: no emails found",
+    "OpenRouter Updates: no emails found"
+  ]
+}
