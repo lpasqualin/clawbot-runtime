@@ -265,30 +265,6 @@
       },
       "agentId": "oracle",
       "state": {}
-    },
-    {
-      "id": "dbcd752a-93cd-4edb-a008-a89a831aed52",
-      "name": "hygiene-proposal-ingest",
-      "description": "Parse latest hygiene proposal artifact and submit Decision Queue rows. Runs 30 minutes after weekly-system-hygiene-audit.",
-      "enabled": true,
-      "createdAtMs": 1781803972332,
-      "schedule": {
-        "kind": "cron",
-        "expr": "30 10 * * 0",
-        "tz": "America/New_York"
-      },
-      "sessionTarget": "isolated",
-      "wakeMode": "now",
-      "payload": {
-        "kind": "agentTurn",
-        "message": "Run the hygiene proposal ingestor. Execute this exact command and report the output:\n\npython3 /home/clawbot/.openclaw/scripts/ingest_hygiene_proposal.py\n\nDo not interpret the output. Do not take any other action. Report the JSON result verbatim."
-      },
-      "delivery": {
-        "mode": "announce",
-        "channel": "discord",
-        "to": "channel:1492265696850346086"
-      },
-      "state": {}
     }
   ]
 }
