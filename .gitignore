@@ -102,3 +102,5 @@ gateway-supervisor-restart-handoff.json
 
 # VS Code / antigravity
 .antigravity/
+*.session*-backup
+openclaw.json.*.backup
