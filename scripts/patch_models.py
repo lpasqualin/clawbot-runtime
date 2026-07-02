@@ -3,7 +3,7 @@
 patch_models.py — ClawBot openclaw.json model stack updater
 Run as: sudo -u clawbot python3 /home/clawbot/.openclaw/scripts/patch_models.py
 
-Last updated: 2026-05-31
+Last updated: 2026-06-22
 Reflects live config on MS-01 (leo-paz-MS-10-Venus)
 """
 
@@ -26,63 +26,43 @@ print(f"✅ Backup written: {BACKUP_PATH}")
 defaults = cfg["agents"]["defaults"]
 
 # ── 1. Primary model ──────────────────────────────────────────────────────────
-defaults["model"]["primary"] = "openai-codex/gpt-5.5"
-print("✅ Primary model set: openai-codex/gpt-5.5")
+defaults["model"]["primary"] = "openai/gpt-5.5"
+print("✅ Primary model set: openai/gpt-5.5")
 
 # ── 2. Fallback chain ─────────────────────────────────────────────────────────
 # gpt-5.5 removed from fallbacks (was duplicate of primary — bug in prior config)
 # claude-cli removed (OAuth expires ~6h, breaks cron)
 # Order: mini → local reasoning → local fast → local deep reasoning → local coding → adv coding
 defaults["model"]["fallbacks"] = [
-    "openai-codex/gpt-5.4-mini",
+    "openai/gpt-5.4-mini",
+    "openrouter/moonshotai/kimi-k2.6",
+    "openrouter/google/gemini-2.5-flash",
     "ollama/qwen3:14b",
     "ollama/gemma4:e4b",
     "ollama/deepseek-r1:14b",
     "ollama/qwen2.5-coder:14b",
     "ollama/devstral:24b",
+    "openrouter/auto",
 ]
-print("✅ Fallback chain updated (removed duplicate gpt-5.5, removed claude-cli)")
+print("✅ Fallback chain updated")
 
 # ── 3. Models block — rebuild clean ───────────────────────────────────────────
 # Removed dead entries: claude-opus-4-6, claude-opus-4-5, claude-sonnet-4-5
 # Kept anthropic/* (not claude-cli/*) — these use the anthropic provider, not CLI OAuth
 defaults["models"] = {
-    "openai-codex/gpt-5.5": {
-        "alias": "standard"
-    },
-    "openai-codex/gpt-5.4-mini": {
-        "alias": "mini"
-    },
-    "openai-codex/chat-latest": {
-        "alias": "instant"
-    },
-    "ollama/qwen3:14b": {
-        "alias": "local-reasoning"
-    },
-    "ollama/gemma4:e4b": {
-        "alias": "local-fast"
-    },
-    "ollama/deepseek-r1:14b": {
-        "alias": "local-reasoning-deep"
-    },
-    "ollama/qwen2.5-coder:14b": {
-        "alias": "local-coding"
-    },
-    "ollama/devstral:24b": {
-        "alias": "adv-coding"
-    },
-    "ollama/nomic-embed-text": {
-        "alias": "embed"
-    },
-    "anthropic/claude-haiku-4-5": {
-        "alias": "anthropic-standard"
-    },
-    "anthropic/claude-sonnet-4-6": {
-        "alias": "anthropic-medium"
-    },
-    "anthropic/claude-opus-4-7": {
-        "alias": "anthropic-high"
-    },
+    "openai/gpt-5.5":                     {"alias": "standard", "agentRuntime": {"id": "codex"}},
+    "openai/gpt-5.4-mini":                {"alias": "mini", "agentRuntime": {"id": "codex"}},
+    "openai/chat-latest":                 {"alias": "instant", "agentRuntime": {"id": "codex"}},
+    "openrouter/moonshotai/kimi-k2.6":    {"alias": "kimi"},
+    "openrouter/google/gemini-2.5-flash": {"alias": "gemini-flash"},
+    "openrouter/auto":                    {"alias": "auto"},
+    "ollama/qwen3:14b":                   {"alias": "local-reasoning"},
+    "ollama/gemma4:e4b":                  {"alias": "local-fast"},
+    "ollama/gemma4:12b":                  {"alias": "local-ingest"},
+    "ollama/deepseek-r1:14b":             {"alias": "local-reasoning-deep"},
+    "ollama/qwen2.5-coder:14b":           {"alias": "local-coding"},
+    "ollama/devstral:24b":                {"alias": "adv-coding"},
+    "ollama/nomic-embed-text":            {"alias": "embed"},
 }
 print("✅ Models block rebuilt (removed 3 dead entries)")
 

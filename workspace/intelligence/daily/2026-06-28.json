@@ -1,0 +1,80 @@
+{
+  "date": "2026-06-28",
+  "fetched_at": "2026-06-28T07:15:01.809499-04:00",
+  "sources": [
+    {
+      "name": "The Batch",
+      "lane": "ai_industry",
+      "priority": "high",
+      "reason": "Serious AI industry signal, less hype than consumer newsletters, agent/model/applied AI focus",
+      "items": [
+        {
+          "source_name": "The Batch",
+          "source_lane": "ai_industry",
+          "priority": "high",
+          "reason": "Serious AI industry signal, less hype than consumer newsletters, agent/model/applied AI focus",
+          "subject": "A New Generation Studies AI, Apple's Recipe for On-Device Models, GLM5.2 Tackles Open-Ended Problems",
+          "sender": "\"The Batch @ DeepLearning.AI\" <thebatch@deeplearning.ai>",
+          "date": "2026-06-26 14:57",
+          "snippet": "",
+          "thread_id": "19f054bdb0a72d2a"
+        }
+      ]
+    },
+    {
+      "name": "AI for Work",
+      "lane": "workflow_templates",
+      "priority": "low",
+      "reason": "AI productivity workflows — keep only if producing usable patterns",
+      "items": [
+        {
+          "source_name": "AI for Work",
+          "source_lane": "workflow_templates",
+          "priority": "low",
+          "reason": "AI productivity workflows — keep only if producing usable patterns",
+          "subject": "Is security blocking you from using Claude Code?",
+          "sender": "AI For Work <aiforwork@mail.beehiiv.com>",
+          "date": "2026-06-27 11:35",
+          "snippet": "",
+          "thread_id": "19f09bbbb554e72f"
+        },
+        {
+          "source_name": "AI for Work",
+          "source_lane": "workflow_templates",
+          "priority": "low",
+          "reason": "AI productivity workflows — keep only if producing usable patterns",
+          "subject": "How AI work is becoming agent-first",
+          "sender": "AI For Work <aiforwork@mail.beehiiv.com>",
+          "date": "2026-06-26 17:14",
+          "snippet": "",
+          "thread_id": "19f05c84f58a6ae7"
+        }
+      ]
+    },
+    {
+      "name": "Half Baked",
+      "lane": "business_ideas",
+      "priority": "medium",
+      "reason": "Business/startup ideas — filter for BBS offer angles and automation opportunities",
+      "items": [
+        {
+          "source_name": "Half Baked",
+          "source_lane": "business_ideas",
+          "priority": "medium",
+          "reason": "Business/startup ideas — filter for BBS offer angles and automation opportunities",
+          "subject": "💡 News Bureau",
+          "sender": "Half Baked <ideas@mail.gethalfbaked.com>",
+          "date": "2026-06-26 17:30",
+          "snippet": "",
+          "thread_id": "19f05d7a8248c59d"
+        }
+      ]
+    }
+  ],
+  "total_items": 4,
+  "fetch_errors": [
+    "The Rundown AI: no emails found",
+    "TLDR: no emails found",
+    "OpenRouter Updates: no emails found"
+  ]
+}

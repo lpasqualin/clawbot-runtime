@@ -1,0 +1,116 @@
+{
+  "date": "2026-06-20",
+  "fetched_at": "2026-06-20T07:15:01.295216-04:00",
+  "sources": [
+    {
+      "name": "The Batch",
+      "lane": "ai_industry",
+      "priority": "high",
+      "reason": "Serious AI industry signal, less hype than consumer newsletters, agent/model/applied AI focus",
+      "items": [
+        {
+          "source_name": "The Batch",
+          "source_lane": "ai_industry",
+          "priority": "high",
+          "reason": "Serious AI industry signal, less hype than consumer newsletters, agent/model/applied AI focus",
+          "subject": "Testing Mythos and Fable, Moving Beyond SWE-bench,  Nvidia's Open Contender",
+          "sender": "\"The Batch @ DeepLearning.AI\" <thebatch@deeplearning.ai>",
+          "date": "2026-06-19 15:07",
+          "snippet": "",
+          "thread_id": "19ee1482cc0a55a1"
+        }
+      ]
+    },
+    {
+      "name": "The Rundown AI",
+      "lane": "daily_ai_radar",
+      "priority": "medium",
+      "reason": "Daily AI headline radar — good breadth, filter for signal",
+      "items": [
+        {
+          "source_name": "The Rundown AI",
+          "source_lane": "daily_ai_radar",
+          "priority": "medium",
+          "reason": "Daily AI headline radar — good breadth, filter for signal",
+          "subject": "🩻 Midjourney’s wild medical hardware pivot",
+          "sender": "The Rundown AI <news@daily.therundown.ai>",
+          "date": "2026-06-19 06:06",
+          "snippet": "",
+          "thread_id": "19edf5859d5a12da"
+        }
+      ]
+    },
+    {
+      "name": "TLDR",
+      "lane": "tech_radar",
+      "priority": "medium",
+      "reason": "Tech/AI breadth, new models, tools — needs filtering",
+      "items": [
+        {
+          "source_name": "TLDR",
+          "source_lane": "tech_radar",
+          "priority": "medium",
+          "reason": "Tech/AI breadth, new models, tools — needs filtering",
+          "subject": "Midjourney Scanner 🏥, AWS vs Nvidia ⚡, agent loop architecture 👨‍💻 ",
+          "sender": "TLDR <dan@tldrnewsletter.com>",
+          "date": "2026-06-19 06:25",
+          "snippet": "",
+          "thread_id": "19edf6a6af2d05a8"
+        }
+      ]
+    },
+    {
+      "name": "AI for Work",
+      "lane": "workflow_templates",
+      "priority": "low",
+      "reason": "AI productivity workflows — keep only if producing usable patterns",
+      "items": [
+        {
+          "source_name": "AI for Work",
+          "source_lane": "workflow_templates",
+          "priority": "low",
+          "reason": "AI productivity workflows — keep only if producing usable patterns",
+          "subject": "Why open ecosystems may beat AI agent lock-in",
+          "sender": "AI For Work <aiforwork@mail.beehiiv.com>",
+          "date": "2026-06-18 15:23",
+          "snippet": "",
+          "thread_id": "19edc30464e256fe"
+        }
+      ]
+    },
+    {
+      "name": "Half Baked",
+      "lane": "business_ideas",
+      "priority": "medium",
+      "reason": "Business/startup ideas — filter for BBS offer angles and automation opportunities",
+      "items": [
+        {
+          "source_name": "Half Baked",
+          "source_lane": "business_ideas",
+          "priority": "medium",
+          "reason": "Business/startup ideas — filter for BBS offer angles and automation opportunities",
+          "subject": "💡 Agentic Editor",
+          "sender": "Half Baked <ideas@mail.gethalfbaked.com>",
+          "date": "2026-06-19 18:50",
+          "snippet": "",
+          "thread_id": "19ee2143d9f7a052"
+        },
+        {
+          "source_name": "Half Baked",
+          "source_lane": "business_ideas",
+          "priority": "medium",
+          "reason": "Business/startup ideas — filter for BBS offer angles and automation opportunities",
+          "subject": "💡 Fixed Ticketing",
+          "sender": "Half Baked <ideas@mail.gethalfbaked.com>",
+          "date": "2026-06-18 18:50",
+          "snippet": "",
+          "thread_id": "19edcee413c35a89"
+        }
+      ]
+    }
+  ],
+  "total_items": 6,
+  "fetch_errors": [
+    "OpenRouter Updates: no emails found"
+  ]
+}

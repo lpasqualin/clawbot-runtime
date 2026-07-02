@@ -1,0 +1,109 @@
+{
+  "date": "2026-06-27",
+  "fetched_at": "2026-06-27T07:15:01.339034-04:00",
+  "sources": [
+    {
+      "name": "The Batch",
+      "lane": "ai_industry",
+      "priority": "high",
+      "reason": "Serious AI industry signal, less hype than consumer newsletters, agent/model/applied AI focus",
+      "items": [
+        {
+          "source_name": "The Batch",
+          "source_lane": "ai_industry",
+          "priority": "high",
+          "reason": "Serious AI industry signal, less hype than consumer newsletters, agent/model/applied AI focus",
+          "subject": "A New Generation Studies AI, Apple's Recipe for On-Device Models, GLM5.2 Tackles Open-Ended Problems",
+          "sender": "\"The Batch @ DeepLearning.AI\" <thebatch@deeplearning.ai>",
+          "date": "2026-06-26 14:57",
+          "snippet": "",
+          "thread_id": "19f054bdb0a72d2a"
+        }
+      ]
+    },
+    {
+      "name": "TLDR",
+      "lane": "tech_radar",
+      "priority": "medium",
+      "reason": "Tech/AI breadth, new models, tools — needs filtering",
+      "items": [
+        {
+          "source_name": "TLDR",
+          "source_lane": "tech_radar",
+          "priority": "medium",
+          "reason": "Tech/AI breadth, new models, tools — needs filtering",
+          "subject": "Apple price hikes 📈, US restricts GPT-5.6 🚫, repricing software engineers 👨‍💻",
+          "sender": "TLDR <dan@tldrnewsletter.com>",
+          "date": "2026-06-26 06:26",
+          "snippet": "",
+          "thread_id": "19f03772b6717496"
+        }
+      ]
+    },
+    {
+      "name": "AI for Work",
+      "lane": "workflow_templates",
+      "priority": "low",
+      "reason": "AI productivity workflows — keep only if producing usable patterns",
+      "items": [
+        {
+          "source_name": "AI for Work",
+          "source_lane": "workflow_templates",
+          "priority": "low",
+          "reason": "AI productivity workflows — keep only if producing usable patterns",
+          "subject": "How AI work is becoming agent-first",
+          "sender": "AI For Work <aiforwork@mail.beehiiv.com>",
+          "date": "2026-06-26 17:14",
+          "snippet": "",
+          "thread_id": "19f05c84f58a6ae7"
+        },
+        {
+          "source_name": "AI for Work",
+          "source_lane": "workflow_templates",
+          "priority": "low",
+          "reason": "AI productivity workflows — keep only if producing usable patterns",
+          "subject": "OpenAI’s chip move puts AI efficiency in focus",
+          "sender": "AI For Work <aiforwork@mail.beehiiv.com>",
+          "date": "2026-06-25 17:59",
+          "snippet": "",
+          "thread_id": "19f00cba449bf465"
+        }
+      ]
+    },
+    {
+      "name": "Half Baked",
+      "lane": "business_ideas",
+      "priority": "medium",
+      "reason": "Business/startup ideas — filter for BBS offer angles and automation opportunities",
+      "items": [
+        {
+          "source_name": "Half Baked",
+          "source_lane": "business_ideas",
+          "priority": "medium",
+          "reason": "Business/startup ideas — filter for BBS offer angles and automation opportunities",
+          "subject": "💡 News Bureau",
+          "sender": "Half Baked <ideas@mail.gethalfbaked.com>",
+          "date": "2026-06-26 17:30",
+          "snippet": "",
+          "thread_id": "19f05d7a8248c59d"
+        },
+        {
+          "source_name": "Half Baked",
+          "source_lane": "business_ideas",
+          "priority": "medium",
+          "reason": "Business/startup ideas — filter for BBS offer angles and automation opportunities",
+          "subject": "💡 Idea Marketplace",
+          "sender": "Half Baked <ideas@mail.gethalfbaked.com>",
+          "date": "2026-06-25 17:50",
+          "snippet": "",
+          "thread_id": "19f00c36ccdcbe80"
+        }
+      ]
+    }
+  ],
+  "total_items": 6,
+  "fetch_errors": [
+    "The Rundown AI: no emails found",
+    "OpenRouter Updates: no emails found"
+  ]
+}

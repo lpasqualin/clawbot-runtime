@@ -1,0 +1,102 @@
+{
+  "date": "2026-07-01",
+  "fetched_at": "2026-07-01T07:15:01.693239-04:00",
+  "sources": [
+    {
+      "name": "TLDR",
+      "lane": "tech_radar",
+      "priority": "medium",
+      "reason": "Tech/AI breadth, new models, tools — needs filtering",
+      "items": [
+        {
+          "source_name": "TLDR",
+          "source_lane": "tech_radar",
+          "priority": "medium",
+          "reason": "Tech/AI breadth, new models, tools — needs filtering",
+          "subject": "Claude Sonnet 5 🤖, Meta Kalshi talks 💸, Fable returns 🏛️",
+          "sender": "TLDR <dan@tldrnewsletter.com>",
+          "date": "2026-07-01 06:27",
+          "snippet": "",
+          "thread_id": "19f1d3823d52b485"
+        },
+        {
+          "source_name": "TLDR",
+          "source_lane": "tech_radar",
+          "priority": "medium",
+          "reason": "Tech/AI breadth, new models, tools — needs filtering",
+          "subject": "iPhone 18 leaks 📱, Codex Micro ⌨️, verifiable outputs 👨‍💻",
+          "sender": "TLDR <dan@tldrnewsletter.com>",
+          "date": "2026-06-30 06:26",
+          "snippet": "",
+          "thread_id": "19f181136000c11a"
+        }
+      ]
+    },
+    {
+      "name": "AI for Work",
+      "lane": "workflow_templates",
+      "priority": "low",
+      "reason": "AI productivity workflows — keep only if producing usable patterns",
+      "items": [
+        {
+          "source_name": "AI for Work",
+          "source_lane": "workflow_templates",
+          "priority": "low",
+          "reason": "AI productivity workflows — keep only if producing usable patterns",
+          "subject": "Why Qualcomm's boldest new AI move isn't in chips",
+          "sender": "AI For Work <aiforwork@mail.beehiiv.com>",
+          "date": "2026-06-30 09:34",
+          "snippet": "",
+          "thread_id": "19f18bca59f1122a"
+        },
+        {
+          "source_name": "AI for Work",
+          "source_lane": "workflow_templates",
+          "priority": "low",
+          "reason": "AI productivity workflows — keep only if producing usable patterns",
+          "subject": "Data: Workers' BYO AI is leading the AI transition",
+          "sender": "AI For Work <aiforwork@mail.beehiiv.com>",
+          "date": "2026-06-29 20:05",
+          "snippet": "",
+          "thread_id": "19f15d91f3e52270"
+        }
+      ]
+    },
+    {
+      "name": "Half Baked",
+      "lane": "business_ideas",
+      "priority": "medium",
+      "reason": "Business/startup ideas — filter for BBS offer angles and automation opportunities",
+      "items": [
+        {
+          "source_name": "Half Baked",
+          "source_lane": "business_ideas",
+          "priority": "medium",
+          "reason": "Business/startup ideas — filter for BBS offer angles and automation opportunities",
+          "subject": "💡 Gamified Running",
+          "sender": "Half Baked <ideas@mail.gethalfbaked.com>",
+          "date": "2026-06-30 18:31",
+          "snippet": "",
+          "thread_id": "19f1aa859df8a14b"
+        },
+        {
+          "source_name": "Half Baked",
+          "source_lane": "business_ideas",
+          "priority": "medium",
+          "reason": "Business/startup ideas — filter for BBS offer angles and automation opportunities",
+          "subject": "💡 Multiplayer Web",
+          "sender": "Half Baked <ideas@mail.gethalfbaked.com>",
+          "date": "2026-06-29 18:50",
+          "snippet": "",
+          "thread_id": "19f1593cee2b6aa7"
+        }
+      ]
+    }
+  ],
+  "total_items": 6,
+  "fetch_errors": [
+    "The Batch: no emails found",
+    "The Rundown AI: no emails found",
+    "OpenRouter Updates: no emails found"
+  ]
+}

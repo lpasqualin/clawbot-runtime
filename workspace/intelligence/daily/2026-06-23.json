@@ -1,0 +1,102 @@
+{
+  "date": "2026-06-23",
+  "fetched_at": "2026-06-23T07:15:01.667308-04:00",
+  "sources": [
+    {
+      "name": "TLDR",
+      "lane": "tech_radar",
+      "priority": "medium",
+      "reason": "Tech/AI breadth, new models, tools — needs filtering",
+      "items": [
+        {
+          "source_name": "TLDR",
+          "source_lane": "tech_radar",
+          "priority": "medium",
+          "reason": "Tech/AI breadth, new models, tools — needs filtering",
+          "subject": "Nvidia robotics 🤖, Instagram shows 📺, optimal slop 👨‍💻",
+          "sender": "TLDR <dan@tldrnewsletter.com>",
+          "date": "2026-06-23 06:27",
+          "snippet": "",
+          "thread_id": "19ef40514badba5f"
+        },
+        {
+          "source_name": "TLDR",
+          "source_lane": "tech_radar",
+          "priority": "medium",
+          "reason": "Tech/AI breadth, new models, tools — needs filtering",
+          "subject": "Apple reboots design 📱, Tesla Megapod ⚡, agent hook guardrails 👨‍💻  ",
+          "sender": "TLDR <dan@tldrnewsletter.com>",
+          "date": "2026-06-22 06:29",
+          "snippet": "",
+          "thread_id": "19eeee0f2c341c08"
+        }
+      ]
+    },
+    {
+      "name": "AI for Work",
+      "lane": "workflow_templates",
+      "priority": "low",
+      "reason": "AI productivity workflows — keep only if producing usable patterns",
+      "items": [
+        {
+          "source_name": "AI for Work",
+          "source_lane": "workflow_templates",
+          "priority": "low",
+          "reason": "AI productivity workflows — keep only if producing usable patterns",
+          "subject": "How AI became a catalyst for AR",
+          "sender": "AI For Work <aiforwork@mail.beehiiv.com>",
+          "date": "2026-06-22 14:53",
+          "snippet": "",
+          "thread_id": "19ef0adf97ef8bef"
+        },
+        {
+          "source_name": "AI for Work",
+          "source_lane": "workflow_templates",
+          "priority": "low",
+          "reason": "AI productivity workflows — keep only if producing usable patterns",
+          "subject": "Why we don't compare Snap Specs to Meta Ray-Bans",
+          "sender": "AI For Work <aiforwork@mail.beehiiv.com>",
+          "date": "2026-06-21 21:53",
+          "snippet": "",
+          "thread_id": "19eed0805c6487ef"
+        }
+      ]
+    },
+    {
+      "name": "Half Baked",
+      "lane": "business_ideas",
+      "priority": "medium",
+      "reason": "Business/startup ideas — filter for BBS offer angles and automation opportunities",
+      "items": [
+        {
+          "source_name": "Half Baked",
+          "source_lane": "business_ideas",
+          "priority": "medium",
+          "reason": "Business/startup ideas — filter for BBS offer angles and automation opportunities",
+          "subject": "💡 Fact Checking",
+          "sender": "Half Baked <ideas@mail.gethalfbaked.com>",
+          "date": "2026-06-22 18:50",
+          "snippet": "",
+          "thread_id": "19ef1877aaea05cd"
+        },
+        {
+          "source_name": "Half Baked",
+          "source_lane": "business_ideas",
+          "priority": "medium",
+          "reason": "Business/startup ideas — filter for BBS offer angles and automation opportunities",
+          "subject": "💡 Fully Baked: Copy Trading",
+          "sender": "Half Baked <ideas@mail.gethalfbaked.com>",
+          "date": "2026-06-21 18:50",
+          "snippet": "",
+          "thread_id": "19eec60e836d0f3c"
+        }
+      ]
+    }
+  ],
+  "total_items": 6,
+  "fetch_errors": [
+    "The Batch: no emails found",
+    "The Rundown AI: no emails found",
+    "OpenRouter Updates: no emails found"
+  ]
+}

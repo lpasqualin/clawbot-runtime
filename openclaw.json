@@ -1,18 +1,18 @@
 {
   "meta": {
-    "lastTouchedVersion": "2026.6.1",
-    "lastTouchedAt": "2026-06-06T17:44:55.529Z"
+    "lastTouchedVersion": "2026.6.9",
+    "lastTouchedAt": "2026-06-23T00:55:31.000Z"
   },
   "wizard": {
-    "lastRunAt": "2026-06-05T00:09:32.123Z",
-    "lastRunVersion": "2026.6.1",
+    "lastRunAt": "2026-06-23T00:42:53.803Z",
+    "lastRunVersion": "2026.6.9",
     "lastRunCommand": "configure",
     "lastRunMode": "local"
   },
   "ui": {
     "assistant": {
-      "name": "\ud83e\udd9e ClawBot",
-      "avatar": "\ud83e\udd9e"
+      "name": "🦞 ClawBot",
+      "avatar": "🦞"
     }
   },
   "secrets": {
@@ -147,26 +147,9 @@
         ]
       },
       "openai": {
-        "baseUrl": "https://api.openai.com/v1",
-        "auth": "oauth",
-        "models": [
-          {
-            "id": "chat-latest",
-            "name": "GPT-5.5 Instant",
-            "reasoning": false,
-            "input": [
-              "text"
-            ],
-            "cost": {
-              "input": 0,
-              "output": 0,
-              "cacheRead": 0,
-              "cacheWrite": 0
-            },
-            "contextWindow": 200000,
-            "maxTokens": 8192
-          }
-        ]
+        "baseUrl": "https://chatgpt.com/backend-api",
+        "api": "openai-chatgpt-responses",
+        "models": []
       }
     }
   },
@@ -177,44 +160,16 @@
         "fallbacks": [
           "openai/gpt-5.4-mini",
           "openrouter/moonshotai/kimi-k2.6",
-          "openai/chat-latest",
-          "anthropic/claude-haiku-4-5",
-          "anthropic/claude-sonnet-4-6",
-          "anthropic/claude-opus-4-7",
+          "openrouter/google/gemini-2.5-flash",
+          "ollama/qwen3:14b",
+          "ollama/gemma4:e4b",
+          "ollama/deepseek-r1:14b",
+          "ollama/qwen2.5-coder:14b",
+          "ollama/devstral:24b",
           "openrouter/auto"
         ]
       },
       "models": {
-        "ollama/qwen3:14b": {
-          "alias": "local-reasoning"
-        },
-        "ollama/gemma4:e4b": {
-          "alias": "local-fast"
-        },
-        "ollama/deepseek-r1:14b": {
-          "alias": "local-reasoning-deep"
-        },
-        "ollama/qwen2.5-coder:14b": {
-          "alias": "local-coding"
-        },
-        "ollama/devstral:24b": {
-          "alias": "adv-coding"
-        },
-        "ollama/nomic-embed-text": {
-          "alias": "embed"
-        },
-        "anthropic/claude-haiku-4-5": {
-          "alias": "anthropic-standard"
-        },
-        "anthropic/claude-sonnet-4-6": {
-          "alias": "anthropic-medium"
-        },
-        "anthropic/claude-opus-4-7": {
-          "alias": "anthropic-high"
-        },
-        "openrouter/google/gemini-2.5-flash": {},
-        "openrouter/moonshotai/kimi-k2.6": {},
-        "openrouter/auto": {},
         "openai/gpt-5.5": {
           "alias": "standard",
           "agentRuntime": {
@@ -233,7 +188,36 @@
             "id": "codex"
           }
         },
-        "openai-codex/gpt-5.5": {}
+        "openrouter/moonshotai/kimi-k2.6": {
+          "alias": "kimi"
+        },
+        "openrouter/google/gemini-2.5-flash": {
+          "alias": "gemini-flash"
+        },
+        "openrouter/auto": {
+          "alias": "auto"
+        },
+        "ollama/qwen3:14b": {
+          "alias": "local-reasoning"
+        },
+        "ollama/gemma4:e4b": {
+          "alias": "local-fast"
+        },
+        "ollama/gemma4:12b": {
+          "alias": "local-ingest"
+        },
+        "ollama/deepseek-r1:14b": {
+          "alias": "local-reasoning-deep"
+        },
+        "ollama/qwen2.5-coder:14b": {
+          "alias": "local-coding"
+        },
+        "ollama/devstral:24b": {
+          "alias": "adv-coding"
+        },
+        "ollama/nomic-embed-text": {
+          "alias": "embed"
+        }
       },
       "workspace": "/home/clawbot/.openclaw/workspace",
       "memorySearch": {
@@ -243,7 +227,7 @@
       "compaction": {
         "mode": "safeguard"
       },
-      "thinkingDefault": "medium",
+      "thinkingDefault": "low",
       "maxConcurrent": 1,
       "subagents": {
         "maxConcurrent": 1
@@ -260,8 +244,8 @@
         "id": "main",
         "identity": {
           "name": "ClawBot",
-          "theme": "Leo Paz\u2019s local AI operator running locally",
-          "emoji": "\ud83e\udd9e",
+          "theme": "Leo Paz’s local AI operator running locally",
+          "emoji": "🦞",
           "avatar": "avatars/telegram-bot-avatar.jpg"
         }
       },

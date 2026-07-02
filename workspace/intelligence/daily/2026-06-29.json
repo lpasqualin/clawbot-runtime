@@ -1,0 +1,69 @@
+{
+  "date": "2026-06-29",
+  "fetched_at": "2026-06-29T07:15:01.161122-04:00",
+  "sources": [
+    {
+      "name": "TLDR",
+      "lane": "tech_radar",
+      "priority": "medium",
+      "reason": "Tech/AI breadth, new models, tools — needs filtering",
+      "items": [
+        {
+          "source_name": "TLDR",
+          "source_lane": "tech_radar",
+          "priority": "medium",
+          "reason": "Tech/AI breadth, new models, tools — needs filtering",
+          "subject": "Starlink mobile 🛰️, Meta prediction markets 📈, local coding agents 👨‍💻",
+          "sender": "TLDR <dan@tldrnewsletter.com>",
+          "date": "2026-06-29 06:30",
+          "snippet": "",
+          "thread_id": "19f12edd80009d69"
+        }
+      ]
+    },
+    {
+      "name": "AI for Work",
+      "lane": "workflow_templates",
+      "priority": "low",
+      "reason": "AI productivity workflows — keep only if producing usable patterns",
+      "items": [
+        {
+          "source_name": "AI for Work",
+          "source_lane": "workflow_templates",
+          "priority": "low",
+          "reason": "AI productivity workflows — keep only if producing usable patterns",
+          "subject": "Is security blocking you from using Claude Code?",
+          "sender": "AI For Work <aiforwork@mail.beehiiv.com>",
+          "date": "2026-06-27 11:35",
+          "snippet": "",
+          "thread_id": "19f09bbbb554e72f"
+        }
+      ]
+    },
+    {
+      "name": "Half Baked",
+      "lane": "business_ideas",
+      "priority": "medium",
+      "reason": "Business/startup ideas — filter for BBS offer angles and automation opportunities",
+      "items": [
+        {
+          "source_name": "Half Baked",
+          "source_lane": "business_ideas",
+          "priority": "medium",
+          "reason": "Business/startup ideas — filter for BBS offer angles and automation opportunities",
+          "subject": "💡 Fully Baked: Inverse Mentorship",
+          "sender": "Half Baked <ideas@mail.gethalfbaked.com>",
+          "date": "2026-06-28 18:50",
+          "snippet": "",
+          "thread_id": "19f106d8b1458142"
+        }
+      ]
+    }
+  ],
+  "total_items": 3,
+  "fetch_errors": [
+    "The Batch: no emails found",
+    "The Rundown AI: no emails found",
+    "OpenRouter Updates: no emails found"
+  ]
+}
